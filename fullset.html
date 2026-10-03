@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>取扱説明書フルセット｜1年の攻略ロードマップ｜なぎ</title>
+  <meta name="description" content="個別数秘鑑定を受けた方だけの、1年間の上位プラン。12ヶ月の攻略ロードマップと月3回のLINE相談で、「分かった」を「変わった」まで運びます。">
+  <link rel="icon" type="image/png" href="favicon.png?v=20261003">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@500;600;700;800&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/numerology-theme.css">
+  <style>
+    :root{
+      --navy:#06184d;
+      --blue:#104fc1;
+      --gold:#c99a43;
+      --gold-l:#f2d48a;
+      --sub:#425174;
+      --copy:#2f3c59;
+      --paper:#fbf8f0;
+      --line:rgba(7,26,77,.12);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    html,body{min-height:100%}
+    body.fullset-page{
+      min-height:100dvh;
+      color:var(--navy);
+      font-family:'Noto Sans JP',sans-serif;
+      font-size:16px;
+      line-height:2;
+      background-color:#f4f7fc;
+      background-image:linear-gradient(rgba(248,250,255,.22),rgba(248,250,255,.22)),url('assets/nagi-numerology-bg.webp');
+      background-size:cover;
+      background-position:center top;
+      background-attachment:fixed;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+    .fullset-page::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background:linear-gradient(180deg,rgba(247,249,254,.28),rgba(247,249,254,.6)),radial-gradient(circle at 50% 20%,rgba(255,255,255,.24),transparent 46%);
+    }
+    header.fs-head{
+      position:relative;
+      z-index:5;
+      background:rgba(255,255,255,.88);
+      border-bottom:1px solid rgba(201,154,67,.28);
+      box-shadow:0 10px 34px -28px rgba(7,26,77,.55);
+      backdrop-filter:blur(18px) saturate(140%);
+      -webkit-backdrop-filter:blur(18px) saturate(140%);
+    }
+    .hbar{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      max-width:1020px;
+      margin-inline:auto;
+      padding:12px 24px;
+    }
+    .logo-ava{
+      width:44px;height:44px;border-radius:50%;
+      object-fit:cover;object-position:center;
+      background:#fff;
+      border:2px solid #fff;outline:1px solid rgba(201,154,67,.58);
+      box-shadow:0 8px 18px rgba(7,26,77,.14);
+    }
+    .logo-en{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:600;letter-spacing:.30em;color:var(--navy);display:block;line-height:1.2}
+    .logo-ja{font-family:'Noto Serif JP',serif;font-size:10.5px;color:var(--copy);display:block;margin-top:3px}
+    main{position:relative;z-index:3}
+    .wrap{max-width:920px;margin-inline:auto;padding-inline:26px}
+
+    /* hero */
+    .fs-hero{padding:64px 0 30px}
+    .hero-card{
+      padding:clamp(40px,5vw,58px);
+      border:1px solid rgba(201,154,67,.48);
+      border-radius:32px;
+      background:rgba(255,255,255,.93);
+      box-shadow:var(--nagi-soft-shadow,0 30px 80px -42px rgba(7,26,77,.42)),inset 0 0 0 8px rgba(255,255,255,.48);
+      backdrop-filter:blur(18px) saturate(120%);
+      -webkit-backdrop-filter:blur(18px) saturate(120%);
+      text-align:center;
+    }
+    .kicker{
+      display:flex;align-items:center;justify-content:center;gap:16px;
+      font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;
+      letter-spacing:.34em;text-transform:uppercase;color:var(--gold);
+    }
+    .kicker::before,.kicker::after{content:"";width:46px;height:1px}
+    .kicker::before{background:linear-gradient(90deg,transparent,var(--gold))}
+    .kicker::after{background:linear-gradient(90deg,var(--gold),transparent)}
+    .eyebrow{
+      display:inline-flex;margin:18px 0 14px;padding:7px 14px;
+      border:1px solid rgba(21,95,194,.18);border-radius:999px;
+      background:rgba(21,95,194,.06);color:var(--blue);
+      font-size:12px;font-weight:700;letter-spacing:.06em;
+    }
+    h1{
+      font-family:'Noto Serif JP',serif;
+      font-size:clamp(30px,5vw,48px);
+      font-weight:700;line-height:1.55;letter-spacing:.03em;
+      color:var(--navy);text-wrap:balance;
+    }
+    h1 .em{color:var(--blue);background:linear-gradient(transparent 72%,rgba(201,154,67,.22) 72%)}
+    .hero-lead{
+      max-width:640px;margin:20px auto 0;
+      color:var(--copy);font-size:15.5px;font-weight:500;line-height:2.05;
+      text-align:left;
+    }
+    .cta{
+      display:flex;align-items:center;justify-content:center;gap:20px;
+      width:min(540px,100%);min-height:68px;margin:28px auto 0;
+      border:2px solid var(--gold);border-radius:999px;
+      background:radial-gradient(circle at 50% 0,rgba(22,88,196,.55),transparent 55%),linear-gradient(180deg,#0a3384,#051542);
+      box-shadow:0 12px 30px rgba(6,24,77,.23),inset 0 0 0 2px rgba(255,255,255,.07);
+      color:#fff;text-decoration:none;
+      font-family:'Noto Serif JP',serif;font-size:clamp(16px,1.8vw,20px);font-weight:700;letter-spacing:.05em;
+      position:relative;overflow:hidden;
+      transition:transform .25s ease,box-shadow .25s ease,filter .25s ease;
+    }
+    .cta::before,.cta::after{content:"✦";color:#ffd26c;font-size:17px;text-shadow:0 0 12px rgba(255,210,108,.9)}
+    .cta:hover{transform:translateY(-3px);filter:brightness(1.08);box-shadow:0 17px 36px rgba(6,24,77,.3)}
+    .hero-note{margin-top:14px;color:var(--sub);font-size:12.5px}
+
+    /* sections */
+    section.fs{padding:26px 0 0}
+    section.fs:last-of-type{padding-bottom:90px}
+    .card{
+      padding:clamp(34px,4.6vw,52px);
+      border:1px solid rgba(201,154,67,.46);
+      border-radius:28px;
+      background:rgba(255,255,255,.95);
+      box-shadow:0 30px 80px -46px rgba(7,26,77,.5),inset 0 0 0 8px rgba(250,248,241,.7);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      position:relative;
+    }
+    .card::before,.card::after{content:"";position:absolute;width:40px;height:40px;pointer-events:none}
+    .card::before{left:16px;top:16px;border-left:1px solid rgba(201,154,67,.55);border-top:1px solid rgba(201,154,67,.55)}
+    .card::after{right:16px;bottom:16px;border-right:1px solid rgba(201,154,67,.55);border-bottom:1px solid rgba(201,154,67,.55)}
+    .sec-eyebrow{
+      display:block;margin-bottom:12px;
+      color:var(--gold);font-family:'Montserrat',sans-serif;
+      font-size:10px;font-weight:600;letter-spacing:.30em;text-transform:uppercase;
+      text-align:center;
+    }
+    h2{
+      font-family:'Noto Serif JP',serif;
+      font-size:clamp(23px,3.6vw,32px);font-weight:700;line-height:1.6;
+      color:var(--navy);text-align:center;letter-spacing:.03em;
+      text-wrap:balance;
+    }
+    h2 .em{color:var(--blue);background:linear-gradient(transparent 72%,rgba(201,154,67,.22) 72%)}
+    .sec-lead{max-width:640px;margin:18px auto 0;color:var(--copy);font-size:15.5px;line-height:2.05}
+    .sec-lead + .sec-lead{margin-top:14px}
+    strong.mark{color:var(--navy);background:linear-gradient(transparent 72%,rgba(201,154,67,.28) 72%);font-weight:700}
+
+    /* ladder */
+    .ladder{display:grid;gap:10px;max-width:640px;margin:24px auto 0}
+    .ladder-row{
+      display:grid;grid-template-columns:112px 1fr;gap:14px;align-items:center;
+      padding:15px 18px;border:1px solid var(--line);border-radius:14px;background:#f8f9fc;
+      color:var(--copy);font-size:13.5px;line-height:1.75;
+    }
+    .ladder-row b{font-family:'Noto Serif JP',serif;color:var(--navy);font-size:13.5px;line-height:1.5}
+    .ladder-row.hot{
+      border-color:rgba(242,212,138,.75);
+      background:linear-gradient(145deg,#0a347f,#04143e);
+      color:#e1e8f6;
+      box-shadow:0 16px 34px -22px rgba(7,26,77,.7);
+    }
+    .ladder-row.hot b{color:var(--gold-l)}
+
+    /* contents 4 items */
+    .items{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:26px}
+    .item{
+      padding:22px 20px;border:1px solid var(--line);border-radius:16px;background:#fff;
+      box-shadow:0 14px 34px -30px rgba(7,26,77,.4);
+      position:relative;
+    }
+    .item::before{content:"";position:absolute;left:20px;top:0;width:30px;height:3px;background:var(--gold)}
+    .item .no{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:var(--blue)}
+    .item h3{font-family:'Noto Serif JP',serif;font-size:16.5px;color:var(--navy);margin:6px 0 8px;line-height:1.6}
+    .item p{color:var(--copy);font-size:13.5px;line-height:1.9}
+    .items-note{margin-top:14px;text-align:center;color:var(--sub);font-size:12.5px}
+
+    /* roadmap timeline */
+    .terms{display:grid;gap:0;max-width:620px;margin:26px auto 0}
+    .term{
+      display:grid;grid-template-columns:20px 1fr;gap:18px;
+      position:relative;padding-bottom:22px;
+    }
+    .term:last-child{padding-bottom:0}
+    .term .dot{
+      width:20px;height:20px;border-radius:50%;margin-top:4px;
+      background:linear-gradient(145deg,#0a347f,#04143e);
+      border:2px solid var(--gold-l);
+      box-shadow:0 0 0 4px rgba(201,154,67,.14);
+      position:relative;z-index:1;
+    }
+    .term:not(:last-child)::before{
+      content:"";position:absolute;left:9px;top:24px;bottom:0;width:2px;
+      background:linear-gradient(rgba(201,154,67,.55),rgba(201,154,67,.15));
+    }
+    .term .t-body{padding-bottom:2px}
+    .term .t-label{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:var(--blue)}
+    .term h3{font-family:'Noto Serif JP',serif;font-size:17px;color:var(--navy);line-height:1.6;margin:3px 0 4px}
+    .term p{color:var(--copy);font-size:13.5px;line-height:1.9}
+    .term .cp{
+      display:inline-flex;margin-top:8px;padding:5px 12px;
+      border:1px solid rgba(201,154,67,.5);border-radius:999px;
+      background:linear-gradient(135deg,#fffaf0,#f8f2e5);
+      color:#7b5920;font-size:11.5px;font-weight:700;
+    }
+
+    /* LINE rules */
+    .rules{display:grid;gap:10px;max-width:640px;margin:26px auto 0}
+    .rule{
+      display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;
+      padding:18px 20px;border:1px solid var(--line);border-left:4px solid var(--gold);
+      border-radius:14px;background:#fff;
+    }
+    .rule .r-no{
+      font-family:'Noto Serif JP',serif;font-size:22px;font-weight:700;color:var(--gold);line-height:1.3;
+    }
+    .rule h3{font-family:'Noto Serif JP',serif;font-size:15.5px;color:var(--navy);line-height:1.65}
+    .rule p{margin-top:4px;color:var(--copy);font-size:13.5px;line-height:1.9}
+    .teirei{
+      max-width:640px;margin:14px auto 0;padding:22px 24px;
+      border:1px solid rgba(242,212,138,.55);border-radius:16px;
+      background:linear-gradient(145deg,#0a347f,#04143e);
+      color:#e9eefb;font-size:14px;line-height:2;
+    }
+    .teirei b{color:var(--gold-l);font-family:'Noto Serif JP',serif}
+
+    /* fit / unfit */
+    .fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+    .fit-col{padding:22px;border-radius:16px;font-size:13.5px;line-height:1.9}
+    .fit-col.ng{border:1px solid var(--line);background:#f8f9fc;color:var(--copy)}
+    .fit-col.ok{border:1px solid rgba(21,95,194,.2);background:linear-gradient(135deg,rgba(21,95,194,.07),rgba(90,165,232,.04));color:var(--copy)}
+    .fit-col h3{font-family:'Noto Serif JP',serif;font-size:15.5px;margin-bottom:10px;line-height:1.6}
+    .fit-col.ng h3{color:var(--navy)}
+    .fit-col.ok h3{color:var(--blue)}
+    .fit-col ul{list-style:none}
+    .fit-col li{position:relative;padding-left:20px;margin-bottom:8px}
+    .fit-col.ng li::before{content:"─";position:absolute;left:0;color:var(--gold)}
+    .fit-col.ok li::before{content:"◆";position:absolute;left:0;font-size:9px;top:7px;color:var(--blue)}
+
+    /* price */
+    .price-card{
+      border:1px solid rgba(242,212,138,.62);
+      border-radius:26px;
+      background:radial-gradient(circle at 50% 0,rgba(21,95,194,.52),transparent 54%),linear-gradient(145deg,#092e76,#030e30);
+      box-shadow:0 28px 58px -30px rgba(3,14,48,.78),inset 0 0 0 1px rgba(255,255,255,.07);
+      padding:clamp(36px,5vw,54px);
+      text-align:center;color:#e1e8f6;
+    }
+    .price-card .sec-eyebrow{color:var(--gold-l)}
+    .price-card h2{color:#fff}
+    .price-tag{margin-top:24px}
+    .price-tag .senko{
+      display:inline-flex;padding:6px 16px;border:1px solid rgba(242,212,138,.6);border-radius:999px;
+      color:var(--gold-l);font-size:13px;font-weight:700;letter-spacing:.06em;
+    }
+    .price-main{
+      margin-top:14px;font-family:'Noto Serif JP',serif;color:#fff;
+      font-size:clamp(40px,7vw,58px);font-weight:700;line-height:1.2;
+    }
+    .price-main small{font-size:.42em;font-weight:600;color:#c7d5ef}
+    .price-after{margin-top:10px;color:#c7d5ef;font-size:13.5px;line-height:1.9}
+    .price-inc{
+      max-width:520px;margin:24px auto 0;padding:18px 22px;
+      border:1px solid rgba(255,255,255,.16);border-radius:14px;
+      background:rgba(255,255,255,.05);
+      text-align:left;font-size:13.5px;line-height:2;
+    }
+    .price-inc b{color:var(--gold-l)}
+    .cta-gold{
+      display:flex;align-items:center;justify-content:center;gap:16px;
+      width:min(480px,100%);min-height:66px;margin:26px auto 0;
+      border:1px solid var(--gold-l);border-radius:999px;
+      background:linear-gradient(180deg,#f0cc72,#c99a43);
+      color:var(--navy);text-decoration:none;
+      font-family:'Noto Serif JP',serif;font-size:clamp(16px,1.8vw,19px);font-weight:700;letter-spacing:.04em;
+      box-shadow:0 15px 32px rgba(0,0,0,.28);
+      transition:transform .25s ease,filter .25s ease;
+    }
+    .cta-gold:hover{transform:translateY(-3px);filter:brightness(1.05)}
+    .price-note{margin-top:16px;color:#aebbd8;font-size:12px;line-height:1.9}
+
+    /* QA */
+    .qa{max-width:680px;margin:24px auto 0;display:grid;gap:10px}
+    details{
+      border:1px solid var(--line);border-radius:14px;background:#fff;
+      padding:0 20px;overflow:hidden;
+    }
+    summary{
+      cursor:pointer;list-style:none;
+      padding:17px 0;
+      font-family:'Noto Serif JP',serif;font-size:14.5px;font-weight:700;color:var(--navy);line-height:1.7;
+      position:relative;padding-right:30px;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:16px}
+    details[open] summary::after{content:"−"}
+    details p{padding:2px 0 18px;color:var(--copy);font-size:13.5px;line-height:2;border-top:1px dashed rgba(201,154,67,.35);padding-top:14px}
+
+    footer.fs-foot{
+      position:relative;z-index:3;
+      border-top:1px solid rgba(201,154,67,.3);
+      background:rgba(249,247,241,.92);
+      padding:26px 20px 34px;
+      text-align:center;color:var(--sub);font-size:12px;line-height:2;
+    }
+    footer.fs-foot a{color:var(--blue)}
+
+    @media(max-width:680px){
+      body.fullset-page{background-size:auto 100%;background-attachment:scroll}
+      .wrap{padding-inline:14px}
+      .fs-hero{padding:34px 0 18px}
+      .hero-card{padding:34px 18px 30px;border-radius:23px}
+      h1{font-size:clamp(26px,7.6vw,34px)}
+      .hero-lead{font-size:14px}
+      .card{padding:32px 17px 28px;border-radius:21px}
+      h2{font-size:clamp(21px,6vw,26px)}
+      .sec-lead{font-size:14px}
+      .items{grid-template-columns:1fr}
+      .fit-grid{grid-template-columns:1fr}
+      .ladder-row{grid-template-columns:1fr;gap:6px}
+      .cta{min-height:62px;font-size:15.5px;gap:12px}
+      .cta-gold{min-height:60px;font-size:15.5px}
+      .price-inc{font-size:13px}
+    }
+    @media(prefers-reduced-motion:reduce){.cta,.cta-gold{transition:none}}
+  </style>
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261003">
+</head>
+<body class="fullset-page">
+  <div class="numerology-backdrop" aria-hidden="true">
+    <span class="blueprint-grid"></span>
+    <span class="blueprint-arc arc-a"></span>
+    <span class="blueprint-arc arc-b"></span>
+    <span class="blueprint-beam beam-a"></span>
+    <span class="blueprint-beam beam-b"></span>
+  </div>
+
+  <header class="fs-head">
+    <div class="hbar">
+      <img class="logo-ava" src="assets/nagi-fullset-icon.png" alt="なぎ">
+      <span>
+        <span class="logo-en">NAGI</span>
+        <span class="logo-ja">現実をかえる数秘デザイン</span>
+      </span>
+    </div>
+  </header>
+
+  <main>
+    <!-- 0. hero -->
+    <section class="fs fs-hero">
+      <div class="wrap">
+        <div class="hero-card">
+          <p class="kicker">Full Set ── 1 Year Roadmap</p>
+          <p class="eyebrow">個別数秘鑑定を受けた方だけの、1年間の上位プラン</p>
+          <h1>読んで終わりの鑑定書を、<br><span class="em">1年回す道具</span>に変える。</h1>
+          <p class="hero-lead">個別数秘鑑定で、自分の仕様は分かったはずです。次に必要なのは、その仕様で1年間を実際に運用すること。取扱説明書フルセットは、3ヶ月×4期の攻略ロードマップと月3回のLINE相談で、「分かった」を「変わった」まで運ぶための1年です。</p>
+          <a class="cta" href="#price"><span>内容と価格を見る</span></a>
+          <p class="hero-note">先行10名まで19,800円。このページは、ご案内を受け取った方専用です。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. 誰のための商品か -->
+    <section class="fs">
+      <div class="wrap">
+        <div class="card">
+          <span class="sec-eyebrow">For Whom</span>
+          <h2>これは、<span class="em">鑑定を受けた自分</span>のための商品です。</h2>
+          <p class="sec-lead">このページは、個別数秘鑑定・3ヶ月フォロー鑑定を受けた方だけにお送りしています。初めての方はご購入いただけません。まずは個別数秘鑑定からお申し込みください。</p>
+          <p class="sec-lead">鑑定書を読んで、腑に落ちた。自分の数字の意味も分かった。でも3ヶ月経つと、日常が元の回し方に戻っていく。<strong class="mark">それは意志が弱いからではなく、仕様書を「読む道具」のまま置いているから</strong>です。フルセットは、それを「回す道具」に組み替えます。</p>
+          <div class="ladder" aria-label="なぎの鑑定の段階">
+            <div class="ladder-row"><b>個別数秘鑑定</b><span>自分の仕様書（50ページ以上）。「現在」の自分が分かる</span></div>
+            <div class="ladder-row"><b>3ヶ月フォロー鑑定</b><span>3ヶ月の答え合わせと、次の90日の攻略マップ</span></div>
+            <div class="ladder-row hot"><b>取扱説明書フルセット</b><span>1年の攻略ロードマップ＋月3回のLINE相談。仕様で1年を運用する</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 中身4点 -->
+    <section class="fs">
+      <div class="wrap">
+        <div class="card">
+          <span class="sec-eyebrow">Contents</span>
+          <h2>お渡しするのは、<span class="em">4つ</span>です。</h2>
+          <div class="items">
+            <div class="item">
+              <span class="no">01</span>
+              <h3>3つの数字の完全仕様書</h3>
+              <p>現在数×過去数×未来数。単体の意味ではなく、3つの掛け合わせで「自分の回し方」を1冊にまとめ直します。</p>
+            </div>
+            <div class="item">
+              <span class="no">02</span>
+              <h3>12ヶ月の攻略ロードマップ</h3>
+              <p>1年を3ヶ月×4期に分け、各期に主題を1つだけ置きます。週次チェックリスト48週分つき。迷ったら、その週のマスに戻ればいい設計です。</p>
+            </div>
+            <div class="item">
+              <span class="no">03</span>
+              <h3>関係者2名までの相性読み</h3>
+              <p>家族・パートナー・仕事相手など、2名まで。自分の数字との噛み合わせを読みます。3人目以降はおひとり3,000円で追加できます。</p>
+            </div>
+            <div class="item">
+              <span class="no">04</span>
+              <h3>LINE相談 月3回×12ヶ月</h3>
+              <p>1年間、月3回まで。詰まったマスをその場でほどくための窓口です。設計の詳細は下のブロックで説明します。</p>
+            </div>
+          </div>
+          <p class="items-note">お届けはPDF・70ページ以上。納品日から365日、終了日はPDFに記載します。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. ロードマップの構造 -->
+    <section class="fs">
+      <div class="wrap">
+        <div class="card">
+          <span class="sec-eyebrow">Roadmap</span>
+          <h2>1年を<span class="em">4つの期</span>に割って、順番に回します。</h2>
+          <p class="sec-lead">各期の主題は、自分の3つの数字から逆算して決めます。下の主題は一例です。全部を一度にやらない。<strong class="mark">1期にやることは、1つだけ</strong>。これが1年続く設計の芯です。</p>
+          <div class="terms">
+            <div class="term">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="t-body">
+                <span class="t-label">TERM 1｜0〜3ヶ月</span>
+                <h3>止める</h3>
+                <p>仕様に合わない回し方を特定して、まず止める。週次チェックリスト12週。</p>
+                <span class="cp">3ヶ月目：LINE定例①（こちらから声をかけます）</span>
+              </div>
+            </div>
+            <div class="term">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="t-body">
+                <span class="t-label">TERM 2｜3〜6ヶ月</span>
+                <h3>1本通す</h3>
+                <p>自分の数字が一番強く出る経路を、1本だけ開通させる。12週。</p>
+                <span class="cp">6ヶ月目：LINE定例②</span>
+              </div>
+            </div>
+            <div class="term">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="t-body">
+                <span class="t-label">TERM 3｜6〜9ヶ月</span>
+                <h3>数える</h3>
+                <p>通した1本を数字で記録する。手応えを「気がする」から「数えられる」に変える。12週。</p>
+                <span class="cp">9ヶ月目：LINE定例③</span>
+              </div>
+            </div>
+            <div class="term">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="t-body">
+                <span class="t-label">TERM 4｜9〜12ヶ月</span>
+                <h3>回収する</h3>
+                <p>1年分の記録を回収して、次の1年を自分で設計できる状態で終わる。12週。</p>
+                <span class="cp">12ヶ月目：LINE定例④＝1年の答え合わせ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. LINE相談の設計 -->
+    <section class="fs">
+      <div class="wrap">
+        <div class="card">
+          <span class="sec-eyebrow">Line Support</span>
+          <h2>LINE相談は、<span class="em">設計を決めて</span>お渡しします。</h2>
+          <p class="sec-lead">「相談し放題」とは書きません。いつ相談していいか分からないまま1年が過ぎるのが、一番もったいないからです。ルールを最初に全部決めておきます。</p>
+          <div class="rules">
+            <div class="rule">
+              <span class="r-no">1</span>
+              <div>
+                <h3>月3回まで。1往復＝1回です</h3>
+                <p>自分が送って、僕が返した時点で1回。続けて送っていただいた場合は2回目として数えます。</p>
+              </div>
+            </div>
+            <div class="rule">
+              <span class="r-no">2</span>
+              <div>
+                <h3>繰り越しはありません</h3>
+                <p>使わなかった月の分は、毎月1日にリセットされます。「今月の詰まりは今月ほどく」ためのルールです。</p>
+              </div>
+            </div>
+            <div class="rule">
+              <span class="r-no">3</span>
+              <div>
+                <h3>相談の中心は「今月のチェックリスト」</h3>
+                <p>詰まったマスをそのまま送ってください。受け止めて、数字で言語化して、次の1マスを指定してお返しします。</p>
+              </div>
+            </div>
+            <div class="rule">
+              <span class="r-no">4</span>
+              <div>
+                <h3>返信は順次お返しします</h3>
+                <p>会社員との二足のわらじで運営しているため、応答時間の約束はしません。そのかわり、必ず返します。</p>
+              </div>
+            </div>
+          </div>
+          <div class="teirei">
+            <b>月3回とは別に、3・6・9・12ヶ月目の定例があります。</b><br>
+            期の変わり目に、こちらから声をかけて進み具合を一緒に見ます（回数には数えません）。遠慮して1回も使わないまま終わる──それを一番避けたいので、定例だけは僕から動きます。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. 向かない人 -->
+    <section class="fs">
+      <div class="wrap">
+        <div class="card">
+          <span class="sec-eyebrow">Honest Note</span>
+          <h2>向かない人も、先に書いておきます。</h2>
+          <div class="fit-grid">
+            <div class="fit-col ng">
+              <h3>フルセットが向かない人</h3>
+              <ul>
+                <li>週に1マス（数分）のチェック時間も取れない状態の人。まず生活の火を消すのが先です</li>
+                <li>答えを決めてほしい人。僕は判断を代わりにしません。判断の前の言語化に付き合う設計です</li>
+                <li>1年は長すぎると感じる人。3ヶ月フォロー鑑定の90日マップで足りている可能性が高いです</li>
+              </ul>
+            </div>
+            <div class="fit-col ok">
+              <h3>フルセットが効く人</h3>
+              <ul>
+                <li>鑑定書で腑に落ちたのに、3ヶ月経つと元に戻ってしまう人</li>
+                <li>やることを1つに絞ってもらえたほうが動ける人</li>
+                <li>迷ったときに「数字でどう読むか」を聞ける相手が欲しい人</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. price -->
+    <section class="fs" id="price">
+      <div class="wrap">
+        <div class="price-card">
+          <span class="sec-eyebrow">Price</span>
+          <h2>価格</h2>
+          <div class="price-tag">
+            <span class="senko">先行10名まで</span>
+            <p class="price-main">19,800<small>円（税込）</small></p>
+            <p class="price-after">11人目からは29,800円になります。<br>先行枠の残りは、決済ページに実数で表示されています。</p>
+          </div>
+          <div class="price-inc">
+            <b>含まれるもの</b><br>
+            ・3つの数字の完全仕様書＋12ヶ月の攻略ロードマップ（PDF・70ページ以上）<br>
+            ・関係者2名までの相性読み（3人目以降＋3,000円／名）<br>
+            ・LINE相談 月3回×12ヶ月＋定例4回<br>
+            ・期間：納品日から365日（終了日をPDFに記載）
+          </div>
+          <a class="cta-gold" href="https://mosh.jp/products/487753e4-b6be-4f75-83e5-4c908089eea8"><span>決済ページへ進む</span></a>
+          <p class="price-note">決済はMOSH（クレジットカード）。決済画面には販売元「取扱説明書ラボ」と表示されますが、鑑定のやり取りとお届けは、これまでどおり、なぎから行います。<br>お届けはご入金確認後7日以内。特定商取引法に基づく表記は決済ページに掲載しています。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. QA -->
+    <section class="fs">
+      <div class="wrap">
+        <div class="card">
+          <span class="sec-eyebrow">Q &amp; A</span>
+          <h2>よくある質問</h2>
+          <div class="qa">
+            <details>
+              <summary>LINE相談を使い切れなかったら、もったいなくないですか。</summary>
+              <p>定例4回はこちらから声をかけるので、1回も使わないまま終わることはありません。月3回の枠は「詰まったときの保険」です。保険は使わなかった月があっていい、と考えてください。</p>
+            </details>
+            <details>
+              <summary>相談には何を送ればいいですか。</summary>
+              <p>今月のチェックリストで詰まったマスを、そのまま送ってください。「これで合っているのか分からない」の一文でも大丈夫です。深い相談は、期の変わり目の定例でまとめて扱います。</p>
+            </details>
+            <details>
+              <summary>個別数秘鑑定を受けていなくても買えますか。</summary>
+              <p>ご購入いただけません。フルセットは鑑定書の3つの数字を土台に作るので、先に個別数秘鑑定を受けていただく必要があります。</p>
+            </details>
+            <details>
+              <summary>支払い方法は何がありますか。</summary>
+              <p>決済ページ（MOSH）でのクレジットカード一括払いです。</p>
+            </details>
+            <details>
+              <summary>キャンセル・返金はできますか。</summary>
+              <p>お一人おひとりの生年月日から個別制作するため、決済完了後のキャンセル・返金はお受けしていません。生年月日の入力間違いは、納品後7日以内であれば一度だけ無償で作り直します。詳細は決済ページのキャンセルポリシーをご確認ください。</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. final CTA -->
+    <section class="fs">
+      <div class="wrap">
+        <div class="price-card">
+          <span class="sec-eyebrow">Last Message</span>
+          <h2>1年後、自分の説明書を<br>自分で書ける状態へ。</h2>
+          <p class="sec-lead" style="color:#e1e8f6">鑑定書は、僕が書きました。フルセットの1年が終わるとき、次の1年の設計図は自分で書けるようになっています。そこまで運ぶのが、この商品の仕事です。</p>
+          <a class="cta-gold" href="https://mosh.jp/products/487753e4-b6be-4f75-83e5-4c908089eea8"><span>先行10名の枠を確認する</span></a>
+          <p class="price-note">先行10名まで19,800円（税込）／11人目から29,800円</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="fs-foot">
+    <p>NAGI｜現実をかえる数秘デザイン</p>
+    <p><a href="https://mosh.jp/products/487753e4-b6be-4f75-83e5-4c908089eea8">決済ページ（特定商取引法に基づく表記・キャンセルポリシー）</a></p>
+  </footer>
+</body>
+</html>

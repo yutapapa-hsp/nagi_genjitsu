@@ -1,0 +1,1679 @@
+/*
+ * NAGI Numerology Design 2026
+ * Moving blueprint atmosphere + high-contrast reading surfaces.
+ */
+
+:root {
+  --nagi-navy: #071a4d;
+  --nagi-deep: #03113a;
+  --nagi-blue: #155fc2;
+  --nagi-sky: #5aa5e8;
+  --nagi-gold: #c99a43;
+  --nagi-gold-light: #f2d48a;
+  --nagi-paper: #fbf8f0;
+  --nagi-white: #ffffff;
+  --nagi-ink: #081a47;
+  --nagi-copy: #2f3c59;
+  --nagi-muted: #5a6680;
+  --nagi-line: rgba(7, 26, 77, .14);
+  --nagi-soft-shadow: 0 30px 80px -42px rgba(7, 26, 77, .42);
+}
+
+/* ─────────────────────────────────────────────
+   Shared animated blueprint atmosphere
+   ───────────────────────────────────────────── */
+
+.numerology-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+}
+
+.numerology-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: -8%;
+  background:
+    radial-gradient(circle at 16% 22%, rgba(21, 95, 194, .15), transparent 27%),
+    radial-gradient(circle at 83% 30%, rgba(201, 154, 67, .14), transparent 24%),
+    radial-gradient(circle at 56% 88%, rgba(90, 165, 232, .10), transparent 28%);
+  animation: nagiAura 18s ease-in-out infinite alternate;
+}
+
+.blueprint-grid {
+  position: absolute;
+  inset: -90px;
+  opacity: .42;
+  background-image:
+    linear-gradient(rgba(7, 26, 77, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(7, 26, 77, .045) 1px, transparent 1px),
+    linear-gradient(rgba(201, 154, 67, .055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 154, 67, .055) 1px, transparent 1px);
+  background-size: 72px 72px, 72px 72px, 360px 360px, 360px 360px;
+  mask-image: radial-gradient(ellipse at center, #000 24%, rgba(0, 0, 0, .55) 64%, transparent 94%);
+  animation: nagiGrid 26s linear infinite;
+}
+
+.blueprint-arc {
+  position: absolute;
+  width: min(58vw, 780px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(201, 154, 67, .20);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 48px rgba(21, 95, 194, .025),
+    0 0 0 96px rgba(201, 154, 67, .018),
+    inset 0 0 80px rgba(21, 95, 194, .035);
+}
+
+.blueprint-arc::before,
+.blueprint-arc::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.blueprint-arc::before {
+  inset: 8%;
+  border: 1px dashed rgba(21, 95, 194, .18);
+}
+
+.blueprint-arc::after {
+  inset: 22%;
+  border: 1px solid rgba(7, 26, 77, .09);
+}
+
+.arc-a {
+  left: -24%;
+  top: 18%;
+  animation: nagiTurn 52s linear infinite;
+}
+
+.arc-b {
+  right: -22%;
+  bottom: -18%;
+  width: min(48vw, 620px);
+  animation: nagiTurnReverse 44s linear infinite;
+}
+
+.blueprint-beam {
+  position: absolute;
+  width: 1px;
+  height: 70vh;
+  background: linear-gradient(transparent, rgba(201, 154, 67, .40), transparent);
+  box-shadow: 0 0 22px rgba(201, 154, 67, .30);
+  transform-origin: center;
+  opacity: .28;
+}
+
+.beam-a {
+  left: 22%;
+  top: -12%;
+  transform: rotate(32deg);
+  animation: nagiBeam 9s ease-in-out infinite;
+}
+
+.beam-b {
+  right: 18%;
+  bottom: -18%;
+  transform: rotate(-41deg);
+  animation: nagiBeam 11s -4s ease-in-out infinite;
+}
+
+@keyframes nagiAura {
+  from { transform: translate3d(-1.5%, -1%, 0) scale(1); opacity: .72; }
+  to { transform: translate3d(1.5%, 1%, 0) scale(1.05); opacity: 1; }
+}
+
+@keyframes nagiGrid {
+  to { transform: translate3d(72px, 72px, 0); }
+}
+
+@keyframes nagiTurn {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes nagiTurnReverse {
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes nagiBeam {
+  0%, 100% { opacity: .10; filter: blur(.4px); }
+  50% { opacity: .40; filter: blur(0); }
+}
+
+/* ─────────────────────────────────────────────
+   Shared 12-type architecture diagram
+   ───────────────────────────────────────────── */
+
+.number-architecture {
+  --orbit-shift: -174px;
+  position: relative;
+  width: min(430px, 100%);
+  aspect-ratio: 1;
+  margin-inline: auto;
+  border: 1px solid rgba(201, 154, 67, .58);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(28, 92, 192, .68), transparent 29%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, .05), transparent 52%),
+    linear-gradient(145deg, #0b347f 0%, #061b52 48%, #020c2d 100%);
+  box-shadow:
+    0 32px 70px -28px rgba(3, 14, 48, .72),
+    inset 0 0 0 9px rgba(255, 255, 255, .025),
+    inset 0 0 100px rgba(2, 10, 38, .42),
+    0 0 0 10px rgba(255, 255, 255, .42);
+  isolation: isolate;
+}
+
+.number-architecture::before,
+.number-architecture::after {
+  content: "";
+  position: absolute;
+  inset: 4%;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.number-architecture::before {
+  border: 1px dashed rgba(242, 212, 138, .35);
+  animation: nagiTurn 36s linear infinite;
+}
+
+.number-architecture::after {
+  inset: 17%;
+  border: 1px solid rgba(255, 255, 255, .13);
+  box-shadow: 0 0 0 18px rgba(255, 255, 255, .018);
+}
+
+.orbit-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.orbit-ring-a {
+  width: 72%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(242, 212, 138, .24);
+  transform: translate(-50%, -50%);
+}
+
+.orbit-ring-a::before,
+.orbit-ring-a::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--nagi-gold-light);
+  box-shadow: 0 0 18px rgba(242, 212, 138, .8);
+}
+
+.orbit-ring-a::before { left: -4px; top: 50%; }
+.orbit-ring-a::after { right: -4px; top: 50%; }
+
+.orbit-ring-b {
+  width: 47%;
+  aspect-ratio: 1;
+  border: 1px dashed rgba(90, 165, 232, .45);
+  transform: translate(-50%, -50%);
+  animation: nagiTurnReverseCentered 22s linear infinite;
+}
+
+@keyframes nagiTurnReverseCentered {
+  from { transform: translate(-50%, -50%) rotate(0); }
+  to { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+.orbit-label {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  width: 43%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(242, 212, 138, .52);
+  border-radius: 50%;
+  background: rgba(3, 14, 48, .74);
+  color: #dce8ff;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 13px;
+  line-height: 1.55;
+  letter-spacing: .10em;
+  text-align: center;
+  box-shadow: inset 0 0 36px rgba(90, 165, 232, .16), 0 0 30px rgba(3, 14, 48, .5);
+}
+
+.orbit-label strong {
+  color: #fff;
+  font-size: clamp(24px, 4vw, 34px);
+  letter-spacing: .07em;
+}
+
+.orbit-label small {
+  margin-top: 8px;
+  color: var(--nagi-gold-light);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8px;
+  letter-spacing: .22em;
+}
+
+.orbit-numbers {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  animation: nagiOrbitPulse 7s ease-in-out infinite;
+}
+
+.orbit-numbers span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 38px;
+  height: 38px;
+  margin: -19px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(242, 212, 138, .46);
+  border-radius: 50%;
+  background: rgba(6, 27, 82, .90);
+  color: #fff;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, .28), inset 0 0 14px rgba(90, 165, 232, .12);
+}
+
+.orbit-numbers span:nth-child(1)  { transform: rotate(0deg) translateY(var(--orbit-shift)) rotate(0deg); }
+.orbit-numbers span:nth-child(2)  { transform: rotate(30deg) translateY(var(--orbit-shift)) rotate(-30deg); }
+.orbit-numbers span:nth-child(3)  { transform: rotate(60deg) translateY(var(--orbit-shift)) rotate(-60deg); }
+.orbit-numbers span:nth-child(4)  { transform: rotate(90deg) translateY(var(--orbit-shift)) rotate(-90deg); }
+.orbit-numbers span:nth-child(5)  { transform: rotate(120deg) translateY(var(--orbit-shift)) rotate(-120deg); }
+.orbit-numbers span:nth-child(6)  { transform: rotate(150deg) translateY(var(--orbit-shift)) rotate(-150deg); }
+.orbit-numbers span:nth-child(7)  { transform: rotate(180deg) translateY(var(--orbit-shift)) rotate(-180deg); }
+.orbit-numbers span:nth-child(8)  { transform: rotate(210deg) translateY(var(--orbit-shift)) rotate(-210deg); }
+.orbit-numbers span:nth-child(9)  { transform: rotate(240deg) translateY(var(--orbit-shift)) rotate(-240deg); }
+.orbit-numbers span:nth-child(10) { transform: rotate(270deg) translateY(var(--orbit-shift)) rotate(-270deg); }
+.orbit-numbers span:nth-child(11) { transform: rotate(300deg) translateY(var(--orbit-shift)) rotate(-300deg); }
+.orbit-numbers span:nth-child(12) { transform: rotate(330deg) translateY(var(--orbit-shift)) rotate(-330deg); }
+
+.orbit-numbers span:nth-child(10),
+.orbit-numbers span:nth-child(11),
+.orbit-numbers span:nth-child(12) {
+  border-color: rgba(242, 212, 138, .88);
+  background: linear-gradient(145deg, #c99a43, #8d6220);
+  color: #fffdf5;
+}
+
+.orbit-caption {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: 11%;
+  transform: translateX(-50%);
+  color: rgba(224, 235, 255, .72);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8px;
+  letter-spacing: .28em;
+  white-space: nowrap;
+}
+
+@keyframes nagiOrbitPulse {
+  0%, 100% { filter: brightness(.95); }
+  50% { filter: brightness(1.14); }
+}
+
+/* ─────────────────────────────────────────────
+   Landing page
+   ───────────────────────────────────────────── */
+
+body.landing-page {
+  min-height: 100dvh;
+  color: var(--nagi-ink);
+  background-color: #f8faff;
+  background-image:
+    linear-gradient(rgba(247, 250, 255, .12), rgba(247, 250, 255, .12)),
+    url('nagi-numerology-bg.webp');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  animation: nagiBackgroundBreathe 22s ease-in-out infinite alternate;
+}
+
+@keyframes nagiBackgroundBreathe {
+  from { background-position: 49% 50%; }
+  to { background-position: 51% 49%; }
+}
+
+.landing-page::after {
+  z-index: 0;
+  background:
+    linear-gradient(90deg, rgba(248, 250, 255, .62), rgba(255, 255, 255, .20) 46%, rgba(248, 250, 255, .56)),
+    radial-gradient(circle at center, rgba(255, 255, 255, .28), transparent 66%);
+}
+
+.landing-page .brand {
+  position: fixed;
+  z-index: 20;
+  top: 24px;
+  left: 32px;
+  gap: 14px;
+  padding: 10px 18px 10px 10px;
+  border: 1px solid rgba(201, 154, 67, .50);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .82);
+  box-shadow: 0 16px 40px -24px rgba(7, 26, 77, .48);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+
+.landing-page .brand-avatar {
+  width: 58px;
+  height: 58px;
+  border: 2px solid #fff;
+  outline: 1px solid rgba(201, 154, 67, .72);
+  box-shadow: 0 8px 20px rgba(7, 26, 77, .20);
+}
+
+.landing-page .brand-name {
+  font-size: 15px;
+  letter-spacing: .30em;
+  text-shadow: none;
+}
+
+.landing-page .brand-tag {
+  margin-top: 5px;
+  font-size: 10px;
+  color: var(--nagi-copy);
+  text-shadow: none;
+}
+
+.landing-page main {
+  z-index: 3;
+  min-height: 100dvh;
+  padding: 116px 28px 48px;
+}
+
+.landing-page .hero {
+  width: min(1180px, 100%);
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(360px, .82fr);
+  align-items: center;
+  gap: clamp(40px, 6vw, 78px);
+  padding: clamp(48px, 6vw, 72px);
+  border: 1px solid rgba(201, 154, 67, .48);
+  border-radius: 34px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .97), rgba(248, 247, 242, .90));
+  box-shadow:
+    0 42px 100px -48px rgba(7, 26, 77, .56),
+    inset 0 0 0 9px rgba(255, 255, 255, .54);
+  text-align: left;
+  transform: none;
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+}
+
+.landing-page .hero::before {
+  z-index: -1;
+  inset: 18px;
+  border: 1px solid rgba(7, 26, 77, .08);
+  border-radius: 26px;
+  background: none;
+  filter: none;
+}
+
+.landing-page .hero-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.landing-page .kicker {
+  justify-content: flex-start;
+  color: var(--nagi-gold);
+  font-size: 11px;
+  letter-spacing: .34em;
+}
+
+.landing-page .kicker::before,
+.landing-page .kicker::after {
+  width: 46px;
+}
+
+.landing-page .ornament {
+  display: none;
+}
+
+.landing-page .hero-eyebrow {
+  display: inline-flex;
+  margin: 18px 0 16px;
+  padding: 7px 14px;
+  border: 1px solid rgba(21, 95, 194, .18);
+  border-radius: 999px;
+  background: rgba(21, 95, 194, .06);
+  color: var(--nagi-blue);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.landing-page h1 {
+  color: var(--nagi-navy);
+  font-size: clamp(38px, 4.5vw, 62px);
+  line-height: 1.48;
+  letter-spacing: .025em;
+  text-shadow: none;
+}
+
+.landing-page h1 .blue {
+  color: var(--nagi-blue);
+  background: linear-gradient(transparent 70%, rgba(201, 154, 67, .23) 70%);
+}
+
+.landing-page .lead {
+  max-width: 640px;
+  margin: 22px 0 0;
+  color: var(--nagi-copy);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2;
+  letter-spacing: .02em;
+  text-shadow: none;
+}
+
+.design-axis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.landing-page .design-axis {
+  margin-top: 26px;
+}
+
+.design-axis > span {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 15px 14px;
+  border: 1px solid rgba(7, 26, 77, .11);
+  border-radius: 14px;
+  background: rgba(245, 247, 252, .80);
+  color: var(--nagi-copy);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.design-axis > span::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 0;
+  width: 28px;
+  height: 2px;
+  background: var(--nagi-gold);
+}
+
+.design-axis b {
+  color: var(--nagi-blue);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  letter-spacing: .18em;
+}
+
+.landing-page .cta {
+  width: min(540px, 100%);
+  min-height: 68px;
+  margin: 28px 0 0;
+  border-color: var(--nagi-gold-light);
+  font-size: clamp(16px, 1.7vw, 20px);
+  box-shadow: 0 18px 38px -18px rgba(7, 26, 77, .68), inset 0 0 0 1px rgba(255, 255, 255, .10);
+}
+
+.landing-page .note {
+  margin-top: 14px;
+  color: var(--nagi-muted);
+  font-size: 12px;
+}
+
+.landing-page .float-num {
+  z-index: 1;
+  color: var(--nagi-blue);
+  opacity: .09;
+  text-shadow: none;
+}
+
+/* ─────────────────────────────────────────────
+   Diagnosis page
+   ───────────────────────────────────────────── */
+
+body.diagnosis-page {
+  min-height: 100dvh;
+  color: var(--nagi-ink);
+  font-size: 16px;
+  line-height: 1.95;
+  background-color: #f4f7fc;
+  background-image:
+    linear-gradient(rgba(248, 250, 255, .20), rgba(248, 250, 255, .20)),
+    url('nagi-numerology-bg.webp');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+}
+
+.diagnosis-page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(247, 249, 254, .26), rgba(247, 249, 254, .62)),
+    radial-gradient(circle at 50% 22%, rgba(255, 255, 255, .25), transparent 46%);
+}
+
+.diagnosis-page header,
+.diagnosis-page section,
+.diagnosis-page footer,
+.diagnosis-page #postReveal {
+  position: relative;
+  z-index: 3;
+}
+
+.diagnosis-page header {
+  background: rgba(255, 255, 255, .88);
+  border-bottom: 1px solid rgba(201, 154, 67, .28);
+  box-shadow: 0 10px 34px -28px rgba(7, 26, 77, .55);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.diagnosis-page .hbar {
+  max-width: 1120px;
+  padding: 12px 24px;
+}
+
+.diagnosis-page .logo-ava {
+  width: 44px;
+  height: 44px;
+  border: 2px solid #fff;
+  outline: 1px solid rgba(201, 154, 67, .58);
+  box-shadow: 0 8px 18px rgba(7, 26, 77, .14);
+}
+
+.diagnosis-page .logo .en {
+  color: var(--nagi-navy);
+  font-size: 15px;
+  letter-spacing: .30em;
+}
+
+.diagnosis-page .logo .ja {
+  color: var(--nagi-copy);
+  font-size: 10.5px;
+}
+
+.diagnosis-page .wrap {
+  max-width: 1120px;
+  padding-inline: 26px;
+}
+
+.diagnosis-page #self {
+  padding: 72px 0 120px;
+  background: transparent !important;
+}
+
+.diagnosis-page #hero {
+  display: block !important;
+  min-height: auto;
+  padding: 126px 0 78px;
+  overflow: hidden;
+}
+
+.diagnosis-page #hero::before {
+  background:
+    radial-gradient(circle at 70% 47%, rgba(255, 255, 255, .76), transparent 35%),
+    linear-gradient(180deg, rgba(255, 255, 255, .32), rgba(247, 249, 254, .14));
+}
+
+.diagnosis-page #hero::after {
+  display: none;
+}
+
+.diagnosis-page .hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(350px, .9fr);
+  align-items: center;
+  gap: clamp(44px, 7vw, 86px);
+  max-width: 1120px;
+  padding: clamp(40px, 5vw, 58px);
+  border: 1px solid rgba(201, 154, 67, .48);
+  border-radius: 32px;
+  background: rgba(255, 255, 255, .92);
+  box-shadow: var(--nagi-soft-shadow), inset 0 0 0 8px rgba(255, 255, 255, .48);
+  text-align: left;
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+}
+
+.diagnosis-page .hero-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.diagnosis-page #hero .kicker {
+  margin-bottom: 16px;
+  color: var(--nagi-gold);
+}
+
+.diagnosis-page #hero .kicker::before {
+  background: var(--nagi-gold);
+}
+
+.diagnosis-page .hero-eyebrow {
+  display: inline-flex;
+  margin-bottom: 15px;
+  padding: 7px 14px;
+  border: 1px solid rgba(21, 95, 194, .18);
+  border-radius: 999px;
+  background: rgba(21, 95, 194, .06);
+  color: var(--nagi-blue);
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.diagnosis-page h1.hero-h {
+  color: var(--nagi-navy);
+  font-size: clamp(36px, 4.8vw, 57px);
+  line-height: 1.5;
+  letter-spacing: .025em;
+}
+
+.diagnosis-page h1.hero-h .em {
+  color: var(--nagi-blue);
+  background: linear-gradient(transparent 72%, rgba(201, 154, 67, .22) 72%);
+}
+
+.diagnosis-page .hero-sub {
+  margin-top: 22px;
+  color: var(--nagi-copy);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.05;
+}
+
+.diagnosis-page .hero-cta {
+  margin-top: 28px;
+}
+
+.diagnosis-page .hero-note {
+  color: var(--nagi-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.diagnosis-page .hero-architecture {
+  flex: none;
+}
+
+.diagnosis-intro {
+  display: block;
+  width: min(940px, 100%);
+  text-align: center;
+  margin-bottom: 38px;
+  padding: clamp(38px, 5vw, 58px);
+  border: 1px solid rgba(201, 154, 67, .46);
+  border-radius: 32px;
+  background: rgba(255, 255, 255, .91);
+  box-shadow: var(--nagi-soft-shadow), inset 0 0 0 8px rgba(255, 255, 255, .44);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+}
+
+.diagnosis-page .mini-eyebrow {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--nagi-gold) !important;
+  font-family: var(--en);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .30em !important;
+  text-transform: uppercase;
+}
+
+.intro-kicker {
+  display: inline-flex;
+  margin-bottom: 14px;
+  padding: 7px 13px;
+  border: 1px solid rgba(21, 95, 194, .18);
+  border-radius: 999px;
+  background: rgba(21, 95, 194, .06);
+  color: var(--nagi-blue);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.diagnosis-intro h2.h {
+  color: var(--nagi-navy);
+  font-size: clamp(31px, 4.4vw, 50px);
+  font-weight: 700;
+  line-height: 1.55;
+  letter-spacing: .025em;
+}
+
+.diagnosis-intro h2.h span {
+  color: var(--nagi-blue);
+  background: linear-gradient(transparent 72%, rgba(201, 154, 67, .22) 72%);
+}
+
+.diagnosis-intro .lead {
+  max-width: 720px;
+  margin-inline: auto;
+  margin-top: 20px;
+  color: var(--nagi-copy);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.05;
+}
+
+.intro-principles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+  justify-content: center;
+}
+
+.intro-principles span {
+  padding: 7px 12px;
+  border: 1px solid rgba(7, 26, 77, .13);
+  border-radius: 999px;
+  background: #f8f9fc;
+  color: var(--nagi-copy);
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.number-architecture.compact {
+  --orbit-shift: -143px;
+  width: 360px;
+  max-width: 100%;
+}
+
+.number-architecture.compact .orbit-numbers span {
+  width: 34px;
+  height: 34px;
+  margin: -17px;
+  font-size: 13px;
+}
+
+.number-architecture.compact .orbit-label {
+  width: 45%;
+  font-size: 11px;
+}
+
+.number-architecture.compact .orbit-label strong {
+  font-size: 27px;
+}
+
+.diagnosis-axis {
+  width: min(940px, 100%);
+  margin: 0 auto 28px;
+  gap: 12px;
+}
+
+.diagnosis-axis > span {
+  min-height: 112px;
+  padding: 19px 20px;
+  background: rgba(255, 255, 255, .90);
+  border-color: rgba(201, 154, 67, .32);
+  color: var(--nagi-copy);
+  font-size: 12px;
+  line-height: 1.65;
+  box-shadow: 0 15px 38px -30px rgba(7, 26, 77, .42);
+}
+
+.diagnosis-axis em {
+  color: var(--nagi-navy);
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.diagnosis-page .dia-card {
+  position: relative;
+  width: min(940px, 100%);
+  margin-inline: auto;
+  padding: clamp(36px, 5vw, 58px);
+  border: 1px solid rgba(201, 154, 67, .50);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, .96);
+  box-shadow:
+    0 34px 90px -44px rgba(7, 26, 77, .56),
+    inset 0 0 0 8px rgba(250, 248, 241, .80);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.diagnosis-page .dia-card::before,
+.diagnosis-page .dia-card::after {
+  content: "";
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  pointer-events: none;
+}
+
+.diagnosis-page .dia-card::before {
+  left: 18px;
+  top: 18px;
+  border-left: 1px solid rgba(201, 154, 67, .55);
+  border-top: 1px solid rgba(201, 154, 67, .55);
+}
+
+.diagnosis-page .dia-card::after {
+  right: 18px;
+  bottom: 18px;
+  border-right: 1px solid rgba(201, 154, 67, .55);
+  border-bottom: 1px solid rgba(201, 154, 67, .55);
+}
+
+.form-number {
+  position: absolute;
+  right: 34px;
+  top: 22px;
+  color: rgba(7, 26, 77, .06);
+  font-family: var(--en);
+  font-size: 72px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.form-eyebrow {
+  margin-bottom: 8px;
+  color: var(--nagi-gold);
+  font-family: var(--en);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .30em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.diagnosis-page .dia-lead {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  margin: 0 auto 30px;
+  color: var(--nagi-copy);
+  font-size: 15.5px;
+  line-height: 1.95;
+}
+
+.diagnosis-page .dia-form {
+  position: relative;
+  z-index: 2;
+  gap: 14px;
+  flex-wrap: nowrap;
+}
+
+.diagnosis-page .field {
+  gap: 9px;
+}
+
+.diagnosis-page .field label {
+  color: var(--nagi-blue);
+  font-size: 11px;
+  letter-spacing: .22em;
+}
+
+.diagnosis-page select {
+  min-height: 60px;
+  border: 1px solid rgba(7, 26, 77, .17);
+  border-radius: 14px;
+  background: var(--nagi-paper);
+  color: var(--nagi-navy);
+  font-size: 19px;
+  font-weight: 700;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8);
+}
+
+.diagnosis-page .sel.y select { min-width: 180px; }
+.diagnosis-page .sel.m select,
+.diagnosis-page .sel.d select { min-width: 132px; }
+
+.diagnosis-page select:focus {
+  border-color: var(--nagi-blue);
+  box-shadow: 0 0 0 4px rgba(21, 95, 194, .12), inset 0 1px 0 #fff;
+}
+
+.diagnosis-page .dia-go {
+  position: relative;
+  z-index: 2;
+  margin-top: 34px;
+}
+
+.diagnosis-page .btn-ink,
+.diagnosis-page .btn-sub {
+  min-height: 60px;
+  border: 1px solid var(--nagi-gold-light);
+  background:
+    radial-gradient(circle at 50% 0, rgba(32, 104, 211, .60), transparent 58%),
+    linear-gradient(145deg, #0a347f, #04143e);
+  color: #fff;
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 16px 36px -18px rgba(7, 26, 77, .76), inset 0 0 0 1px rgba(255, 255, 255, .09);
+}
+
+.diagnosis-page #calcBtn {
+  min-width: min(430px, 100%);
+}
+
+.diagnosis-page .btn-ink:hover,
+.diagnosis-page .btn-sub:hover {
+  background: linear-gradient(145deg, #1251b2, #061b52);
+  box-shadow: 0 20px 42px -18px rgba(7, 26, 77, .82);
+}
+
+.diagnosis-page .btn:focus-visible,
+.diagnosis-page summary:focus-visible,
+.diagnosis-page .res-again:focus-visible,
+.diagnosis-page select:focus-visible {
+  outline: 3px solid var(--nagi-gold);
+  outline-offset: 4px;
+}
+
+/* Results: white reading panels and dark ink for long-form legibility */
+
+.diagnosis-page #result {
+  margin-top: 6px;
+}
+
+.diagnosis-page .res-head {
+  margin: 0 0 30px;
+  padding: 14px;
+  border-bottom: 1px solid rgba(201, 154, 67, .38);
+}
+
+.diagnosis-page .res-head .small {
+  color: var(--nagi-blue);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.diagnosis-page .res-grid {
+  gap: 12px;
+}
+
+.diagnosis-page .num-card {
+  min-height: 190px;
+  padding: 26px 14px 22px;
+  border: 1px solid rgba(201, 154, 67, .52);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 50% 0, rgba(21, 95, 194, .60), transparent 58%),
+    linear-gradient(145deg, #0a347f, #04143e);
+  box-shadow: 0 18px 36px -26px rgba(7, 26, 77, .68), inset 0 0 0 1px rgba(255, 255, 255, .07);
+}
+
+.diagnosis-page .num-role {
+  color: var(--nagi-gold-light);
+  font-size: 10px;
+}
+
+.diagnosis-page .num-role-ja,
+.diagnosis-page .num-tag {
+  color: #dce6f8;
+}
+
+.diagnosis-page .num-big {
+  color: #fff;
+  text-shadow: 0 0 24px rgba(90, 165, 232, .28);
+}
+
+.diagnosis-page .num-big .mn {
+  color: var(--nagi-gold-light);
+}
+
+.diagnosis-page .read-full {
+  margin-top: 28px;
+  padding: 28px;
+  border: 1px solid rgba(201, 154, 67, .38);
+  border-top: 4px solid var(--nagi-blue);
+  border-radius: 20px;
+  background: var(--nagi-paper);
+  box-shadow: 0 18px 44px -34px rgba(7, 26, 77, .48);
+}
+
+.diagnosis-page .rf-head {
+  padding: 0 4px 22px;
+}
+
+.diagnosis-page .rf-head .rf-role {
+  color: var(--nagi-blue);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.diagnosis-page .rf-head .rf-type {
+  color: var(--nagi-navy);
+  font-size: clamp(24px, 4.5vw, 30px);
+}
+
+.diagnosis-page .rf-head .rf-tag {
+  color: var(--nagi-ink);
+  font-size: 18px;
+}
+
+.diagnosis-page .rf-head .rf-reframe {
+  color: var(--nagi-copy);
+  font-size: 14.5px;
+  line-height: 1.9;
+}
+
+.diagnosis-page .read-full .sec {
+  margin-top: 12px;
+  padding: 22px 23px;
+  border: 1px solid rgba(7, 26, 77, .10);
+  border-radius: 15px;
+  background: #fff;
+}
+
+.diagnosis-page .read-full .sec:first-of-type {
+  border-top: 1px solid rgba(7, 26, 77, .10);
+}
+
+.diagnosis-page .read-full .sec h3 {
+  color: var(--nagi-navy);
+  font-size: 15px;
+}
+
+.diagnosis-page .read-full .sec p,
+.diagnosis-page .rm-body p,
+.diagnosis-page .synth p:not(.synth-h),
+.diagnosis-page .res-step p:not(.sh) {
+  color: var(--nagi-copy);
+  font-size: 16px;
+  line-height: 2.05;
+}
+
+.diagnosis-page .design-note {
+  margin-top: 12px;
+  padding: 23px 24px;
+  border: 1px solid rgba(201, 154, 67, .42);
+  border-left: 4px solid var(--nagi-gold);
+  border-radius: 15px;
+  background: linear-gradient(135deg, #fffaf0, #f8f2e5);
+}
+
+.diagnosis-page .design-note .dn-h {
+  color: #7b5920;
+  font-size: 14px;
+}
+
+.diagnosis-page .design-note p:not(.dn-h) {
+  color: var(--nagi-copy);
+  font-size: 16px;
+  line-height: 2.05;
+}
+
+.diagnosis-page .type-map {
+  padding: 25px;
+  border-color: rgba(7, 26, 77, .12);
+  background: #fff;
+}
+
+.diagnosis-page .type-map .tm-h {
+  color: var(--nagi-blue);
+  font-size: 15px;
+}
+
+.diagnosis-page .type-map .tm-lead {
+  color: var(--nagi-copy);
+  font-size: 13.5px;
+}
+
+.diagnosis-page .tm-grid {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+}
+
+.diagnosis-page .tm-chip {
+  min-height: 66px;
+  justify-content: center;
+  border-color: rgba(7, 26, 77, .10);
+  background: #f7f8fb;
+}
+
+.diagnosis-page .tm-chip.on {
+  border-color: rgba(242, 212, 138, .78);
+  background: linear-gradient(145deg, #0a347f, #04143e);
+  box-shadow: 0 12px 26px -18px rgba(7, 26, 77, .72);
+}
+
+.diagnosis-page .read-mid {
+  margin-top: 16px;
+  padding: 25px;
+  border: 1px solid rgba(7, 26, 77, .11);
+  border-left: 4px solid var(--nagi-gold);
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: 0 16px 36px -32px rgba(7, 26, 77, .44);
+}
+
+.diagnosis-page .rm-head .rm-role {
+  color: var(--nagi-blue);
+  font-size: 13px;
+}
+
+.diagnosis-page .rm-head .rm-tag {
+  color: var(--nagi-navy);
+  font-size: 17px;
+}
+
+.diagnosis-page .rm-head .rm-reframe {
+  color: var(--nagi-copy);
+  font-size: 13.5px;
+}
+
+.diagnosis-page .rm-lbl {
+  color: var(--nagi-blue);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.diagnosis-page .synth {
+  margin-top: 18px;
+  padding: 25px;
+  border: 1px solid rgba(21, 95, 194, .20);
+  border-radius: 17px;
+  background: linear-gradient(135deg, rgba(21, 95, 194, .08), rgba(90, 165, 232, .04));
+}
+
+.diagnosis-page .synth-h {
+  color: var(--nagi-blue);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.diagnosis-page .res-step {
+  margin-top: 18px;
+  padding: 28px;
+  border: 1px solid rgba(242, 212, 138, .55);
+  border-radius: 18px;
+  background: linear-gradient(145deg, #0a347f, #04143e);
+}
+
+.diagnosis-page .res-step .sh {
+  color: var(--nagi-gold-light);
+  font-size: 15px;
+}
+
+.diagnosis-page .res-step p:not(.sh) {
+  color: #fff;
+}
+
+.diagnosis-page .res-cta {
+  margin-top: 20px;
+  padding: clamp(34px, 5vw, 50px);
+  border: 1px solid rgba(242, 212, 138, .62);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 50% 0, rgba(21, 95, 194, .52), transparent 54%),
+    linear-gradient(145deg, #092e76, #030e30);
+  box-shadow: 0 28px 58px -30px rgba(3, 14, 48, .78), inset 0 0 0 1px rgba(255, 255, 255, .07);
+}
+
+.diagnosis-page .res-cta .cta-bridge,
+.diagnosis-page .res-cta .rc-eyebrow,
+.diagnosis-page .res-cta .cta-listhead {
+  color: var(--nagi-gold-light);
+}
+
+.diagnosis-page .res-cta .h {
+  color: #fff;
+  font-size: clamp(22px, 4vw, 28px);
+}
+
+.diagnosis-page .res-cta .p,
+.diagnosis-page .res-cta .cta-list,
+.diagnosis-page .res-cta .cta-meta {
+  color: #e1e8f6;
+  font-size: 15px;
+  line-height: 1.95;
+}
+
+.diagnosis-page .res-cta .btn-sub {
+  border-color: var(--nagi-gold-light);
+  background: linear-gradient(180deg, #f0cc72, #c99a43);
+  color: var(--nagi-navy);
+  box-shadow: 0 15px 32px rgba(0, 0, 0, .28);
+}
+
+.diagnosis-page .res-cta .btn-sub:hover {
+  background: linear-gradient(180deg, #f5d990, #d2a54f);
+}
+
+.diagnosis-page .res-disc {
+  color: var(--nagi-muted);
+  font-size: 12px;
+  line-height: 1.85;
+}
+
+.diagnosis-page .res-sign {
+  color: var(--nagi-gold);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.diagnosis-page footer {
+  border-top: 1px solid rgba(201, 154, 67, .30);
+  background: rgba(249, 247, 241, .92);
+}
+
+/* ─────────────────────────────────────────────
+   Responsive
+   ───────────────────────────────────────────── */
+
+@media (max-width: 980px) {
+  .landing-page .hero {
+    grid-template-columns: 1fr;
+    width: min(760px, 100%);
+  }
+
+  .landing-page .hero-copy {
+    text-align: center;
+  }
+
+  .landing-page .kicker {
+    justify-content: center;
+  }
+
+  .landing-page .lead,
+  .landing-page .cta {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .landing-page .number-architecture {
+    width: 400px;
+    --orbit-shift: -161px;
+  }
+
+  .diagnosis-intro {
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .diagnosis-intro .lead {
+    max-width: 650px;
+    margin-inline: auto;
+  }
+
+  .intro-principles {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 680px) {
+  .numerology-backdrop::before {
+    inset: -16%;
+  }
+
+  .blueprint-grid {
+    background-size: 48px 48px, 48px 48px, 240px 240px, 240px 240px;
+  }
+
+  .blueprint-arc {
+    width: 104vw;
+  }
+
+  body.landing-page,
+  body.diagnosis-page {
+    background-size: auto 100%;
+    background-position: center top;
+    background-attachment: scroll;
+  }
+
+  .landing-page .brand {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    width: fit-content;
+    max-width: calc(100% - 24px);
+    padding: 7px 13px 7px 7px;
+  }
+
+  .landing-page .brand-avatar {
+    width: 44px;
+    height: 44px;
+  }
+
+  .landing-page .brand-name {
+    font-size: 12px;
+  }
+
+  .landing-page .brand-tag {
+    font-size: 8.5px;
+  }
+
+  .landing-page main {
+    padding: 86px 12px 22px;
+  }
+
+  .landing-page .hero {
+    gap: 34px;
+    padding: 36px 18px 30px;
+    border-radius: 24px;
+    box-shadow: 0 28px 64px -38px rgba(7, 26, 77, .65);
+  }
+
+  .landing-page .hero::before {
+    inset: 9px;
+    border-radius: 18px;
+  }
+
+  .landing-page .hero-eyebrow {
+    margin-top: 14px;
+    font-size: 10px;
+  }
+
+  .landing-page h1 {
+    font-size: clamp(33px, 10.5vw, 47px);
+    line-height: 1.48;
+  }
+
+  .landing-page .lead {
+    font-size: 14.5px;
+    line-height: 2;
+  }
+
+  .design-axis {
+    gap: 6px;
+  }
+
+  .landing-page .design-axis > span {
+    padding: 13px 7px;
+    font-size: 9.5px;
+  }
+
+  .design-axis > span::before {
+    left: 8px;
+  }
+
+  .landing-page .cta {
+    min-height: 62px;
+    padding-inline: 18px;
+    font-size: 15.5px;
+  }
+
+  .landing-page .number-architecture,
+  .number-architecture.compact {
+    --orbit-shift: -132px;
+    width: 330px;
+  }
+
+  .number-architecture .orbit-numbers span,
+  .number-architecture.compact .orbit-numbers span {
+    width: 32px;
+    height: 32px;
+    margin: -16px;
+    font-size: 12px;
+  }
+
+  .orbit-label {
+    font-size: 10px;
+  }
+
+  .orbit-label strong,
+  .number-architecture.compact .orbit-label strong {
+    font-size: 24px;
+  }
+
+  .diagnosis-page .hbar {
+    padding: 9px 14px;
+  }
+
+  .diagnosis-page .logo-ava {
+    width: 38px;
+    height: 38px;
+  }
+
+  .diagnosis-page .logo .en {
+    font-size: 13px;
+  }
+
+  .diagnosis-page .logo .ja {
+    font-size: 9px;
+  }
+
+  .diagnosis-page .wrap {
+    padding-inline: 12px;
+  }
+
+  .diagnosis-page #self {
+    padding: 46px 0 76px;
+  }
+
+  .diagnosis-page #hero {
+    padding: 82px 0 34px;
+  }
+
+  .diagnosis-page .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    margin-inline: 10px;
+    padding: 34px 18px 30px;
+    border-radius: 23px;
+    text-align: center;
+  }
+
+  .diagnosis-page #hero .kicker {
+    justify-content: center;
+  }
+
+  .diagnosis-page h1.hero-h {
+    font-size: clamp(32px, 9.7vw, 43px);
+  }
+
+  .diagnosis-page .hero-sub {
+    font-size: 14.5px;
+    line-height: 2;
+  }
+
+  .diagnosis-intro {
+    gap: 32px;
+    margin-bottom: 18px;
+    padding: 34px 18px 28px;
+    border-radius: 23px;
+  }
+
+  .intro-kicker {
+    font-size: 10px;
+  }
+
+  .diagnosis-intro h2.h {
+    font-size: clamp(29px, 9vw, 39px);
+  }
+
+  .diagnosis-intro .lead {
+    font-size: 14.5px;
+    line-height: 2;
+  }
+
+  .intro-principles {
+    gap: 6px;
+  }
+
+  .intro-principles span {
+    padding: 6px 9px;
+    font-size: 10px;
+  }
+
+  .diagnosis-axis {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .diagnosis-axis > span {
+    min-height: 105px;
+    padding: 14px 9px;
+    font-size: 9.5px;
+  }
+
+  .diagnosis-axis em {
+    font-size: 14px;
+  }
+
+  .diagnosis-page .dia-card {
+    padding: 38px 15px 28px;
+    border-radius: 21px;
+  }
+
+  .form-number {
+    right: 18px;
+    top: 16px;
+    font-size: 54px;
+  }
+
+  .diagnosis-page .dia-lead {
+    max-width: 320px;
+    font-size: 13.5px;
+  }
+
+  .diagnosis-page .dia-form {
+    gap: 7px;
+  }
+
+  .diagnosis-page .field {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .diagnosis-page .sel,
+  .diagnosis-page select {
+    width: 100%;
+    min-width: 0 !important;
+  }
+
+  .diagnosis-page select {
+    min-height: 56px;
+    padding: 12px 28px 12px 10px;
+    font-size: 16px;
+  }
+
+  .diagnosis-page #calcBtn {
+    min-width: 0;
+    width: 100%;
+    padding-inline: 18px;
+    font-size: 15px;
+  }
+
+  .diagnosis-page .res-grid {
+    gap: 6px;
+  }
+
+  .diagnosis-page .num-card {
+    min-height: 164px;
+    padding: 22px 6px 18px;
+  }
+
+  .diagnosis-page .num-role-ja,
+  .diagnosis-page .num-tag {
+    font-size: 10px;
+  }
+
+  .diagnosis-page .read-full,
+  .diagnosis-page .type-map,
+  .diagnosis-page .read-mid,
+  .diagnosis-page .synth,
+  .diagnosis-page .res-step {
+    padding: 19px 15px;
+  }
+
+  .diagnosis-page .read-full .sec,
+  .diagnosis-page .design-note {
+    padding: 19px 16px;
+  }
+
+  .diagnosis-page .read-full .sec p,
+  .diagnosis-page .design-note p:not(.dn-h),
+  .diagnosis-page .rm-body p,
+  .diagnosis-page .synth p:not(.synth-h),
+  .diagnosis-page .res-step p:not(.sh) {
+    font-size: 15px;
+    line-height: 2;
+  }
+
+  .diagnosis-page .tm-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+  }
+
+  .diagnosis-page .res-cta {
+    padding: 34px 17px;
+    border-radius: 18px;
+  }
+
+  .diagnosis-page .res-cta .p,
+  .diagnosis-page .res-cta .cta-list,
+  .diagnosis-page .res-cta .cta-meta {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .landing-page .number-architecture,
+  .number-architecture.compact {
+    --orbit-shift: -116px;
+    width: 292px;
+  }
+
+  .number-architecture .orbit-numbers span,
+  .number-architecture.compact .orbit-numbers span {
+    width: 29px;
+    height: 29px;
+    margin: -14.5px;
+    font-size: 11px;
+  }
+
+  .landing-page .design-axis > span,
+  .diagnosis-axis > span {
+    padding-inline: 5px;
+    font-size: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.landing-page,
+  .numerology-backdrop::before,
+  .blueprint-grid,
+  .blueprint-arc,
+  .blueprint-beam,
+  .number-architecture::before,
+  .orbit-ring-b,
+  .orbit-numbers,
+  .landing-page .float-num,
+  .landing-page .cta .shine {
+    animation: none !important;
+  }
+}

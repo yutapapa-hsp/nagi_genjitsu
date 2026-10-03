@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>数秘タイプ診断｜なぎ</title>
+  <meta name="description" content="生年月日を入れるだけ。全部で12タイプから、自分の核になる数字と、強み・つまずき・向かう方向を読み解く。占いではなく、自分を現実で使うための設計図です。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="数秘タイプ診断｜なぎ">
+  <meta property="og:description" content="生年月日を入れるだけ。数字から読み解く、自分の取扱説明書。タイプは全部で12種類。">
+  <meta property="og:url" content="https://nagi-genjitsu.vercel.app/">
+  <meta property="og:image" content="https://nagi-genjitsu.vercel.app/ogp.png?v=6">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://nagi-genjitsu.vercel.app/ogp.png?v=6">
+  <link rel="icon" type="image/png" href="favicon.png?v=20261003">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261003">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600&family=Noto+Serif+JP:wght@500;600;700;800&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#06184d;
+      --blue:#104fc1;
+      --gold:#c99a43;
+      --sub:#425174;
+      --white:#fffefb;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{min-height:100%}
+    body{
+      min-height:100dvh;
+      color:var(--navy);
+      font-family:'Noto Sans JP',sans-serif;
+      background-color:#fbfcff;
+      background-image:url('assets/nagi-numerology-bg.webp');
+      background-size:cover;
+      background-position:center;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:radial-gradient(ellipse at center,rgba(255,255,255,.16) 0 31%,rgba(255,255,255,0) 64%);
+    }
+    .brand{
+      position:absolute;
+      z-index:3;
+      top:24px;
+      left:34px;
+      display:flex;
+      align-items:center;
+      gap:22px;
+      filter:drop-shadow(0 12px 28px rgba(6,24,77,.13));
+    }
+    .brand-avatar{
+      width:146px;
+      height:146px;
+      border-radius:50%;
+      object-fit:cover;
+      object-position:center 42%;
+      border:4px solid #fff;
+      outline:2px solid rgba(10,34,91,.88);
+      background:#fff;
+      box-shadow:0 16px 38px rgba(6,24,77,.28),0 0 0 8px rgba(214,169,78,.27),0 0 32px rgba(255,255,255,.96);
+      filter:contrast(1.08);
+    }
+    .brand-copy{line-height:1.2}
+    .brand-name{
+      display:block;
+      font-family:'Montserrat',sans-serif;
+      font-size:25px;
+      font-weight:600;
+      letter-spacing:.30em;
+      color:var(--navy);
+      text-shadow:0 2px 0 rgba(255,255,255,.95),0 8px 18px rgba(6,24,77,.13);
+    }
+    .brand-tag{
+      display:block;
+      margin-top:9px;
+      font-family:'Noto Serif JP',serif;
+      font-size:15px;
+      font-weight:600;
+      letter-spacing:.10em;
+      color:var(--navy);
+      text-shadow:0 2px 0 rgba(255,255,255,.95),0 7px 16px rgba(6,24,77,.12);
+    }
+    main{
+      position:relative;
+      z-index:2;
+      min-height:100dvh;
+      display:grid;
+      place-items:center;
+      padding:150px 24px 70px;
+    }
+    .hero{
+      position:relative;
+      width:min(860px,100%);
+      text-align:center;
+      transform:translateY(18px);
+      isolation:isolate;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      z-index:-1;
+      inset:-82px -100px -74px;
+      border-radius:50%;
+      background:radial-gradient(ellipse at center,rgba(255,255,255,.98) 0%,rgba(255,255,255,.86) 46%,rgba(255,255,255,0) 74%);
+      filter:blur(2px);
+      pointer-events:none;
+    }
+    .kicker{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      font-family:'Montserrat',sans-serif;
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:.38em;
+      text-transform:uppercase;
+      color:var(--navy);
+    }
+    .kicker::before,.kicker::after{
+      content:"";
+      width:72px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--gold));
+    }
+    .kicker::after{background:linear-gradient(90deg,var(--gold),transparent)}
+    .ornament{
+      width:56px;
+      height:14px;
+      margin:10px auto 22px;
+      position:relative;
+    }
+    .ornament::before{
+      content:"";
+      position:absolute;
+      top:6px;
+      left:0;
+      right:0;
+      height:1px;
+      background:var(--gold);
+    }
+    .ornament::after{
+      content:"◆";
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      color:var(--gold);
+      font-size:8px;
+      background:rgba(255,255,255,.75);
+    }
+    .date{
+      margin-bottom:19px;
+      font-family:'Noto Serif JP',serif;
+      font-size:clamp(16px,2vw,22px);
+      font-weight:700;
+      letter-spacing:.09em;
+      color:var(--blue);
+      text-shadow:0 2px 0 rgba(255,255,255,.95),0 7px 18px rgba(16,79,193,.16);
+    }
+    h1{
+      font-family:'Noto Serif JP',serif;
+      font-size:clamp(43px,6.2vw,82px);
+      font-weight:700;
+      line-height:1.42;
+      letter-spacing:.045em;
+      color:var(--navy);
+      text-wrap:balance;
+      text-shadow:0 3px 0 rgba(255,255,255,.98),0 6px 1px rgba(255,255,255,.62),0 16px 34px rgba(6,24,77,.18);
+    }
+    h1 .blue{color:var(--blue)}
+    .lead{
+      margin:22px auto 0;
+      max-width:730px;
+      font-family:'Noto Serif JP',serif;
+      font-size:clamp(15px,1.6vw,20px);
+      font-weight:600;
+      line-height:2.05;
+      letter-spacing:.035em;
+      color:var(--navy);
+      text-shadow:0 2px 0 rgba(255,255,255,.96),0 8px 22px rgba(6,24,77,.16);
+    }
+    .cta{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:24px;
+      width:min(560px,92%);
+      min-height:74px;
+      margin:28px auto 0;
+      border:2px solid var(--gold);
+      border-radius:999px;
+      background:
+        radial-gradient(circle at 50% 0,rgba(22,88,196,.55),transparent 55%),
+        linear-gradient(180deg,#0a3384,#051542);
+      box-shadow:0 12px 30px rgba(6,24,77,.23),inset 0 0 0 2px rgba(255,255,255,.07);
+      color:#fff;
+      text-decoration:none;
+      font-family:'Noto Serif JP',serif;
+      font-size:clamp(17px,2vw,24px);
+      font-weight:700;
+      letter-spacing:.05em;
+      position:relative;
+      overflow:hidden;
+      transition:transform .25s ease,box-shadow .25s ease,filter .25s ease;
+    }
+    .cta::before,.cta::after{
+      content:"✦";
+      color:#ffd26c;
+      font-size:20px;
+      text-shadow:0 0 12px rgba(255,210,108,.9);
+    }
+    .cta:hover{transform:translateY(-3px);filter:brightness(1.08);box-shadow:0 17px 36px rgba(6,24,77,.3)}
+    .cta span{position:relative;z-index:1}
+    .cta .shine{
+      position:absolute;
+      inset:-60% auto -60% -25%;
+      width:22%;
+      transform:rotate(18deg);
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+      animation:ctaShine 5.2s ease-in-out infinite;
+    }
+    @keyframes ctaShine{0%,62%{left:-28%;opacity:0}70%{opacity:1}88%,100%{left:112%;opacity:0}}
+    .cta:focus-visible{outline:3px solid var(--blue);outline-offset:5px}
+    .note{
+      margin-top:15px;
+      font-size:13px;
+      letter-spacing:.025em;
+      color:var(--sub);
+    }
+    .float-num{
+      position:fixed;
+      z-index:1;
+      pointer-events:none;
+      font-family:'Noto Serif JP',serif;
+      color:var(--navy);
+      opacity:.12;
+      font-weight:600;
+      text-shadow:0 2px 0 rgba(255,255,255,.9),0 0 18px rgba(16,79,193,.16);
+      animation:numberFloat 18s ease-in-out infinite alternate;
+    }
+    .n1{left:3%;top:58%;font-size:40px;animation-duration:21s}
+    .n2{right:5%;top:64%;font-size:52px;animation-delay:-5s;animation-duration:24s}
+    .n3{left:27%;top:8%;font-size:30px;animation-delay:-8s}
+    .n4{right:21%;top:10%;font-size:34px;animation-delay:-3s;animation-duration:20s}
+    .n5{left:10%;top:27%;font-size:28px;animation-delay:-11s;animation-duration:23s}
+    .n6{right:11%;top:29%;font-size:42px;animation-delay:-7s;animation-duration:19s}
+    .n7{left:19%;bottom:9%;font-size:32px;animation-delay:-2s;animation-duration:25s}
+    .n8{right:27%;bottom:8%;font-size:29px;animation-delay:-13s;animation-duration:22s}
+    .n9{left:44%;top:3%;font-size:23px;animation-delay:-9s;animation-duration:26s}
+    .n10{right:41%;bottom:3%;font-size:26px;animation-delay:-4s;animation-duration:20s}
+    .n11{left:5%;bottom:17%;font-size:24px;animation-delay:-6s;animation-duration:17s}
+    .n12{right:4%;bottom:21%;font-size:31px;animation-delay:-10s;animation-duration:23s}
+    @keyframes numberFloat{
+      0%{transform:translate3d(-4px,16px,0) rotate(-3deg);opacity:.07}
+      45%{opacity:.16}
+      100%{transform:translate3d(14px,-34px,0) rotate(4deg);opacity:.1}
+    }
+    @media(max-width:720px){
+      body{background-size:auto 100%;background-position:center top}
+      .brand{top:14px;left:16px;gap:12px}
+      .brand-avatar{width:92px;height:92px;border-width:3px;outline-width:1.5px}
+      .brand-name{font-size:17px}.brand-tag{font-size:10.5px;margin-top:6px}
+      main{padding:118px 18px 46px}
+      .hero{transform:none}.hero::before{inset:-56px -24px -48px}
+      .kicker{font-size:10px;letter-spacing:.28em;gap:10px}.kicker::before,.kicker::after{width:36px}
+      .date{margin-bottom:12px}
+      h1{font-size:clamp(38px,12vw,54px);line-height:1.38;letter-spacing:.02em}
+      .lead{font-size:14px;line-height:1.95}.lead br{display:none}
+      .cta{min-height:64px;margin-top:23px;gap:12px;font-size:17px}
+      .cta::before,.cta::after{font-size:14px}
+      .note{font-size:11.5px;line-height:1.7}
+    }
+    @media(prefers-reduced-motion:reduce){.float-num,.cta .shine{animation:none}.cta{transition:none}}
+  </style>
+  <link rel="stylesheet" href="assets/numerology-theme.css">
+  <script>window.location.replace('diagnosis.html');</script>
+  <noscript><meta http-equiv="refresh" content="0;url=diagnosis.html"></noscript>
+</head>
+<body class="landing-page">
+  <div class="numerology-backdrop" aria-hidden="true">
+    <span class="blueprint-grid"></span>
+    <span class="blueprint-arc arc-a"></span>
+    <span class="blueprint-arc arc-b"></span>
+    <span class="blueprint-beam beam-a"></span>
+    <span class="blueprint-beam beam-b"></span>
+  </div>
+  <div class="brand" aria-label="NAGI 現実をかえる数秘デザイン">
+    <img class="brand-avatar" src="assets/nagi-character-focus.jpg" alt="なぎ">
+    <span class="brand-copy">
+      <span class="brand-name">NAGI</span>
+      <span class="brand-tag">現実をかえる数秘デザイン</span>
+    </span>
+  </div>
+
+  <span class="float-num n1" aria-hidden="true">11</span>
+  <span class="float-num n2" aria-hidden="true">33</span>
+  <span class="float-num n3" aria-hidden="true">7</span>
+  <span class="float-num n4" aria-hidden="true">22</span>
+  <span class="float-num n5" aria-hidden="true">3</span>
+  <span class="float-num n6" aria-hidden="true">8</span>
+  <span class="float-num n7" aria-hidden="true">5</span>
+  <span class="float-num n8" aria-hidden="true">9</span>
+  <span class="float-num n9" aria-hidden="true">1</span>
+  <span class="float-num n10" aria-hidden="true">6</span>
+  <span class="float-num n11" aria-hidden="true">4</span>
+  <span class="float-num n12" aria-hidden="true">2</span>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="kicker">Numerology Design</p>
+        <div class="ornament" aria-hidden="true"></div>
+        <p class="hero-eyebrow">数字で読む、現実の攻略マップ</p>
+        <h1 id="hero-title"><span class="blue">生年月日</span>でわかる、<br>自分の取扱説明書。</h1>
+        <p class="lead">生年月日から12タイプのどれに当てはまるかを計算し、強み・つまずき・向かう方向を読み解きます。占いではなく、自分を現実で使うための“設計図”。</p>
+        <div class="design-axis" aria-label="診断で読み解く3つの数字">
+          <span><b>NOW</b>現在数・自分の核</span>
+          <span><b>PAST</b>過去数・持って生まれたクセ</span>
+          <span><b>FUTURE</b>未来数・向かう方向</span>
+        </div>
+        <a class="cta" href="diagnosis.html"><span>自分の設計図を無料で出す</span><i class="shine" aria-hidden="true"></i></a>
+        <p class="note">登録不要・生年月日だけ。結果はその場で読めます。</p>
+      </div>
+
+      <div class="number-architecture" aria-label="12の数秘タイプと3つの設計数を表す図">
+        <div class="orbit-label">生年月日<br><strong>設計図</strong><small>3 NUMBERS</small></div>
+        <div class="orbit-ring orbit-ring-a" aria-hidden="true"></div>
+        <div class="orbit-ring orbit-ring-b" aria-hidden="true"></div>
+        <div class="orbit-numbers" aria-hidden="true">
+          <span style="--i:0">1</span><span style="--i:1">2</span><span style="--i:2">3</span>
+          <span style="--i:3">4</span><span style="--i:4">5</span><span style="--i:5">6</span>
+          <span style="--i:6">7</span><span style="--i:7">8</span><span style="--i:8">9</span>
+          <span style="--i:9">11</span><span style="--i:10">22</span><span style="--i:11">33</span>
+        </div>
+        <span class="orbit-caption">12 NUMEROLOGY TYPES</span>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

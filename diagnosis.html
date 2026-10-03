@@ -1,0 +1,2331 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数秘タイプ診断｜なぎ 現実をかえる数秘デザイン</title>
+<meta name="description" content="生年月日を選ぶだけ。全部で12タイプから、自分の核になる数字を読み解く無料の数秘タイプ診断です。強み・つまずき・向かう方向がわかります。">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="数秘タイプ診断｜なぎ 現実をかえる数秘デザイン">
+<meta property="og:description" content="生年月日を入れるだけ。占いではなく、数字から読み解く「自分の設計図」。3つの数字で、強み・つまずき・向かう方向がわかります。">
+<!-- 本番URL（Vercel）／OGP画像は同階層の /ogp.png（数秘診断・夜×金デザイン） -->
+<meta property="og:url" content="https://nagi-genjitsu.vercel.app/">
+<meta property="og:image" content="https://nagi-genjitsu.vercel.app/ogp.png?v=6">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="数秘タイプ診断｜なぎ">
+<meta name="twitter:description" content="生年月日を入れるだけ。占いではなく、数字から読み解く「自分の取扱説明書」。タイプは全部で12種類です。">
+<meta name="twitter:image" content="https://nagi-genjitsu.vercel.app/ogp.png?v=6">
+<!-- 本番URL（Vercel） -->
+<link rel="canonical" href="https://nagi-genjitsu.vercel.app/">
+<!-- ファビコン（なぎのアイコン） -->
+<link rel="icon" type="image/png" href="favicon.png?v=20261003">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261003">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<script>
+  if (/^https?:$/.test(location.protocol) && /\/diagnosis\.html$/.test(location.pathname)) {
+    try { history.replaceState(null, document.title, location.pathname.replace(/diagnosis\.html$/, '') + location.search + location.hash); } catch (_) {}
+  }
+</script>
+<style>
+  :root{
+    --bg:#F7F8FC; --white:#FFFFFF;
+    --ink:#1A1A2E; --sub:#4A5568; --sub2:#5B6473;
+    --line:#E2E8F0; --line-soft:#EDF0F6;
+    --accent:#2272A8; --accent2:#4FADDF; --accent-soft:rgba(34,114,168,.08);
+    --navy:#1A1A2E;
+    --serif:'Noto Serif JP',serif; --sans:'Noto Sans JP',sans-serif; --en:'Montserrat',sans-serif;
+    --maxw:720px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);
+    line-height:1.9;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    overflow-x:hidden}
+  .serif{font-family:var(--serif)}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+
+  /* ── layout ── */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  section{position:relative}
+  .sec-pad{padding:84px 0}
+  .sec-white{background:var(--white)}
+  .sec-tight{padding:64px 0}
+
+  /* ── kicker（英字＋短い線） ── */
+  .kicker{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:.42em;
+    text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:14px;margin-bottom:22px}
+  .kicker::before{content:"";width:30px;height:1px;background:var(--accent);opacity:.6}
+  .kicker.center{justify-content:center}
+  .sec-head{text-align:center;margin-bottom:48px}
+  .sec-head .kicker{margin-bottom:18px}
+  h2.h{font-family:var(--serif);font-weight:600;font-size:clamp(23px,5.4vw,30px);line-height:1.55;letter-spacing:.02em}
+  .sec-head p.lead{color:var(--sub);font-size:15px;margin-top:18px;line-height:1.95}
+
+  /* ── buttons ── */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    font-family:var(--sans);font-weight:700;font-size:15px;cursor:pointer;
+    border-radius:999px;padding:16px 34px;border:1px solid transparent;
+    transition:transform .2s cubic-bezier(.2,.7,.2,1),background .2s,box-shadow .2s,border-color .2s;
+    text-decoration:none;letter-spacing:.02em;line-height:1.4;text-align:center}
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible,summary:focus-visible,.res-again:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .btn-sub{background:var(--accent);color:#fff;box-shadow:0 8px 22px rgba(34,114,168,.26)}
+  .btn-sub:hover{background:#1b5e8c;transform:translateY(-2px);box-shadow:0 14px 30px rgba(34,114,168,.32)}
+  .btn-ink{background:var(--ink);color:#fff}
+  .btn-ink:hover{background:#2b2b48;transform:translateY(-2px);box-shadow:0 12px 28px rgba(26,26,46,.28)}
+  .btn-ghost{background:var(--white);color:var(--ink);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+  .btn-lg{padding:18px 44px;font-size:16px}
+  .btn .ic{width:18px;height:18px;flex:none}
+
+  /* ── header ── */
+  header{position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(247,248,252,.72);backdrop-filter:saturate(150%) blur(14px);
+    -webkit-backdrop-filter:saturate(150%) blur(14px);
+    border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+  header.scrolled{border-bottom-color:var(--line);background:rgba(247,248,252,.86)}
+  .hbar{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;flex-direction:row;align-items:center;gap:10px;line-height:1;text-decoration:none}
+  .logo-ava{width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center 40%;border:1px solid var(--line);background:#fff;flex:none}
+  .logo-txt{display:flex;flex-direction:column}
+  .logo .en{font-family:var(--en);font-weight:600;font-size:13px;letter-spacing:.24em;color:var(--ink)}
+  .logo .ja{font-family:var(--serif);font-size:11px;color:var(--sub2);margin-top:5px;letter-spacing:.06em}
+  .hcta{opacity:0;transform:translateY(-6px);pointer-events:none;transition:.3s}
+  header.scrolled .hcta{opacity:1;transform:none;pointer-events:auto}
+  .hcta .btn{padding:9px 20px;font-size:12.5px;box-shadow:none}
+
+  /* ── hero ── */
+  #hero{padding:148px 0 96px;overflow:hidden}
+  #hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(120% 80% at 50% -10%,#FFFFFF 0%,var(--bg) 60%)}
+  .hero-digits{position:absolute;z-index:0;top:0;right:-2vw;height:100%;display:flex;
+    flex-direction:column;justify-content:center;gap:.04em;pointer-events:none;
+    font-family:var(--serif);font-weight:700;font-size:clamp(120px,30vw,260px);
+    color:var(--ink);opacity:.028;line-height:.92;letter-spacing:-.04em}
+  .hero-inner{position:relative;z-index:1;text-align:center}
+  h1.hero-h{font-family:var(--serif);font-weight:700;font-size:clamp(30px,8.4vw,50px);
+    line-height:1.42;letter-spacing:.02em;color:var(--ink)}
+  h1.hero-h .em{color:var(--accent)}
+  .hero-today-date{font-size:15px;color:var(--accent);letter-spacing:.08em;margin-bottom:14px}
+  .hero-sub{margin-top:26px;color:var(--sub);font-size:clamp(15px,3.9vw,17px);line-height:1.95}
+  .hero-cta{margin-top:40px}
+  .hero-note{margin-top:18px;font-size:12.5px;color:var(--sub2);letter-spacing:.02em}
+
+  /* ── numbers / diagnostic ── */
+  #numbers{scroll-margin-top:72px}
+  /* ── 診断タブ ── */
+  .dia-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:22px}
+  .dia-tab{flex:1;max-width:220px;padding:13px 10px;border:1px solid var(--line);
+    background:var(--white);border-radius:999px;font-family:var(--sans);font-weight:700;
+    font-size:14px;color:var(--sub2);cursor:pointer;transition:.2s;line-height:1.4}
+  .dia-tab[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .dia-pane[hidden]{display:none}
+  .pair-people{display:flex;flex-direction:column;gap:18px;margin-bottom:8px}
+  .pair-person .pp-label{font-family:var(--serif);font-size:14px;color:var(--ink);margin-bottom:10px;text-align:center}
+  .dia-card{background:var(--white);border:1px solid var(--line);border-radius:22px;
+    padding:40px 32px;box-shadow:0 24px 60px -32px rgba(26,26,46,.22)}
+  .dia-lead{text-align:center;color:var(--sub);font-size:14.5px;margin-bottom:26px}
+  .dia-form{display:flex;gap:10px;justify-content:center;align-items:flex-end;flex-wrap:wrap}
+  .field{display:flex;flex-direction:column;gap:7px}
+  .field label{font-size:11px;letter-spacing:.16em;color:var(--sub2);font-family:var(--en);font-weight:600;text-align:center}
+  .sel{position:relative}
+  select{appearance:none;-webkit-appearance:none;font-family:var(--serif);font-size:17px;color:var(--ink);
+    background:var(--bg);border:1px solid var(--line);border-radius:12px;
+    padding:13px 34px 13px 16px;cursor:pointer;transition:border-color .2s;line-height:1.2}
+  select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .sel::after{content:"";position:absolute;right:14px;top:50%;width:8px;height:8px;
+    border-right:1.5px solid var(--sub2);border-bottom:1.5px solid var(--sub2);
+    transform:translateY(-70%) rotate(45deg);pointer-events:none}
+  .sel.y select{min-width:104px}.sel.m select,.sel.d select{min-width:78px}
+  .dia-go{text-align:center;margin-top:28px}
+  .dia-err{text-align:center;color:#B4452F;font-size:13px;margin-top:14px;min-height:1px}
+
+  /* result */
+  #result,#pairResult{display:none;margin-top:8px}
+  #result.show,#pairResult.show{display:block;animation:fadeUp .6s cubic-bezier(.2,.7,.2,1) both}
+  #todayResult{margin-top:8px}
+  #todayResult[hidden]{display:none}
+  .res-head{text-align:center;margin-bottom:30px}
+  .res-head .small{font-family:var(--serif);font-size:14px;color:var(--accent);letter-spacing:.08em}
+  .res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  #pairResult .res-grid{grid-template-columns:repeat(2,1fr);max-width:340px;margin:0 auto}
+  .num-card{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:16px;
+    padding:26px 12px 22px;text-align:center;overflow:hidden;
+    opacity:0;transform:translateY(16px)}
+  #result.show .num-card,#pairResult.show .num-card{animation:numIn .7s cubic-bezier(.2,.7,.2,1) forwards}
+  #result.show .num-card:nth-child(1),#pairResult.show .num-card:nth-child(1){animation-delay:.12s}
+  #result.show .num-card:nth-child(2),#pairResult.show .num-card:nth-child(2){animation-delay:.34s}
+  #result.show .num-card:nth-child(3),#pairResult.show .num-card:nth-child(3){animation-delay:.56s}
+  .num-role{font-family:var(--en);font-size:10px;letter-spacing:.2em;color:var(--accent);font-weight:600;text-transform:uppercase}
+  .num-role-ja{font-size:11.5px;color:var(--sub2);margin-top:6px;letter-spacing:.04em}
+  .num-big{font-family:var(--serif);font-weight:700;font-size:clamp(48px,15vw,76px);line-height:1;
+    color:var(--ink);margin:8px 0 4px;letter-spacing:-.02em}
+  .num-big .mn{display:block;font-size:11px;font-family:var(--en);font-weight:600;letter-spacing:.18em;
+    color:var(--accent);margin-top:4px}
+  .num-tag{font-family:var(--serif);font-size:11.5px;color:var(--sub);line-height:1.55;margin-top:9px;min-height:36px}
+  /* 数字ごとの読み解き（才能/つまずき/向く環境） */
+  .res-reads{margin-top:24px;display:grid;gap:14px}
+  .read{background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:16px;padding:22px 22px}
+  .read-head{margin-bottom:15px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .read-head .role{display:block;font-family:var(--serif);font-size:12.5px;color:var(--accent);letter-spacing:.08em}
+  .read-head .role b{font-size:21px;font-weight:700;margin-left:5px;letter-spacing:.02em}
+  .read-head .reframe{display:block;font-family:var(--serif);font-size:15.5px;font-weight:600;color:var(--ink);line-height:1.6;margin-top:7px}
+  .read-body{display:grid;gap:13px}
+  .read-body > div{display:grid;grid-template-columns:62px 1fr;gap:13px;align-items:start}
+  .read-body dt{font-size:11px;font-weight:700;letter-spacing:.04em;padding-top:3px;white-space:nowrap}
+  .read-body dt.t,.read-body dt.f{color:var(--accent)}
+  .read-body dt.s{color:#B4452F}
+  .read-body dd{font-size:13px;color:var(--sub);line-height:1.82}
+  .res-cta{margin-top:30px;background:var(--navy);border-radius:18px;padding:32px 26px;text-align:center;color:#EDEFF6}
+  .res-cta .h{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.6;color:#fff}
+  .res-cta .p{font-size:13.5px;color:#B7BCD0;margin-top:12px;line-height:1.85}
+  .res-cta .btn{margin-top:22px}
+  .res-cta .rc-eyebrow{display:inline-block;font-size:12.5px;letter-spacing:.06em;color:#CDE7F5;
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);
+    border-radius:999px;padding:6px 18px;margin-bottom:16px}
+  .res-cta .rc-eyebrow b{color:#fff;font-weight:700;font-size:16px;margin:0 3px}
+  .res-cta #rcNote{margin-top:24px}
+  .res-cta .rc-sub{font-size:12.5px;color:#B7BCD0;margin-top:16px;line-height:1.7}
+  .res-cta .rc-sub a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+  /* ── 今日の取説 ── */
+  .today-date{text-align:center;font-family:var(--serif);font-size:15px;color:var(--accent);margin-bottom:20px;letter-spacing:.03em}
+  .today-badge{text-align:center;margin:6px 0 4px}
+  .today-badge .tb-num{font-family:var(--serif);font-weight:700;font-size:40px;color:var(--accent);line-height:1;letter-spacing:.02em}
+  .today-badge .tb-num .mn{display:inline-block;vertical-align:middle;margin-left:8px;font-family:var(--en);font-size:9.5px;font-weight:600;letter-spacing:.14em;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:3px 8px;text-transform:uppercase}
+  .today-badge .tb-label{display:block;font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);margin-top:8px}
+  .today-badge .tb-calc{display:block;max-width:400px;margin:12px auto 0;font-size:11.5px;color:var(--sub2);line-height:1.7}
+  .res-again{display:block;margin:18px auto 0;background:none;border:none;color:var(--sub2);
+    font-size:13px;font-family:var(--sans);cursor:pointer;letter-spacing:.04em}
+  .res-again:hover{color:var(--ink)}
+
+  /* ── 拡充版：結果の読み解き（現在数フル／過去・未来 中型） ── */
+  .read-full{margin-top:26px;background:var(--white);border:1px solid var(--line);
+    border-top:3px solid var(--accent);border-radius:16px;padding:26px 26px 8px}
+  .rf-head{margin-bottom:6px}
+  .rf-head .rf-role{display:block;font-family:var(--serif);font-size:12.5px;color:var(--accent);letter-spacing:.08em}
+  .rf-head .rf-role b{font-size:22px;font-weight:700;margin-left:5px;letter-spacing:.02em}
+  .rf-head .rf-tag{display:block;font-family:var(--serif);font-size:17px;font-weight:600;color:var(--ink);line-height:1.6;margin-top:6px}
+  .rf-head .rf-reframe{display:block;font-size:13px;color:var(--sub);line-height:1.7;margin-top:8px;padding-top:10px;border-top:1px dashed var(--line)}
+  .rm-head .rm-reframe{display:block;font-size:12px;color:var(--sub2);line-height:1.65;margin-top:6px}
+  .read-full .sec{padding:20px 0;border-top:1px solid var(--line-soft)}
+  .read-full .sec:first-of-type{border-top:none}
+  .read-full .sec h3{display:flex;align-items:center;gap:9px;font-family:var(--serif);
+    font-size:14.5px;font-weight:600;color:var(--accent);margin-bottom:9px}
+  .read-full .sec h3 .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+  .read-full .sec p{font-size:14px;color:var(--sub);line-height:1.95}
+  .read-mid{margin-top:14px;background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--accent2);
+    border-radius:14px;padding:20px 22px}
+  .rm-head{margin-bottom:13px;padding-bottom:11px;border-bottom:1px solid var(--line)}
+  .rm-head .rm-role{display:block;font-family:var(--serif);font-size:12px;color:var(--accent);letter-spacing:.06em}
+  .rm-head .rm-role b{font-size:19px;font-weight:700;margin-left:4px}
+  .rm-head .rm-tag{display:block;font-family:var(--serif);font-size:14.5px;font-weight:600;color:var(--ink);margin-top:5px}
+  .rm-body{display:grid;gap:11px}
+  .rm-body > div{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:start}
+  .rm-lbl{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--accent);padding-top:3px;white-space:nowrap}
+  .rm-body p{font-size:13px;color:var(--sub);line-height:1.85}
+  .synth{margin-top:18px;background:var(--accent-soft);border-radius:14px;padding:22px 24px}
+  .synth-h{font-family:var(--serif);font-size:13.5px;font-weight:600;color:var(--accent);margin-bottom:9px}
+  .synth p:not(.synth-h){font-size:13.5px;color:var(--ink);line-height:1.95}
+  .res-step{margin-top:18px;background:var(--navy);border-radius:14px;padding:22px 24px}
+  .res-step .sh{font-size:13.5px;font-weight:600;color:#CDE7F5;margin-bottom:8px}
+  .res-step .sh::before{content:"→ ";color:var(--accent2);font-weight:700}
+  .res-step p:not(.sh){font-size:14px;color:#EDEFF6;line-height:1.9}
+  .res-cta .cta-bridge{font-family:var(--serif);font-size:14px;color:#CDE7F5;margin-bottom:18px;letter-spacing:.04em}
+  .res-cta .cta-listhead{font-size:12px;font-weight:700;letter-spacing:.08em;color:#8FA6C7;margin-top:24px;margin-bottom:10px}
+  .res-cta .cta-list{list-style:none;text-align:left;max-width:340px;margin:0 auto;display:grid;gap:9px}
+  .res-cta .cta-list li{position:relative;padding-left:22px;font-size:13px;color:#DDE2F0;line-height:1.7}
+  .res-cta .cta-list li::before{content:"✓";position:absolute;left:0;color:var(--accent2);font-weight:700}
+  .res-cta .cta-meta{font-size:11.5px;color:#8FA6C7;margin-top:14px;letter-spacing:.03em}
+  .share-row{margin-top:6px}
+  .res-disc{margin-top:26px;font-size:11.5px;color:var(--sub2);line-height:1.75;text-align:center}
+  .res-sign{margin-top:10px;font-family:var(--serif);font-size:12px;color:var(--accent);text-align:center;letter-spacing:.06em}
+
+  /* ── why numbers ── */
+  .why-pos{background:var(--white);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:14px;padding:26px 26px;font-family:var(--serif);font-size:16px;line-height:1.95;color:var(--ink)}
+  .three-num{margin-top:34px;display:grid;gap:14px}
+  .tn{display:flex;gap:20px;align-items:flex-start;background:var(--white);border:1px solid var(--line);
+    border-radius:14px;padding:22px 24px}
+  .tn .n{font-family:var(--serif);font-weight:700;font-size:34px;line-height:1;color:var(--accent);flex:none;width:46px;text-align:center}
+  .tn .b h3{font-family:var(--serif);font-size:16px;font-weight:600;margin-bottom:5px}
+  .tn .b p{font-size:13.5px;color:var(--sub);line-height:1.85}
+
+  /* ── voices ── */
+  .voices{display:grid;gap:16px}
+  .vc{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:26px 26px;
+    box-shadow:0 18px 44px -34px rgba(26,26,46,.2)}
+  .vc .mark{font-family:var(--serif);font-size:34px;line-height:.6;color:var(--accent2);height:18px}
+  .vc q{display:block;quotes:none;font-family:var(--serif);font-size:15.5px;line-height:1.95;color:var(--ink);margin:6px 0 14px}
+  .vc q::before,.vc q::after{content:""}
+  .vc .who{font-size:12px;color:var(--sub2);letter-spacing:.04em;border-top:1px solid var(--line-soft);padding-top:13px}
+
+  /* ── three paths ── */
+  .paths{display:grid;gap:16px}
+  .path{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:28px 26px;
+    transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,border-color .25s}
+  .path:hover{transform:translateY(-3px);box-shadow:0 22px 48px -30px rgba(26,26,46,.3);border-color:#D5DCEA}
+  .path .step{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:.2em;color:var(--accent)}
+  .path h3{font-family:var(--serif);font-size:19px;font-weight:600;margin:8px 0 4px}
+  .path .for{font-size:12.5px;color:var(--sub2);margin-bottom:14px}
+  .path p{font-size:13.5px;color:var(--sub);line-height:1.85;margin-bottom:20px}
+  .path .price{font-family:var(--serif);color:var(--ink);font-weight:600}
+  .path .btn{width:100%}
+  .path .seat{display:inline-block;margin-top:12px;font-size:11.5px;color:var(--accent);
+    background:var(--accent-soft);border-radius:999px;padding:4px 14px;letter-spacing:.04em}
+
+  /* ── about ── */
+  .about{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:38px 32px}
+  .about-portrait{display:block;width:clamp(132px,40vw,160px);height:clamp(132px,40vw,160px);object-fit:cover;object-position:center 40%;margin:0 auto 22px;border-radius:50%;border:1px solid var(--line);background:#fff;box-shadow:0 16px 40px -22px rgba(26,26,46,.3)}
+  .about .name{font-family:var(--serif);font-size:22px;font-weight:600;margin-bottom:4px;text-align:center}
+  .about .role{font-family:var(--en);font-size:11px;letter-spacing:.18em;color:var(--accent);text-transform:uppercase;margin-bottom:24px;text-align:center}
+  .about p{font-size:14px;color:var(--sub);line-height:1.95;margin-bottom:14px}
+  .about p:last-child{margin-bottom:0}
+  .about .ink{color:var(--ink)}
+  .about .mn11{display:inline-block;font-family:var(--serif);font-weight:700;color:var(--accent)}
+
+  /* ── final CTA (navy) ── */
+  #final{background:var(--navy);color:#EDEFF6;padding:92px 0;position:relative;overflow:hidden}
+  #final::before{content:"11";position:absolute;right:-2vw;bottom:-6vh;font-family:var(--serif);font-weight:700;
+    font-size:clamp(200px,42vw,360px);color:#fff;opacity:.035;line-height:.8;pointer-events:none}
+  #final .wrap{position:relative;z-index:1;text-align:center}
+  #final .kicker{color:var(--accent2)}
+  #final .kicker::before{background:var(--accent2);opacity:.7}
+  #final h2{font-family:var(--serif);font-weight:600;font-size:clamp(24px,6vw,33px);line-height:1.55;color:#fff}
+  #final p.sub{margin:22px auto 0;max-width:520px;color:#B7BCD0;font-size:15px;line-height:1.95}
+  #final .gift{margin:30px auto 6px;max-width:440px;background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px 22px;font-size:13px;color:#D8DBE8;line-height:1.8}
+  #final .gift b{color:#fff;font-weight:700}
+  #final .btn{margin-top:26px}
+
+  /* ── FAQ ── */
+  .faq{display:grid;gap:12px}
+  details.q{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:border-color .2s}
+  details.q[open]{border-color:#D5DCEA}
+  details.q summary{list-style:none;cursor:pointer;padding:20px 24px;font-family:var(--serif);font-size:15px;font-weight:600;
+    display:flex;justify-content:space-between;align-items:center;gap:16px}
+  details.q summary::-webkit-details-marker{display:none}
+  details.q summary .pm{flex:none;width:18px;height:18px;position:relative;transition:transform .25s}
+  details.q summary .pm::before,details.q summary .pm::after{content:"";position:absolute;background:var(--accent);
+    border-radius:2px;top:50%;left:50%;transform:translate(-50%,-50%)}
+  details.q summary .pm::before{width:14px;height:1.6px}
+  details.q summary .pm::after{width:1.6px;height:14px;transition:transform .25s}
+  details.q[open] summary .pm::after{transform:translate(-50%,-50%) scaleY(0)}
+  details.q .a{padding:0 24px 22px;font-size:13.5px;color:var(--sub);line-height:1.9}
+
+  /* ── footer ── */
+  footer{background:var(--bg);border-top:1px solid var(--line);padding:48px 0 calc(120px + env(safe-area-inset-bottom))}
+  footer .wrap{text-align:center}
+  .f-logo .en{font-family:var(--en);font-weight:600;font-size:14px;letter-spacing:.22em;color:var(--ink)}
+  .f-logo .ja{font-family:var(--serif);font-size:11.5px;color:var(--sub2);margin-top:5px}
+  .f-links{display:flex;gap:8px 22px;justify-content:center;flex-wrap:wrap;margin:24px 0 22px;font-size:12.5px}
+  .f-links a{color:var(--sub);text-decoration:none;transition:color .2s}
+  .f-links a:hover{color:var(--accent)}
+  .f-note{font-size:11px;color:var(--sub2);line-height:1.8;max-width:520px;margin:0 auto}
+  .f-copy{font-family:var(--en);font-size:10.5px;letter-spacing:.12em;color:var(--sub2);margin-top:18px}
+
+  /* ── reveal on scroll ── */
+  .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .js .reveal.in{opacity:1;transform:none}
+  .js .reveal.d1{transition-delay:.08s}.js .reveal.d2{transition-delay:.16s}.js .reveal.d3{transition-delay:.24s}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes numIn{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
+
+  /* ══════════ 今日の取説：夜のカード ══════════ */
+  #today{padding:30px 0 78px;scroll-margin-top:72px}
+  .night{position:relative;border-radius:26px;overflow:hidden;color:#EDE7D6;
+    background:radial-gradient(135% 105% at 50% -12%, var(--n-a,#1a2452) 0%, var(--n-b,#0e1230) 72%);
+    box-shadow:0 44px 96px -46px rgba(6,8,26,.75), inset 0 0 0 1px rgba(203,164,85,.14);
+    padding:40px 30px 34px}
+  .night-glyph{position:absolute;z-index:0;top:48%;left:50%;width:min(80%,460px);
+    transform:translate(-50%,-50%);opacity:.14;pointer-events:none}
+  .night-glyph svg{width:100%;height:auto;display:block}
+  .night-inner{position:relative;z-index:1}
+  .star{position:absolute;border-radius:50%;background:#F3EAD0;
+    animation:twinkle 4.5s ease-in-out infinite}
+  @keyframes twinkle{0%,100%{opacity:.10}50%{opacity:.55}}
+  .n-ink{animation:inkbleed 1.5s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes inkbleed{from{opacity:0;filter:blur(11px);transform:translateY(7px)}to{opacity:1;filter:blur(0);transform:none}}
+  /* 華やか：金の額縁＋製図の角飾り */
+  .night::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(78% 52% at 50% 6%, var(--season-glow, transparent) 0%, transparent 62%)}
+  .night-frame{position:absolute;inset:13px;border-radius:18px;pointer-events:none;z-index:1;
+    border:1px solid rgba(216,180,94,.28);box-shadow:inset 0 0 0 3px rgba(216,180,94,.05)}
+  .n-corner{position:absolute;width:17px;height:17px;z-index:2;pointer-events:none}
+  .n-corner::before,.n-corner::after{content:"";position:absolute;background:linear-gradient(90deg,#EBD087,#B98F3F);opacity:.8}
+  .n-corner::before{width:100%;height:1.4px}
+  .n-corner::after{width:1.4px;height:100%}
+  .n-corner.tl{top:8px;left:8px}
+  .n-corner.tr{top:8px;right:8px}.n-corner.tr::before{right:0}.n-corner.tr::after{right:0}
+  .n-corner.bl{bottom:8px;left:8px}.n-corner.bl::before{bottom:0}.n-corner.bl::after{bottom:0}
+  .n-corner.br{bottom:8px;right:8px}.n-corner.br::before{right:0;bottom:0}.n-corner.br::after{right:0;bottom:0}
+  /* 季節の光の粒 */
+  .mote{position:absolute;border-radius:50%;opacity:0;animation:drift linear infinite}
+  @keyframes drift{0%{opacity:0;transform:translateY(0)}12%{opacity:.7}88%{opacity:.5}100%{opacity:0;transform:translateY(-190px)}}
+  .season-spring .mote{background:#F1CBD0;box-shadow:0 0 7px #EBB9C0}
+  .season-summer .mote{background:#CFE6F3;box-shadow:0 0 7px #AAD2E8}
+  .season-autumn .mote{background:#E9C583;box-shadow:0 0 7px #DBAB57}
+  .season-winter .mote{background:#DDEBF6;box-shadow:0 0 8px #BBD3E9}
+  /* 季節チップ */
+  .n-season{display:inline-block;margin-left:9px;font-size:10.5px;letter-spacing:.16em;
+    color:var(--season-accent,#D8B45E);border:1px solid currentColor;border-radius:999px;
+    padding:2px 11px;vertical-align:middle;opacity:.9}
+  .night .n-date{text-align:center;font-family:var(--serif);font-size:14px;letter-spacing:.12em;color:#C8BFA6}
+  .night .n-hero{text-align:center;margin:6px 0 2px}
+  .night .n-day{font-family:var(--serif);font-weight:700;font-size:clamp(58px,21vw,100px);line-height:1;
+    letter-spacing:.02em;
+    background:linear-gradient(100deg,#EFE3C0 0%,#F7ECC8 32%,#FDF5DC 46%,#D8B45E 54%,#F2E4BC 68%,#EDE1BC 100%);
+    background-size:230% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+    -webkit-text-stroke:.5px rgba(216,180,94,.5);
+    filter:drop-shadow(0 3px 20px rgba(216,180,94,.3));
+    animation:sheen 6.5s ease-in-out infinite}
+  @keyframes sheen{0%{background-position:125% 0}100%{background-position:-25% 0}}
+  .night .n-mnbadge{display:inline-block;font-family:var(--en);font-size:10px;font-weight:600;letter-spacing:.2em;
+    color:#1a1630;margin-top:12px;border:1px solid rgba(216,180,94,.6);border-radius:999px;padding:3px 14px;text-transform:uppercase;
+    background:linear-gradient(180deg,#E7C877,#C39B45);box-shadow:0 6px 18px -8px rgba(216,180,94,.6)}
+  .night .n-label{display:block;font-family:var(--serif);font-size:19px;font-weight:600;color:#EEE4CB;margin-top:14px;letter-spacing:.04em}
+  .night .n-calc{display:block;max-width:410px;margin:14px auto 0;font-size:11.5px;color:#A9A38C;line-height:1.7}
+  .n-block{margin-top:20px;border-top:1px solid rgba(216,180,94,.14);padding-top:19px}
+  .n-block h3{display:flex;align-items:center;gap:8px;font-family:var(--serif);font-size:14px;font-weight:600;color:#D8B45E;margin-bottom:8px}
+  .n-block h3 .d{width:6px;height:6px;border-radius:50%;background:#D8B45E;flex:none;opacity:.85}
+  .n-block p{font-size:14px;color:#DCD5C1;line-height:1.95}
+  .n-me{margin-top:19px;background:rgba(216,180,94,.07);border:1px solid rgba(216,180,94,.2);border-radius:16px;padding:20px 22px}
+  .n-me .lbl{font-family:var(--serif);font-size:12.5px;color:#D8B45E;margin-bottom:6px}
+  .n-me p{font-size:14px;color:#F0E9D6;line-height:1.9}
+  .n-do{margin-top:14px;display:grid;gap:11px}
+  .n-do .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:17px 19px}
+  .n-do .card .h{font-size:12px;font-weight:700;letter-spacing:.05em;color:#C8BFA6;margin-bottom:6px}
+  .n-do .card.step .h::before{content:"→ ";color:#D8B45E}
+  .n-do .card.care .h::before{content:"！ ";color:#E0A15A}
+  .n-do .card p{font-size:13.5px;color:#E6DFCB;line-height:1.85}
+  .n-month{margin-top:16px;text-align:center;font-size:12.5px;color:#A9A38C;line-height:1.75}
+  .n-tomo{margin-top:20px;text-align:center;font-family:var(--serif);font-size:13.5px;color:#C8BFA6;letter-spacing:.03em}
+  .n-tomo .dot{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:middle;margin:0 5px 2px;box-shadow:0 0 9px currentColor}
+  .n-disc{margin-top:22px;font-size:11px;color:#8E886F;line-height:1.7;text-align:center}
+  .n-sign{margin-top:8px;text-align:center;font-family:var(--serif);font-size:12px;color:#D8B45E;letter-spacing:.06em}
+  .n-again{display:block;margin:16px auto 0;background:none;border:none;color:#A9A38C;font-size:12.5px;font-family:var(--sans);cursor:pointer;letter-spacing:.04em}
+  .n-again:hover{color:#EDE3C9}
+  /* 夜カードのフォーム */
+  .night .dia-lead{color:#C8BFA6}
+  .night .today-date{color:#D8B45E}
+  .night select{background:rgba(255,255,255,.06);border-color:rgba(216,180,94,.3);color:#F1E7CF}
+  .night select:focus{border-color:#D8B45E;box-shadow:0 0 0 3px rgba(216,180,94,.18)}
+  .night .field label{color:#A9A38C}
+  .night .sel::after{border-color:#C8BFA6}
+  .night .dia-err{color:#E8A98A}
+  .btn-gold{background:linear-gradient(180deg,#D8B45E,#C39B45);color:#191426;box-shadow:0 14px 32px -12px rgba(216,180,94,.55)}
+  .btn-gold:hover{background:linear-gradient(180deg,#E0BE6A,#CBA34D);transform:translateY(-2px)}
+  .n-memory{margin-top:15px;text-align:center;font-size:12px;color:#A9A38C}
+  .n-memory a{color:#D8B45E;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+  .n-privacy{margin-top:9px;text-align:center;font-size:11px;color:#8E886F;line-height:1.6}
+
+  /* ── 松竹梅（結果内の3段CTA） ── */
+  .mtu{margin-top:24px}
+  .mtu-bridge{font-family:var(--serif);font-size:14px;color:#C8BFA6;text-align:center;line-height:1.85;margin-bottom:18px}
+  .mtu-grid{display:grid;gap:12px}
+  .mtu-card{position:relative;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+    border-radius:16px;padding:22px 22px 20px;text-align:center;transition:transform .2s,border-color .2s}
+  .mtu-card:hover{transform:translateY(-2px);border-color:rgba(216,180,94,.4)}
+  .mtu-card.reco{background:rgba(216,180,94,.1);border-color:rgba(216,180,94,.5);box-shadow:0 22px 46px -28px rgba(216,180,94,.45)}
+  .mtu-card .tier{font-family:var(--en);font-size:10px;letter-spacing:.2em;color:#A9A38C;text-transform:uppercase}
+  .mtu-card .flag{display:inline-block;font-size:10.5px;letter-spacing:.04em;color:#191426;background:#D8B45E;
+    border-radius:999px;padding:2px 13px;margin-bottom:9px;font-weight:700}
+  .mtu-card h4{font-family:var(--serif);font-size:16.5px;font-weight:600;color:#F1E7CF;margin:5px 0 7px;line-height:1.5}
+  .mtu-card p{font-size:12.5px;color:#BDB6A0;line-height:1.78;margin-bottom:16px}
+  .mtu-card .btn{width:100%;font-size:14px;padding:13px 20px;box-shadow:none}
+  .mtu-card .btn-line{background:transparent;border:1px solid rgba(216,180,94,.5);color:#EDE3C9}
+  .mtu-card .btn-line:hover{background:rgba(216,180,94,.12)}
+  .mtu-card .btn-gold2{background:linear-gradient(180deg,#D8B45E,#C39B45);color:#191426;font-weight:700}
+  .mtu-card .btn-gold2:hover{background:linear-gradient(180deg,#E0BE6A,#CBA34D);transform:translateY(-1px)}
+
+  /* ── 末尾：白い診断セクション（自分の設計図・相性） ── */
+  .mini{scroll-margin-top:72px}
+  .mini-eyebrow{display:block;text-align:center;font-family:var(--en);font-size:10.5px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+
+  @media(max-width:560px){
+    .night{padding:32px 20px 28px}
+    .mtu-card{padding:20px 18px 18px}
+    .sec-pad{padding:64px 0}
+    .wrap{padding:0 20px}
+    .dia-card{padding:30px 18px}
+    .res-grid{gap:9px}
+    .num-card{padding:20px 6px 16px}
+    .num-mean{font-size:11px;min-height:56px}
+    .tn{gap:14px;padding:20px}
+    .tn .n{width:38px;font-size:30px}
+    .about{padding:30px 22px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+    .js .reveal{opacity:1;transform:none}
+  }
+
+  /* ── 2026 redesign: 診断 → 結果 → CTA の一本導線 ── */
+  :root{
+    --bg:#FBFAF7;
+    --white:#FFFFFF;
+    --ink:#071A4D;
+    --sub:#394766;
+    --sub2:#66728D;
+    --line:#E5E1D7;
+    --line-soft:#EFECE4;
+    --accent:#145FC2;
+    --accent2:#C99A43;
+    --accent-soft:rgba(20,95,194,.08);
+    --navy:#061B52;
+    --maxw:760px;
+  }
+  body{
+    min-height:100vh;
+    font-size:16px;
+    line-height:1.9;
+    background:
+      radial-gradient(circle at 14% 12%,rgba(201,154,67,.10),transparent 25%),
+      radial-gradient(circle at 88% 25%,rgba(20,95,194,.09),transparent 27%),
+      linear-gradient(180deg,#fff 0%,#fbfaf7 48%,#f6f8fc 100%);
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    opacity:.5;
+    background-image:
+      linear-gradient(rgba(7,26,77,.035) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(7,26,77,.035) 1px,transparent 1px);
+    background-size:72px 72px;
+    mask-image:linear-gradient(to bottom,#000,transparent 88%);
+  }
+  header,section,footer,#postReveal{position:relative;z-index:2}
+  header{
+    background:rgba(255,255,255,.78);
+    border-bottom-color:rgba(7,26,77,.07);
+  }
+  header.scrolled{background:rgba(255,255,255,.9);border-bottom-color:var(--line)}
+  .logo-ava{width:38px;height:38px;border:1px solid rgba(201,154,67,.55);box-shadow:0 6px 20px rgba(7,26,77,.08)}
+  .logo .en{font-size:14px;color:var(--navy)}
+  .logo .ja{color:var(--sub)}
+
+  .number-field{position:fixed;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+  .number-field span{
+    position:absolute;
+    display:block;
+    font-family:var(--serif);
+    color:var(--navy);
+    opacity:.085;
+    font-size:clamp(24px,4vw,56px);
+    animation:numberDrift 16s ease-in-out infinite alternate;
+    text-shadow:0 0 22px rgba(20,95,194,.12);
+  }
+  .number-field span:nth-child(1){left:4%;top:14%;animation-duration:18s}
+  .number-field span:nth-child(2){left:18%;top:42%;font-size:30px;animation-delay:-7s}
+  .number-field span:nth-child(3){left:7%;top:78%;font-size:54px;animation-duration:22s}
+  .number-field span:nth-child(4){left:32%;top:9%;font-size:26px;animation-delay:-11s}
+  .number-field span:nth-child(5){left:40%;top:70%;font-size:38px;animation-duration:20s}
+  .number-field span:nth-child(6){left:57%;top:19%;font-size:42px;animation-delay:-4s}
+  .number-field span:nth-child(7){left:63%;top:55%;font-size:28px;animation-duration:19s}
+  .number-field span:nth-child(8){left:78%;top:8%;font-size:58px;animation-delay:-12s}
+  .number-field span:nth-child(9){left:88%;top:36%;font-size:32px;animation-duration:23s}
+  .number-field span:nth-child(10){left:82%;top:79%;font-size:50px;animation-delay:-8s}
+  .number-field span:nth-child(11){left:23%;top:86%;font-size:25px;animation-duration:17s}
+  .number-field span:nth-child(12){left:71%;top:91%;font-size:29px;animation-delay:-5s}
+  @keyframes numberDrift{
+    0%{transform:translate3d(0,18px,0) rotate(-3deg);opacity:.045}
+    50%{opacity:.11}
+    100%{transform:translate3d(18px,-34px,0) rotate(4deg);opacity:.07}
+  }
+
+  #hero{
+    min-height:700px;
+    display:grid;
+    place-items:center;
+    padding:154px 0 110px;
+  }
+  #hero::before{
+    background:
+      radial-gradient(circle at 50% 42%,rgba(255,255,255,.98) 0 29%,rgba(255,255,255,.78) 52%,transparent 74%),
+      radial-gradient(circle at 50% 42%,transparent 0 250px,rgba(201,154,67,.18) 251px 252px,transparent 253px 310px,rgba(20,95,194,.09) 311px 312px,transparent 313px);
+  }
+  #hero::after{
+    content:"";
+    position:absolute;
+    left:50%;top:48%;
+    width:min(78vw,620px);aspect-ratio:1;
+    transform:translate(-50%,-50%);
+    border:1px solid rgba(201,154,67,.18);
+    border-radius:50%;
+    box-shadow:0 0 0 54px rgba(20,95,194,.025),0 0 0 108px rgba(201,154,67,.03);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:720px}
+  .hero-digits{right:auto;left:50%;transform:translateX(-50%);width:100%;opacity:.018;align-items:center}
+  h1.hero-h{font-size:clamp(34px,7.4vw,56px);line-height:1.45;color:var(--navy);letter-spacing:.035em;text-wrap:balance}
+  h1.hero-h .em{color:var(--accent)}
+  .hero-sub{font-size:clamp(16px,3.7vw,18px);color:var(--sub);font-weight:500}
+  .hero-note{color:var(--sub2)}
+  .kicker{color:var(--accent2)}
+  .kicker::before{background:var(--accent2)}
+  .hero-today-date{color:var(--accent);font-weight:600}
+  .btn-ink,.btn-sub{
+    background:linear-gradient(135deg,#0A2A71,#061B52);
+    color:#fff;
+    border-color:rgba(201,154,67,.75);
+    box-shadow:0 12px 30px rgba(6,27,82,.20),inset 0 0 0 1px rgba(255,255,255,.08);
+  }
+  .btn-ink:hover,.btn-sub:hover{background:#0B327F;box-shadow:0 16px 34px rgba(6,27,82,.27)}
+
+  #today,#pair,#pair ~ section{display:none!important}
+  #postReveal{display:block!important}
+  #self{
+    padding:100px 0 120px;
+    background:transparent!important;
+    scroll-margin-top:72px;
+  }
+  #self .sec-head{margin-bottom:34px}
+  #self .sec-head .h{font-size:clamp(25px,5.6vw,34px);color:var(--navy)}
+  #self .sec-head .lead{font-size:15.5px;color:var(--sub)}
+  .mini-eyebrow{color:var(--accent2)!important;letter-spacing:.3em!important}
+  .dia-card{
+    background:rgba(255,255,255,.92);
+    border:1px solid rgba(201,154,67,.42);
+    border-radius:24px;
+    padding:46px 38px;
+    box-shadow:0 28px 80px -34px rgba(7,26,77,.24),0 0 0 8px rgba(255,255,255,.55);
+    backdrop-filter:blur(12px);
+  }
+  .dia-lead{font-size:15px;color:var(--sub)}
+  select{min-height:52px;background:#FBFAF7;border-color:#DCD6C8;color:var(--navy);font-size:18px}
+  .field label{color:var(--accent);font-size:11.5px}
+  .res-head .small{font-size:15px;color:var(--accent)}
+  .num-card{background:#FBFAF7;border-color:#E3DDCF}
+  .num-role{color:var(--accent)}
+  .num-role-ja,.num-tag{color:var(--sub)}
+  .num-big{color:var(--navy)}
+  .read-full,.read-mid{border-color:#E3DDCF}
+  .read-full{border-top-color:var(--accent)}
+  .read-mid{background:#FBFAF7;border-left-color:var(--accent2)}
+  .read-full .sec p,.rm-body p{font-size:14.5px;color:var(--sub)}
+  .synth{background:rgba(20,95,194,.07)}
+  .res-step,.res-cta{background:linear-gradient(145deg,#09265F,#061640)}
+  .res-cta{border:1px solid rgba(201,154,67,.46);box-shadow:0 22px 50px -24px rgba(6,27,82,.6)}
+  .res-cta .cta-bridge,.res-step .sh{color:#F0C86F}
+  .res-cta .cta-list li::before{color:#F0C86F}
+  footer{z-index:2;background:#F7F5EF;border-color:#E3DDCF;padding-bottom:54px}
+  footer .f-links a[href="#today"],footer .f-links a[href="#pair"]{display:none}
+
+  @media(max-width:640px){
+    #hero{min-height:650px;padding:132px 0 86px}
+    #hero::after{width:92vw}
+    .hero-sub br{display:none}
+    #self{padding:78px 0 96px}
+    .dia-card{padding:32px 18px;border-radius:20px}
+    .dia-form{gap:8px;flex-wrap:nowrap}
+    .sel.y select{min-width:96px}.sel.m select,.sel.d select{min-width:72px}
+    select{padding-left:12px;padding-right:28px}
+    .res-grid{gap:8px}
+    .num-card{padding:22px 8px 18px}
+  }
+  @media(prefers-reduced-motion:reduce){.number-field span{animation:none}}
+
+  /* ── diagnosis page: TOPと分離した入力・結果専用画面 ── */
+  body{
+    min-height:100dvh;
+    background-color:#f9fbff;
+    background-image:url('assets/nagi-numerology-bg.webp');
+    background-size:cover;
+    background-position:center top;
+    background-attachment:fixed;
+  }
+  body::before{
+    opacity:.18;
+    background-image:linear-gradient(rgba(7,26,77,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(7,26,77,.025) 1px,transparent 1px);
+  }
+  .number-field{display:none!important}
+  header{background:rgba(255,255,255,.82);border-bottom:1px solid rgba(7,26,77,.08)}
+  .hbar{max-width:980px;padding:14px 24px}
+  .logo-ava{width:42px;height:42px;border-color:rgba(201,154,67,.7)}
+  .logo .en{font-size:15px;letter-spacing:.28em}
+  .logo .ja{font-size:11px}
+  .hcta{display:none!important}
+  #today{
+    display:none!important;
+  }
+  #today .wrap{max-width:900px;padding:0 26px}
+  .night{
+    border-radius:28px;
+    padding:58px 48px 48px;
+    background:
+      radial-gradient(120% 90% at 50% -8%,rgba(19,77,172,.78) 0%,rgba(7,35,101,.78) 34%,transparent 66%),
+      linear-gradient(155deg,#082b76 0%,#061a52 54%,#030d2d 100%);
+    border:2px solid rgba(201,154,67,.82);
+    box-shadow:0 34px 80px -30px rgba(6,24,77,.62),inset 0 0 0 4px rgba(255,255,255,.035);
+  }
+  .night-frame{inset:14px;border-color:rgba(236,196,104,.52)}
+  .night .today-date{
+    font-size:clamp(21px,3vw,31px);
+    font-weight:600;
+    letter-spacing:.06em;
+    color:#f0c86f;
+    text-shadow:0 0 18px rgba(240,200,111,.22);
+  }
+  .night .today-date::before{
+    content:"✦";
+    display:block;
+    margin-bottom:12px;
+    font-size:19px;
+    color:#f0c86f;
+  }
+  .night .dia-lead{
+    max-width:620px;
+    margin:0 auto 30px;
+    color:#f4f6ff;
+    font-size:15.5px;
+    letter-spacing:.035em;
+  }
+  .night .dia-form{gap:18px}
+  .night .field label{color:#f4f6ff;font-size:12px;letter-spacing:.24em}
+  .night select{
+    min-height:58px;
+    background:rgba(3,13,45,.72);
+    border:1px solid rgba(236,196,104,.72);
+    border-radius:14px;
+    color:#fff;
+    font-size:19px;
+    box-shadow:inset 0 10px 24px rgba(0,0,0,.14);
+  }
+  .night .sel.y select{min-width:170px}.night .sel.m select,.night .sel.d select{min-width:132px}
+  .night .dia-go{margin-top:34px}
+  .night .btn-gold{
+    min-width:min(420px,100%);
+    padding:17px 34px;
+    border:1px solid #f2d38a;
+    border-radius:999px;
+    background:linear-gradient(180deg,#f0cc72,#c99a43);
+    color:#071a4d;
+    font-family:var(--serif);
+    font-size:17px;
+    font-weight:700;
+    box-shadow:0 12px 30px rgba(0,0,0,.23),0 0 24px rgba(240,200,111,.16);
+  }
+  .n-privacy{margin-top:15px;color:#aebbd8;font-size:11.5px}
+  #todayResult{max-width:720px;margin:0 auto}
+
+  /* ── result readability + premium CTA ── */
+  #todayResult .n-date{
+    color:#f7dfa2;
+    font-size:15px;
+    font-weight:600;
+    text-shadow:0 2px 12px rgba(0,0,0,.52);
+  }
+  #todayResult .n-label{
+    color:#fff8e7;
+    font-size:21px;
+    text-shadow:0 3px 18px rgba(0,0,0,.55);
+  }
+  #todayResult .n-calc{color:#d7dfef;font-size:12.5px;line-height:1.85}
+  #todayResult .n-block{
+    margin-top:15px;
+    padding:22px 22px 21px;
+    border:1px solid rgba(255,255,255,.12);
+    border-left:3px solid rgba(240,200,111,.76);
+    border-radius:15px;
+    background:linear-gradient(135deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 14px 28px rgba(0,0,0,.1);
+  }
+  #todayResult .n-block h3{
+    color:#f6d98f;
+    font-size:15.5px;
+    margin-bottom:10px;
+    text-shadow:0 2px 9px rgba(0,0,0,.45);
+  }
+  #todayResult .n-block p,
+  #todayResult .n-me p,
+  #todayResult .n-do .card p:not(.h){
+    color:#fff;
+    font-size:15.5px;
+    line-height:2.05;
+    letter-spacing:.012em;
+    text-shadow:0 2px 9px rgba(0,0,0,.48);
+  }
+  #todayResult .n-me{
+    padding:23px 24px;
+    background:linear-gradient(135deg,rgba(240,200,111,.15),rgba(255,255,255,.045));
+    border-color:rgba(240,200,111,.42);
+  }
+  #todayResult .n-me .lbl{color:#f7dfa2;font-size:14px;font-weight:600}
+  #todayResult .n-do .card{
+    padding:20px 22px;
+    background:rgba(255,255,255,.07);
+    border-color:rgba(255,255,255,.14);
+  }
+  #todayResult .n-do .card .h{color:#f7dfa2;font-size:13px}
+  #todayResult .n-month{color:#d9e2f4;font-size:13.5px;line-height:1.9}
+
+  #todayResult .mtu{
+    position:relative;
+    margin-top:34px;
+    padding:34px 26px 28px;
+    overflow:hidden;
+    border:1px solid rgba(240,200,111,.54);
+    border-radius:22px;
+    background:radial-gradient(90% 70% at 50% -10%,rgba(27,91,191,.42),transparent 68%),linear-gradient(150deg,rgba(5,25,77,.96),rgba(3,12,42,.98));
+    box-shadow:0 26px 60px -24px rgba(0,0,0,.72),inset 0 0 0 3px rgba(255,255,255,.025);
+  }
+  #todayResult .mtu::after{
+    content:"";
+    position:absolute;
+    top:-70px;
+    right:-70px;
+    width:180px;
+    height:180px;
+    border:1px solid rgba(240,200,111,.18);
+    border-radius:50%;
+    box-shadow:0 0 0 24px rgba(240,200,111,.025),0 0 0 48px rgba(240,200,111,.018);
+    pointer-events:none;
+  }
+  #todayResult .mtu-bridge{
+    position:relative;
+    z-index:1;
+    color:#fff7e6;
+    font-size:16px;
+    font-weight:600;
+    line-height:2;
+    text-shadow:0 2px 12px rgba(0,0,0,.55);
+  }
+  #todayResult .mtu-bridge::before{
+    content:"YOUR NEXT CHAPTER";
+    display:block;
+    margin-bottom:10px;
+    font-family:var(--en);
+    color:#f0c86f;
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:.28em;
+  }
+  #todayResult .mtu-grid{position:relative;z-index:1;gap:15px}
+  #todayResult .mtu-card{
+    padding:24px 23px 22px;
+    background:linear-gradient(135deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+    border-color:rgba(255,255,255,.16);
+    box-shadow:0 14px 30px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  #todayResult .mtu-card h4{color:#fff;font-size:18px;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+  #todayResult .mtu-card p{color:#e4e9f4;font-size:13.5px;line-height:1.9}
+  #todayResult .mtu-card .tier{color:#f2d584;font-size:10.5px}
+  #todayResult .mtu-card .btn{min-height:50px;font-size:15px;font-weight:700;border-radius:999px}
+  #todayResult .mtu-card.reco{
+    transform:scale(1.018);
+    background:linear-gradient(135deg,rgba(240,200,111,.22),rgba(24,82,174,.2));
+    border-color:rgba(255,216,126,.8);
+    box-shadow:0 22px 48px -18px rgba(240,200,111,.38),inset 0 1px 0 rgba(255,255,255,.12);
+  }
+  #todayResult .mtu-card .flag{
+    padding:4px 15px;
+    color:#06184d;
+    background:linear-gradient(180deg,#ffe39b,#d8af52);
+    box-shadow:0 7px 18px rgba(240,200,111,.24);
+  }
+  #todayResult .n-tomo{color:#e5eaf5;font-size:14px;line-height:1.9}
+  #todayResult .n-again{color:#d8e0f1;font-size:13.5px}
+  #todayResult .n-disc{color:#acb8d1;font-size:11.5px}
+  #todayResult .n-sign{color:#f0c86f;font-size:13px}
+
+  /* ── タイプ表示（v22投稿スタイル連動：素材タイプ） ── */
+  .rf-head .rf-type{display:block;font-family:var(--serif);font-size:clamp(21px,4.6vw,26px);font-weight:700;color:var(--navy);margin-top:7px;letter-spacing:.02em;line-height:1.4}
+  .design-note{margin-top:14px;background:rgba(201,154,67,.09);border:1px solid rgba(201,154,67,.35);border-left:3px solid var(--accent2);border-radius:14px;padding:22px 24px}
+  .design-note .dn-h{font-family:var(--serif);font-size:13.5px;font-weight:600;color:#8A6A25;margin-bottom:9px}
+  .design-note p:not(.dn-h){font-size:14px;color:var(--ink);line-height:1.95}
+  .type-map{margin-top:16px;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:24px 24px 20px}
+  .type-map .tm-h{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--accent);margin-bottom:5px}
+  .type-map .tm-lead{font-size:12.5px;color:var(--sub2);margin-bottom:14px;line-height:1.75}
+  .tm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .tm-chip{display:flex;flex-direction:column;align-items:center;gap:2px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center}
+  .tm-chip .no{font-family:var(--en);font-size:10px;letter-spacing:.12em;color:var(--sub2)}
+  .tm-chip .nm{font-family:var(--serif);font-size:13px;font-weight:600;color:var(--ink)}
+  .tm-chip.on{background:linear-gradient(145deg,#09265F,#061640);border-color:rgba(201,154,67,.65)}
+  .tm-chip.on .no{color:#F0C86F}
+  .tm-chip.on .nm{color:#fff}
+
+  @media(max-width:640px){
+    body{background-size:auto 100%;background-position:center top}
+    #today{padding:104px 0 56px}
+    #today .wrap{padding:0 14px}
+    .hbar{padding:10px 16px}
+    .logo-ava{width:36px;height:36px}.logo .en{font-size:13px}.logo .ja{font-size:9.5px}
+    .night{padding:42px 18px 32px;border-radius:22px}
+    .night .dia-form{gap:8px;flex-wrap:nowrap}
+    .night .sel.y select{min-width:104px}.night .sel.m select,.night .sel.d select{min-width:78px}
+    .night select{min-height:52px;font-size:16px;padding-left:10px;padding-right:27px}
+    .night .dia-lead{font-size:13.5px;line-height:1.9}
+    #todayResult .n-block{padding:19px 17px 18px}
+    #todayResult .n-block p,#todayResult .n-me p,#todayResult .n-do .card p:not(.h){font-size:14.5px;line-height:2}
+    #todayResult .mtu{padding:29px 15px 22px;border-radius:18px}
+    #todayResult .mtu-card{padding:22px 17px 20px}
+    #todayResult .mtu-card.reco{transform:none}
+  }
+</style>
+<link rel="stylesheet" href="assets/numerology-theme.css">
+<!-- ▼ 計測：Vercel Web Analytics（本番ドメインで自動有効・ローカルでは無害） -->
+<script>window.va = window.va || function(){(window.vaq = window.vaq || []).push(arguments);};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body class="diagnosis-page">
+
+<div class="numerology-backdrop" aria-hidden="true">
+  <span class="blueprint-grid"></span>
+  <span class="blueprint-arc arc-a"></span>
+  <span class="blueprint-arc arc-b"></span>
+  <span class="blueprint-beam beam-a"></span>
+  <span class="blueprint-beam beam-b"></span>
+</div>
+
+<div class="number-field" aria-hidden="true">
+  <span>1</span><span>3</span><span>7</span><span>11</span><span>22</span><span>5</span>
+  <span>8</span><span>9</span><span>33</span><span>6</span><span>4</span><span>2</span>
+</div>
+
+<!-- ════════ HEADER ════════ -->
+<header id="hdr">
+  <div class="hbar">
+    <a class="logo" href="#hero" aria-label="なぎ 現実をかえる数秘デザイン トップへ戻る">
+      <img class="logo-ava" src="assets/nagi-character.jpg" alt="なぎ" onerror="this.style.display='none'">
+      <span class="logo-txt">
+        <span class="en">NAGI</span>
+        <span class="ja">現実をかえる数秘デザイン</span>
+      </span>
+    </a>
+    <div class="hcta">
+      <a class="btn btn-ink" href="#self">無料診断</a>
+    </div>
+  </div>
+</header>
+
+<!-- ════════ ① HERO ════════ -->
+<section id="hero">
+  <div class="hero-digits" aria-hidden="true">
+    <span>3</span><span>7</span><span>1</span>
+  </div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <span class="kicker">Numerology Design</span>
+      <p class="hero-eyebrow">数字で読む、現実の攻略マップ</p>
+      <h1 class="hero-h"><span class="em">生年月日</span>でわかる、<br>自分の取扱説明書。</h1>
+      <p class="hero-sub">1〜9・11・22・33の12タイプから、自分の核、持って生まれたクセ、これから向かう方向を読み解きます。占いではなく、自分を現実で使うための“設計図”。</p>
+      <div class="hero-cta">
+        <a class="btn btn-ink btn-lg" href="#self">このまま無料で判定する</a>
+      </div>
+      <p class="hero-note">登録不要・必要なのは生年月日だけ。結果までこの1ページで完結します。</p>
+    </div>
+    <div class="number-architecture compact hero-architecture" aria-label="12の数秘タイプと3つの設計数を表す図">
+      <div class="orbit-label">生年月日<br><strong>設計図</strong><small>NOW · PAST · FUTURE</small></div>
+      <div class="orbit-ring orbit-ring-a" aria-hidden="true"></div>
+      <div class="orbit-ring orbit-ring-b" aria-hidden="true"></div>
+      <div class="orbit-numbers" aria-hidden="true">
+        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+        <span>7</span><span>8</span><span>9</span><span>11</span><span>22</span><span>33</span>
+      </div>
+      <span class="orbit-caption">12 NUMEROLOGY TYPES</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ ② 今日の取説（主役・夜のカード）★最重要 ════════ -->
+<section id="today">
+  <div class="wrap">
+    <div class="night" id="todayCard">
+      <span class="night-glyph" id="nightGlyph" aria-hidden="true"></span>
+      <span aria-hidden="true" id="nightStars"></span>
+      <span class="night-frame" aria-hidden="true"></span>
+      <span class="n-corner tl" aria-hidden="true"></span>
+      <span class="n-corner tr" aria-hidden="true"></span>
+      <span class="n-corner bl" aria-hidden="true"></span>
+      <span class="n-corner br" aria-hidden="true"></span>
+      <div class="night-inner">
+        <!-- 入力（記憶があれば自動でスキップ） -->
+        <div id="todayForm">
+          <p class="today-date serif" id="todayDate">―</p>
+          <p class="dia-lead">生年月日を入れると、今日の"自分の取説"が出ます。日付が変わると、内容も変わります。</p>
+          <div class="dia-form">
+            <div class="field"><label for="tSelY">Year</label><div class="sel y"><select id="tSelY" aria-label="生まれた年"></select></div></div>
+            <div class="field"><label for="tSelM">Month</label><div class="sel m"><select id="tSelM" aria-label="生まれた月"></select></div></div>
+            <div class="field"><label for="tSelD">Day</label><div class="sel d"><select id="tSelD" aria-label="生まれた日"></select></div></div>
+          </div>
+          <div class="dia-go">
+            <button class="btn btn-gold btn-lg" id="todayBtn" type="button">今日の取説を見る</button>
+          </div>
+          <p class="dia-err" id="todayErr" role="alert"></p>
+          <p class="n-privacy">入れた生年月日は、この端末の中にだけ保存されます（サーバーには送信されません）。次からは、入力なしで開けます。</p>
+        </div>
+        <p class="n-memory" id="todayMemory" hidden></p>
+        <div id="todayResult" role="status" aria-live="polite" tabindex="-1" hidden></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 深掘りコンテンツ（Why Numbers 以下・常時表示） ════════ -->
+<div id="postReveal">
+
+<!-- ════════ 自分の設計図（末尾・自分診断） ════════ -->
+<section id="self" class="sec-pad sec-white mini">
+  <div class="wrap">
+    <div class="diagnosis-intro reveal">
+      <div class="intro-copy">
+        <span class="mini-eyebrow">Your Numerology Design</span>
+        <p class="intro-kicker">数字は、自分を責めないための設計図。</p>
+        <h2 class="h">生年月日から、<br>自分の<span>数秘タイプ</span>を出す。</h2>
+        <p class="lead">現在数・過去数・未来数の3つを計算し、強み、つまずき、向かう方向を読み解きます。占いではなく、自分を現実で使うための“取扱説明書”です。</p>
+        <div class="intro-principles" aria-label="なぎの数秘の特徴">
+          <span>占いではなく設計</span><span>登録不要</span><span>12タイプ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="design-axis diagnosis-axis reveal d1" aria-label="診断で読み解く3つの数字">
+      <span><b>NOW</b><em>現在数</em>自分の核と、力の使い方</span>
+      <span><b>PAST</b><em>過去数</em>持って生まれたクセ</span>
+      <span><b>FUTURE</b><em>未来数</em>これから向かう方向</span>
+    </div>
+
+    <div class="dia-card reveal d1">
+      <!-- 入力 -->
+      <div id="diaForm">
+        <span class="form-number">01</span>
+        <p class="form-eyebrow">Enter Birthday</p>
+        <p class="dia-lead">生まれた年・月・日を選ぶと、3つの数字をすぐに計算します。</p>
+        <div class="dia-form">
+          <div class="field"><label for="selY">Year</label><div class="sel y"><select id="selY" aria-label="生まれた年"></select></div></div>
+          <div class="field"><label for="selM">Month</label><div class="sel m"><select id="selM" aria-label="生まれた月"></select></div></div>
+          <div class="field"><label for="selD">Day</label><div class="sel d"><select id="selD" aria-label="生まれた日"></select></div></div>
+        </div>
+        <div class="dia-go">
+          <button class="btn btn-ink btn-lg" id="calcBtn" type="button">自分の数秘タイプを判定する</button>
+        </div>
+        <p class="dia-err" id="diaErr" role="alert"></p>
+        <noscript><p class="dia-lead" style="margin-top:14px">※この鑑定は計算にJavaScriptを使います。オンにすると、自分の数字が出せます。</p></noscript>
+      </div>
+
+      <!-- 結果 -->
+      <div id="result" role="status" aria-live="polite" tabindex="-1">
+        <div class="res-head">
+          <span class="small serif">自分のタイプと、3つの数字が出ました。</span>
+        </div>
+        <div class="res-grid">
+          <div class="num-card">
+            <div class="num-role">Now</div><div class="num-role-ja">現在数</div>
+            <div class="num-big" id="nNow">―</div><div class="num-tag" id="tNow"></div>
+          </div>
+          <div class="num-card">
+            <div class="num-role">Past</div><div class="num-role-ja">過去数</div>
+            <div class="num-big" id="nPast">―</div><div class="num-tag" id="tPast"></div>
+          </div>
+          <div class="num-card">
+            <div class="num-role">Future</div><div class="num-role-ja">未来数</div>
+            <div class="num-big" id="nFut">―</div><div class="num-tag" id="tFut"></div>
+          </div>
+        </div>
+
+        <!-- 現在数：フル解説（v22投稿スタイル連動：タイプ→たとえ話→核→才能→つまずき→設計リフレーム→処方箋） -->
+        <div class="read-full">
+          <div class="rf-head"><span class="rf-role">現在数 <b id="fNowN"></b> ─ いまの自分のOS</span><span class="rf-type" id="fNowType"></span><span class="rf-tag" id="fNowTag"></span><span class="rf-reframe" id="fNowReframe"></span></div>
+          <div class="sec"><h3><span class="dot"></span><span id="fMetaH">このタイプのたとえ話</span></h3><p id="fMetaphor"></p></div>
+          <div class="sec"><h3><span class="dot"></span>この数字の核</h3><p id="fCore"></p></div>
+          <div class="sec"><h3><span class="dot"></span>自分の才能</h3><p id="fTalent"></p></div>
+          <div class="sec"><h3><span class="dot"></span>つまずくとき ─ 消耗の構造</h3><p id="fStumble"></p></div>
+          <div class="design-note"><p class="dn-h">性格じゃなくて、"設計"の話</p><p id="fDesign"></p></div>
+          <div class="sec"><h3><span class="dot"></span>才能の活かし方・立て直し</h3><p id="fTorisetsu"></p></div>
+          <div class="sec"><h3><span class="dot"></span>向いている場所</h3><p id="fFit"></p></div>
+        </div>
+
+        <!-- 12タイプ一覧（自分のタイプをハイライト） -->
+        <div class="type-map">
+          <p class="tm-h serif">数秘12タイプの一覧</p>
+          <p class="tm-lead">現在数は全部で12種類。自分のタイプは、この中の一つです。</p>
+          <div class="tm-grid" id="typeGrid"></div>
+        </div>
+
+        <!-- 過去数：中型 -->
+        <div class="read-mid">
+          <div class="rm-head"><span class="rm-role">過去数 <b id="mPastN"></b> ─ 持って生まれたクセ</span><span class="rm-tag" id="mPastTag"></span><span class="rm-reframe" id="mPastReframe"></span></div>
+          <div class="rm-body">
+            <div><span class="rm-lbl">才能</span><p id="mPastT"></p></div>
+            <div><span class="rm-lbl">つまずき</span><p id="mPastS"></p></div>
+            <div><span class="rm-lbl">活かし方</span><p id="mPastTori"></p></div>
+          </div>
+        </div>
+
+        <!-- 未来数：中型 -->
+        <div class="read-mid">
+          <div class="rm-head"><span class="rm-role">未来数 <b id="mFutN"></b> ─ これから向かう方向</span><span class="rm-tag" id="mFutTag"></span><span class="rm-reframe" id="mFutReframe"></span></div>
+          <div class="rm-body">
+            <div><span class="rm-lbl">活かし方</span><p id="mFutT"></p></div>
+            <div><span class="rm-lbl">つまずき</span><p id="mFutS"></p></div>
+            <div><span class="rm-lbl">向く場所</span><p id="mFutF"></p></div>
+          </div>
+        </div>
+
+        <!-- 3つの掛け合わせ -->
+        <div class="synth">
+          <p class="synth-h serif">3つの数字の、掛け合わせ</p>
+          <p id="synthBody"></p>
+        </div>
+
+        <!-- 処方箋（今日やることは1つ） -->
+        <div class="res-step">
+          <p class="sh serif">処方箋 ── 今日やることは、1つだけ</p>
+          <p id="fStep"></p>
+        </div>
+
+        <!-- CTA：現在数の完全ガイド（数秘別note） -->
+        <div class="res-cta">
+          <p class="cta-bridge serif">ここまでが、無料で読める"入口"です。</p>
+          <span class="rc-eyebrow serif" id="rcEyebrow">現在数 の完全ガイド</span>
+          <p class="h" id="rcHead">"自分のタイプ"の取扱説明書を、<br>まるごと1冊。</p>
+          <p class="p">この診断でわかったのは、自分のタイプという"輪郭"まで。<br>そのタイプの才能の伸ばし方・つまずきの抜け方・向いてる仕事を、自分の数字ひとつぶんだけ深く書いたのが、完全ガイドです。</p>
+          <p class="cta-listhead">完全ガイドで渡すもの</p>
+          <ul class="cta-list">
+            <li><span id="rcListName">このタイプ</span>の才能の、具体的な伸ばし方</li>
+            <li>つまずきの正体と、そこから抜ける手順</li>
+            <li>向いてる仕事・環境と、避けたほうがいい場所</li>
+            <li>人との距離の取り方・パートナーとの噛み合わせ</li>
+          </ul>
+          <a class="btn btn-sub btn-lg" id="rcNote" href="#" target="_blank" rel="noopener">完全ガイドを読む</a>
+          <p class="cta-meta">note ／ 買い切り・追記でずっと更新中</p>
+        </div>
+
+        <div class="res-cta res-cta-tekishoku">
+          <span class="rc-eyebrow serif">適職設計図（完全ガイド）</span>
+          <p class="h">12タイプぜんぶの、<br>“どこで働くか”の設計図。</p>
+          <p class="p">タイプの完全ガイドが「自分ひとつぶんの深さ」なら、こちらは12タイプすべての“適職”を横断でまとめた1冊。どのタイプが、どんな仕事・環境なら消耗せず力が出るのか。どこは避けたほうがいいのかを、タイプごとに設計しています。</p>
+          <p class="cta-listhead">適職設計図で渡すもの</p>
+          <ul class="cta-list">
+            <li>タイプごとの「向いてる仕事・環境」の地図</li>
+            <li>力が出る働き方と、消耗する働き方の見分け方</li>
+            <li>転職・異動・独立で迷ったときの判断軸</li>
+            <li>今の場所で活かすか、動くかの決め方</li>
+          </ul>
+          <a class="btn btn-sub btn-lg js-note-tekishoku" href="#" target="_blank" rel="noopener">適職設計図を読む</a>
+          <p class="cta-meta">note ／ 買い切り・追記でずっと更新中</p>
+        </div>
+
+        <div class="share-row">
+          <button class="res-again" id="againBtn" type="button">別の生年月日でもう一度</button>
+        </div>
+
+        <p class="res-disc">この鑑定は、生年月日から3つの数字を計算し、その数字の傾向を読み解くものです。運勢や吉凶を占うものではなく、自分の取扱説明書を作るための"ものの見方のひとつ"です。</p>
+        <p class="res-sign serif">現実をかえる数秘デザイン ｜ なぎ</p>
+      </div>
+    </div><!-- /.dia-card -->
+  </div>
+</section>
+
+<!-- ════════ 相性を調べる（末尾） ════════ -->
+<section id="pair" class="sec-pad mini">
+  <div class="wrap">
+    <div class="sec-head mini-head reveal">
+      <span class="mini-eyebrow">Compatibility</span>
+      <h2 class="h">気になる人との、相性を読む。</h2>
+      <p class="lead">2人の生年月日から、関係の"設計の違い"が見えてきます。</p>
+    </div>
+    <div class="dia-card reveal d1">
+      <div id="pairForm">
+        <p class="dia-lead">自分と、気になる人（パートナー・家族・仕事相手など）の生年月日を入れてください。</p>
+        <div class="pair-people">
+          <div class="pair-person">
+            <div class="pp-label">自分</div>
+            <div class="dia-form">
+              <div class="field"><label for="pSelY">Year</label><div class="sel y"><select id="pSelY" aria-label="自分の生まれた年"></select></div></div>
+              <div class="field"><label for="pSelM">Month</label><div class="sel m"><select id="pSelM" aria-label="自分の生まれた月"></select></div></div>
+              <div class="field"><label for="pSelD">Day</label><div class="sel d"><select id="pSelD" aria-label="自分の生まれた日"></select></div></div>
+            </div>
+          </div>
+          <div class="pair-person">
+            <div class="pp-label">お相手</div>
+            <div class="dia-form">
+              <div class="field"><label for="qSelY">Year</label><div class="sel y"><select id="qSelY" aria-label="お相手の生まれた年"></select></div></div>
+              <div class="field"><label for="qSelM">Month</label><div class="sel m"><select id="qSelM" aria-label="お相手の生まれた月"></select></div></div>
+              <div class="field"><label for="qSelD">Day</label><div class="sel d"><select id="qSelD" aria-label="お相手の生まれた日"></select></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="dia-go">
+          <button class="btn btn-ink btn-lg" id="pairBtn" type="button">2人の相性を出す</button>
+        </div>
+        <p class="dia-err" id="pairErr" role="alert"></p>
+      </div>
+      <div id="pairResult" role="status" aria-live="polite" tabindex="-1"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ ③ 数字で何が分かるのか ════════ -->
+<section class="sec-pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker center">Why Numbers</span>
+      <h2 class="h">数字は、占いじゃない。<br>"動かせない事実"の読み解きです。</h2>
+    </div>
+    <div class="why-pos reveal d1">
+      生年月日は、自分では選べないし、後から変えることもできません。だからこそ、そこには"持って生まれた仕様"がそのまま書かれています。僕がやっているのは、その仕様を読んで、自分の取扱説明書に翻訳すること。当たる・当たらないの話ではなく、自分のOS（取扱説明書）を手に入れる作業です。
+    </div>
+    <div class="three-num">
+      <div class="tn reveal d1"><div class="n">①</div><div class="b"><h3>現在数 ― いまの自分のOS</h3><p>ふだん表に出ている、自分のいちばん基本の動き方。「自分はこういう人間だ」と感じている部分の正体です。</p></div></div>
+      <div class="tn reveal d2"><div class="n">②</div><div class="b"><h3>過去数 ― 持って生まれたクセ</h3><p>無意識に出てしまう反応や、繰り返しハマるパターン。長所にも短所にも見える、自分のクセの出どころです。</p></div></div>
+      <div class="tn reveal d3"><div class="n">③</div><div class="b"><h3>未来数 ― これから向かう方向</h3><p>このまま進むと、自分がいちばん力を出せる場所。迷ったときに戻ってくるための、コンパスになる数字です。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ ④ お客様の声 ════════ -->
+<section class="sec-pad sec-white">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker center">Voice</span>
+      <h2 class="h">"やっと、説明がついた"</h2>
+      <p class="lead">個別鑑定を受けた方から届いた感想を、匿名・要約でご紹介します。</p>
+    </div>
+    <div class="voices">
+      <div class="vc reveal d1">
+        <div class="mark">"</div>
+        <q>ひとりでぐるぐる考えてしまうのも、3つの数字がそうさせていたんだと腑に落ちました。やっと、抜ける方法を知ることができました。</q>
+        <p class="who">鑑定をはじめて受けた方</p>
+      </div>
+      <div class="vc reveal d1">
+        <div class="mark">"</div>
+        <q>漠然としていた思いや焦りを、丁寧に言語化してもらえました。さらに解決の道すじまで論理的に説明してくれて、目の前が少しずつ明るくなりました。</q>
+        <p class="who">自営業の女性</p>
+      </div>
+      <div class="vc reveal d2">
+        <div class="mark">"</div>
+        <q>まるで中身を見られているようでした。当たり前にしてきたことも、努力じゃなく、その数字を持って生まれたんだと。いまはロードマップを見ながら、毎日の習慣から始めています。</q>
+        <p class="who">マスターナンバー11を持つ方</p>
+      </div>
+      <div class="vc reveal d2">
+        <div class="mark">"</div>
+        <q>あんなに詳しく、具体的な内容に驚きました。残りの人生、少し勇気を出して1歩踏み出してみよう。そう思える鑑定でした。</q>
+        <p class="who">人生の後半を考えはじめた方</p>
+      </div>
+      <div class="vc reveal d3">
+        <div class="mark">"</div>
+        <q>いろいろ試しても腑に落ちなかったことが、"仕様の問題"だと捉えたら、全部納得できました。</q>
+        <p class="who">これまで色々と試してきた方</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ ⑥ なぎとは ════════ -->
+<section class="sec-pad sec-white">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker center">About Nagi</span>
+    </div>
+    <div class="about reveal d1">
+      <img class="about-portrait" src="assets/nagi-icon.jpg" alt="数秘デザイナー なぎ" onerror="this.style.display='none'">
+      <div class="name serif">なぎ</div>
+      <div class="role">Numerology Designer</div>
+      <p class="ink">「現実をかえる数秘デザイン」を掲げて、Threadsで数秘×才能・適職の発信を続けています。占い師ではありません。やっているのは、生年月日という動かせない事実から、その人の取扱説明書を読み解くことです。</p>
+      <p>感情論や、ふわっとした解釈には寄りかからない。「なぜ自分はこう動いてしまうのか」を、できるかぎり数字で説明がつくところまで分解する。それが僕のやり方です。フォロワーは8,000人ほど。個別鑑定は毎月20名限定で続けてきました。</p>
+      <p>ちなみに僕自身も<span class="mn11">マスターナンバー11</span>。感じすぎて、うまく言葉にできない。そのしんどさが"数字の仕様"だと分かったとき、ずいぶん楽になりました。同じ場所で立ち止まっている人に渡したいのは、その設計図です。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ ⑧ FAQ ════════ -->
+<section class="sec-pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker center">Q &amp; A</span>
+      <h2 class="h">よくある質問</h2>
+    </div>
+    <div class="faq">
+      <details class="q reveal d1"><summary>占いと、何が違いますか？<span class="pm"></span></summary>
+        <div class="a">占いは「これから何が起きるか」を当てようとします。僕がやるのは逆で、生年月日という"もう動かせない事実"から、自分の取扱説明書を読み解くこと。当たる・当たらないの話ではありません。自分の強み・つまずき・向く場所を先に知って、打ち手を設計するための地図です。</div></details>
+      <details class="q reveal d1"><summary>現在数・過去数・未来数って、それぞれ何が違うんですか？<span class="pm"></span></summary>
+        <div class="a">ざっくり言うと、現在数＝いま表に出ている基本のOS、過去数＝生まれ持った無意識のクセ、未来数＝いちばん力を出せる方向です。1つだけ見ても、分かるのは半分。3つを掛け合わせて初めて「なぜ自分はこう動くのか」が一本につながります。その読み解きが、個別鑑定の中身です。</div></details>
+      <details class="q reveal d1"><summary>マスターナンバー（11・22・33）って何ですか？<span class="pm"></span></summary>
+        <div class="a">計算の途中で11・22・33が出たら、1桁に縮めずそのまま残す特別な数字です。感じる力や理想の大きさが人より一段強く出やすい仕様で、その分しんどさも出やすい。鑑定でこの数字が出たときは「Master」と表示されます。</div></details>
+      <details class="q reveal d1"><summary>相性鑑定では、何が分かりますか？<span class="pm"></span></summary>
+        <div class="a">自分と、気になる人（パートナー・家族・仕事相手など）の生年月日を入れると、お互いの現在数と、関係の中でのクセ、2人の"設計の違い"が出ます。噛み合わないのは相性が悪いからじゃなく、"止まる場所"の設計が違うだけ。3つの数字すべての掛け合わせは、個別鑑定で読み解いています。</div></details>
+      <details class="q reveal d2"><summary>個別鑑定は、noteのガイドと何が違うんですか？<span class="pm"></span></summary>
+        <div class="a">noteのガイドは「数字ごと」の一般的な取扱説明書です。個別鑑定は、自分の現在数・過去数・未来数を"掛け合わせて"読む、自分だけの1冊。強み・つまずき・向く仕事・人との距離の取り方まで、自分の3つの数字に合わせて書きます。</div></details>
+      <details class="q reveal d2"><summary>個別鑑定の料金・納期・人数を教えてください。<span class="pm"></span></summary>
+        <div class="a">料金は4,980円。毎月20名の限定で受け付けています。お申し込みから2〜3日で、35ページ以上のPDF鑑定書をお届けし、3ヶ月後のフォロー鑑定もついています。詳しい内容と申し込みは、プロフィールのnoteから。</div></details>
+      <details class="q reveal d2"><summary>数字は、どうやって計算していますか？<span class="pm"></span></summary>
+        <div class="a">このページの鑑定に、生年月日を入れるだけです。現在数＝全部の桁の合計、過去数＝生まれた日、未来数＝月と日の各桁の合計から出します。途中で11・22・33が出たら、そこで止めて1桁に縮めません（マスターナンバー保持）。手計算と同じルールです。</div></details>
+      <details class="q reveal d3"><summary>生年月日のほかに必要なものは？家族の数字も見られますか？<span class="pm"></span></summary>
+        <div class="a">必要なのは生年月日だけ。名前も登録も要りません。家族やパートナーの生年月日を入れれば、その人の3つの数字も同じように出せます。お互いの数字を並べると、すれ違いの理由も"設計の違い"として見えてきます。</div></details>
+    </div>
+  </div>
+</section>
+
+</div><!-- /#postReveal -->
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <div class="wrap">
+    <div class="f-logo">
+      <div class="en">NAGI</div>
+      <div class="ja">現実をかえる数秘デザイン</div>
+    </div>
+    <nav class="f-links">
+      <a class="js-note-top" href="https://note.com/nagi_genjitsu" target="_blank" rel="noopener">note</a>
+      <a class="js-note-kantei" href="https://note.com/nagi_genjitsu/n/nb088483a8491" target="_blank" rel="noopener">個別数秘鑑定</a>
+      <a href="#today">今日の取説</a>
+      <a href="#self">自分の設計図</a>
+      <a href="#pair">相性</a>
+    </nav>
+    <p class="f-note">個別鑑定・各ガイドの販売は、すべてnote上で行っています。記載の価格・特典・受付人数は予告なく変わる場合があります。</p>
+    <p class="f-copy">© 2026 NAGI ｜ NUMEROLOGY DESIGN</p>
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════════
+   ▼▼ 公開前に、ここだけ差し替える ▼▼
+   ══════════════════════════════════════════════ */
+// note：個別数秘鑑定の販売ページ
+const NOTE_KANTEI    = "https://note.com/nagi_genjitsu/n/nb088483a8491";
+// note：数秘別ガイド／適職設計図（個別商品URLが決まれば差し替え。暫定でnoteトップ）
+const NOTE_GUIDE     = "https://note.com/nagi_genjitsu";
+// note：適職設計図（完全ガイド）＝松竹梅の「竹」
+const NOTE_TEKISHOKU = "https://note.com/nagi_genjitsu/n/n54c40c695201";
+// note：トップ
+const NOTE_TOP       = "https://note.com/nagi_genjitsu";
+// 数秘別・完全ガイド（各980円）＝診断結果の「現在数」から該当ガイドへ直結。差し替えはこの中だけ。
+const NUM_NOTE = {
+  1 :"https://note.com/nagi_genjitsu/n/nc8472893dc81",
+  2 :"https://note.com/nagi_genjitsu/n/n8ac090920fb3",
+  3 :"https://note.com/nagi_genjitsu/n/n84f681d49dcb",
+  4 :"https://note.com/nagi_genjitsu/n/n18fa92e4d657",
+  5 :"https://note.com/nagi_genjitsu/n/n2caa98db8b28",
+  6 :"https://note.com/nagi_genjitsu/n/nedb2af8fbfc0",
+  7 :"https://note.com/nagi_genjitsu/n/neefca32863e4",
+  8 :"https://note.com/nagi_genjitsu/n/nfe74b54e9ee8",
+  9 :"https://note.com/nagi_genjitsu/n/n1781b38b821d",
+  11:"https://note.com/nagi_genjitsu/n/na6f4e7022f3a",
+  22:"https://note.com/nagi_genjitsu/n/n373488d2d8a0",
+  33:"https://note.com/nagi_genjitsu/n/n2b44d034284d",
+};
+/* ══════════════════════════════════════════════
+   ▲▲ 差し替えはこの5項目だけ ▲▲
+   ══════════════════════════════════════════════ */
+
+const $  = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+
+/* ── CTAリンクを一括セット ── */
+$$('.js-note-kantei').forEach(a => a.href = NOTE_KANTEI);
+$$('.js-note-guide').forEach(a => a.href = NOTE_GUIDE);
+$$('.js-note-tekishoku').forEach(a => a.href = NOTE_TEKISHOKU);
+$$('.js-note-top').forEach(a => a.href = NOTE_TOP);
+
+/* ── 生年月日セレクトを生成 ── */
+function buildSelects(yId, mId, dId){
+  const selY = $(yId), selM = $(mId), selD = $(dId);
+  const THIS_YEAR = 2026;            // ※環境依存を避け固定。年が変わったらここを更新（任意）
+  const FROM_YEAR = 1940;
+  selY.innerHTML = '<option value="" selected disabled>―</option>';
+  for(let y=THIS_YEAR; y>=FROM_YEAR; y--) selY.add(new Option(y+'年', y));
+  selM.innerHTML = '<option value="" selected disabled>―</option>';
+  for(let m=1; m<=12; m++) selM.add(new Option(m+'月', m));
+  fillDays();
+  selY.addEventListener('change', fillDays);
+  selM.addEventListener('change', fillDays);
+
+  function fillDays(){
+    const prev = selD.value;
+    const y = parseInt(selY.value,10), m = parseInt(selM.value,10);
+    let max = 31;
+    if(m){ max = new Date(y||2024, m, 0).getDate(); } // y未選択時はうるう年想定で29日まで許容
+    if(!y && m===2) max = 29;
+    selD.innerHTML = '<option value="" selected disabled>―</option>';
+    for(let d=1; d<=max; d++) selD.add(new Option(d+'日', d));
+    if(prev && parseInt(prev,10)<=max) selD.value = prev;
+  }
+}
+buildSelects('#selY', '#selM', '#selD');
+buildSelects('#pSelY', '#pSelM', '#pSelD');
+buildSelects('#qSelY', '#qSelM', '#qSelD');
+buildSelects('#tSelY', '#tSelM', '#tSelD');
+
+/* ── 数秘計算（CLAUDE.md §7 準拠：マスター11/22/33は還元しない） ── */
+function digitSum(n){ return String(n).split('').reduce((a,c)=>a+(+c),0); }
+function reduceMaster(n){
+  while(n > 9 && n !== 11 && n !== 22 && n !== 33){ n = digitSum(n); }
+  return n;
+}
+// 現在数：生年月日の全桁を合計 → 還元（マスター保持）
+function lifePath(y,m,d){ return reduceMaster(digitSum(y)+digitSum(m)+digitSum(d)); }
+// 過去数：生まれた「日」→ 還元（マスター保持。例：22日→22／11日→11／29日→11／31日→4）
+function pastNum(d){ return reduceMaster(d); }
+// 未来数：「月の各桁」＋「日の各桁」を合計 → 還元（例 12/6 → 1+2+0+6=9）
+function futureNum(m,d){ return reduceMaster(digitSum(m)+digitSum(d)); }
+
+/* ── 数字の中身（なぎのnote完全ガイドの解釈に準拠。占い・スピ語は使わない） ── */
+const NUM = {
+  1:{tag:'先頭を走る開拓者', reframe:'"わがまま"は、誰も行かない道を切り拓く突破力。',
+    type:'機関車タイプ',
+    metaphor:'先頭に立って、後ろの車両をまるごと引っ張っていく機関車。動き出しにいちばん力を使うぶん、走り出してしまえば誰よりも遠くまで行けます。ただ、連結器で誰かの後ろに繋がれると、ただ重いだけになる。止まっている時間が長いほど、逆に疲れていく。そういう仕様です。',
+    design:'人に合わせると急にやる気が消えるのも、指示された瞬間に動けなくなるのも、性格がわがままだからじゃありません。先頭で引っ張るために作られた機関車が、後ろに連結されていただけ。そういう"設計"だっただけです。',
+    core:'数秘1は、何もないところに最初の一歩をしるす"開拓者"の数字です。「自分がこうしたい」という衝動が人より強く出るのは、わがままだからではなく、誰も行かない道をいちばん最初に歩くための燃料が積まれているから。まわりに足並みをそろえるより、先頭で旗を振っているときに、自分はいちばん自分らしくいられます。',
+    talent:'何もない0から最初の火を起こす着火力が、数秘1の最大の武器です。「絶対こっちがいい」と言い切って、迷っている人たちを巻き込んで動かす。誰かが敷いたレールを走るより、自分でレールの起点を決めるほうが、圧倒的に力が出ます。前例がない・正解がない場所ほど、この突破力は価値になります。',
+    stumble:'動く前に「これでいいかな」と誰かに相談・確認した瞬間に、エンジンが急に冷えるのが数秘1の詰まりです。許可を待つ・多数決に合わせる・後ろに並ぶ——どれも、先頭を走るための燃料と相性が悪い。まわりに気をつかって一歩を飲み込むほど、自分でも理由の分からないモヤモヤが溜まっていきます。',
+    torisetsu:'まず、「自分がどうしたいか」を人に聞く前に決めてしまうこと。決めてから周りに相談する順番にするだけで、エンジンは冷えません。そして、立ち上げ（0→1）は自分がやり、育てて仕上げる工程（1→10）は得意な人に気持ちよく渡す。全部を一人で抱えないほど、次の火を起こしにいけます。',
+    fit:'前例のない仕事を最初に手がけ、自分が先頭で旗を振れる場所。新規事業の立ち上げ・企画のゼロ番目・一人で切り込む営業や開業など、"最初の一歩"そのものが価値になる環境で活きます。ルーティンの維持や、細かい仕上げを延々と続ける役回りは、別の人に気持ちよく渡していい。',
+    step:'今日、誰かの許可を待っていた小さな一件を、一つだけ「自分で決めて」動かしてみる。数秘1のエンジンは、決めた瞬間に温まります。'},
+  2:{tag:'調和を生むサポーター', reframe:'"自分がない"は、誰よりも場の調和をつくる才能。',
+    type:'橋タイプ',
+    metaphor:'両岸のあいだに架かって、人やものを渡していく橋。自分が目立つことはないけれど、橋がなければ誰も向こう岸へ行けません。ただ、渡る人の重さは、ぜんぶ自分の上に乗る。張り詰めた空気の中では、誰よりも先に軋む。そういう仕様です。',
+    design:'頼まれると断れないのも、人と人の板挟みで疲れ切ってしまうのも、性格が弱いからじゃありません。両岸を支える橋に、重さが集まるのは当たり前。そういう"設計"だっただけです。',
+    core:'数秘2は、二つのものの間に立って橋をかける"調停者"の数字です。「自分の意見がない」と感じやすいのは、意志が弱いからではなく、その場に流れる複数の気持ちを同時に受け取れる高精度のセンサーが積まれているから。誰かと誰かの間で、空気をなめらかに整えているとき、自分はいちばん自分らしくいられます。',
+    talent:'人の感情や場の温度を、言葉にされる前に察知する感度が、数秘2の最大の武器です。対立してピリついた空気を、声のトーンや一言で和らげ、組織の潤滑油になれる。目立つ主役より、主役を裏から支える参謀や右腕として置かれたとき、静かに全体を動かします。「この人がいると場がまとまる」——それが数秘2の存在価値です。',
+    stumble:'「自分が我慢すれば丸く収まる」と、頼まれごとを断れずに抱え込んだ瞬間が、数秘2の詰まりです。相手の気持ちが見えすぎるぶん、ノーと言うと相手を傷つける気がして、便利に使われて溜め込んでいく。気づけば全員のケアをして、自分のことだけ後回しになっている。その優しさが、じわじわと自分をすり減らします。',
+    torisetsu:'まず、「察してあげる」前に「自分はどうしたいか」を、心の中で先に一度つぶやくこと。相手の気持ちと自分の気持ちを、切り離して並べるだけで、抱え込みが減ります。そして、誰と組むか・どんな空気の場にいるかを、自分から選ぶこと。数秘2の感度は、心地よい相手の隣でこそ、最大限に活きます。',
+    fit:'リーダーを裏から支える右腕・参謀・調整役や、人と人をつなぐ窓口・秘書・コーディネーターの役割で活きます。誰とどんな環境にいるかを自分で選べる場、丁寧な気配りがそのまま価値になる場が向いています。一人で先頭を切って突き進む役回りは、別の人に気持ちよく任せていい。',
+    step:'今日、気が進まない小さな頼みごとを一つだけ、「今回は難しいです」と穏やかに断ってみる。数秘2の優しさは、線を引いても消えません。'},
+  3:{tag:'風穴を開けるムードメーカー', reframe:'"飽きっぽい"は、世界を高速で切り替える才能。',
+    type:'花火タイプ',
+    metaphor:'夜空にぱっと開いて、その場の全員の顔を上げさせる花火。場を一瞬で明るくする瞬発力は、12タイプでいちばんです。ただ、上がったあとの静けさには、めっぽう弱い。ずっと同じ場所で灯り続けるようには、そもそも作られていない。そういう仕様です。',
+    design:'飽きっぽいのも、盛り上げたあとにどっと疲れるのも、根性がないからじゃありません。花火は連発で上がり続けるようにはできていない。そういう"設計"だっただけです。',
+    core:'数秘3は、停滞した空気に風穴を開け、まわりを明るくする"表現者"の数字です。「飽きっぽい」のは根性がないからではなく、一つの景色に留まらず、次々に新しいものへ興味が移る高速の切り替え力が積まれているから。思いついたことを口にして、その場をぱっと明るくしているとき、自分はいちばん自分らしくいられます。',
+    talent:'どんよりした場の空気を、存在ひとつで軽くしてしまう明るさが、数秘3の最大の武器です。思いつきを即座に形にして発信し、まわりを楽しい方へ巻き込んでいく。堅苦しい正論より、遊び心のある一言のほうが人を動かせる。「あの人がいると場が回る」——その現状打破のムードメーカーぶりが、数秘3の価値です。',
+    stumble:'「飽きた＝もう学び終わったサイン」なのに、それを「中途半端でダメだ」と自分で責めた瞬間に、輝きが止まります。「ちゃんと最後までやらなきゃ」と一つに縛りつけようとするほど、本来の軽やかさが消えていく。まわりの「継続は力」という声に合わせて、無理に一つを続けようとすると、いちばんの持ち味が死んでしまいます。',
+    torisetsu:'まず、「飽きた」を失敗ではなく「次へ進む合図」として扱うこと。一つを極めるより、複数を軽やかに渡り歩く前提で、自分の予定を組んでいい。そして、細く長く続ける地道な作業は、得意な人に任せて、自分は「新しく始める・盛り上げる」役に集中する。数秘3のエンジンは、変化と刺激で温まります。',
+    fit:'思いついたことを即発信して楽しめる場や、人前に立って場を盛り上げる役割で活きます。発信・企画・イベント・接客・クリエイティブなど、遊び心そのものが価値になる環境が向いています。同じ作業を延々と繰り返す役回りは、別の人に気持ちよく渡していい。',
+    step:'今日、頭に浮かんだ面白いことを一つだけ、その場で誰かに話すか発信してみる。数秘3の魅力は、出した瞬間に伝わります。'},
+  4:{tag:'土台をつくる建設者', reframe:'"融通が利かない"は、現実を形にする才能。',
+    type:'石垣タイプ',
+    metaphor:'一段ずつ石を積んで、何百年も崩れない土台になる石垣。派手さはないけれど、上に載るものぜんぶを黙って支えています。ただ、積んだ順番ごと支えているから、急に石を一つ抜かれると全体がぐらつく。そういう仕様です。',
+    design:'急な変更に固まってしまうのも、融通が利かないと言われるのも、頭が固いからじゃありません。石垣は、積み上げた順番ごと現実を支えている。そういう"設計"だっただけです。',
+    core:'数秘4は、曖昧なものを一つひとつ積み上げて、崩れない土台にする"建設者"の数字です。「融通が利かない」と言われるのは頑固だからではなく、手順やルールをきちんと守ることで、確実に形を残す力が積まれているから。地に足をつけて、決めたことを最後までやり切っているとき、自分はいちばん自分らしくいられます。',
+    talent:'ふわっとしたアイデアを、「柱は何本・予算はいくら・工期はどれくらい」と、現実の手順に翻訳する具現化力が、数秘4の最大の武器です。派手さはなくても、任されたことをコツコツ最後まで仕上げる。その丁寧さと安定感が、まわりの信頼を静かに積み上げていく。「この人に任せれば大丈夫」——それが数秘4の価値です。',
+    stumble:'「一発逆転したい」「早く結果がほしい」と変化を焦り、いつもの手順を飛ばして近道を取った瞬間に、数秘4はつまずきます。地道な積み上げこそが強みなのに、それを「遅い・つまらない」と否定してしまうと、本来の安定感が崩れる。まわりの派手な成功と自分を比べて、着実さを軽く見た時が、いちばん危ういときです。',
+    torisetsu:'まず、「派手さ」ではなく「積み上げた総量」で自分を評価すること。近道が魅力的に見えたときこそ、いつもの手順に戻るのが数秘4の勝ち筋です。そして、自分のやり方を丁寧にマニュアル化して残しておくこと。仕組みを言葉にして共有できると、「困ったら自分に聞け」という頼られる立場が自然にできあがります。',
+    fit:'安定して回り続けることそのものが価値になる場で活きます。品質管理・経理・事務・技術職・仕組みづくりなど、正確さと継続が信頼になる環境が向いています。次々と方針が変わる場や、その場の勢いで動く役回りは、別の人に気持ちよく渡していい。',
+    step:'今日、後回しにしていた面倒な作業を一つだけ、最後まできっちり片づけてみる。数秘4の信頼は、その一つの積み重ねでできています。'},
+  5:{tag:'変化を運ぶ冒険者', reframe:'"落ち着きがない"は、変化を運ぶ才能。',
+    type:'風タイプ',
+    metaphor:'動いているあいだだけ、力を持てる風。新しい場所へ空気を運び、よどんだ部屋を入れ替えて、また次へ抜けていきます。ただ、止まった風は、もう風じゃない。一か所に閉じ込めた瞬間に、力そのものが消える。そういう仕様です。',
+    design:'一か所に留まると息苦しくなるのも、同じことが続かないのも、だらしないからじゃありません。風は吹き続けることでしか、風でいられない。そういう"設計"だっただけです。',
+    core:'数秘5は、一か所に留まらず、新しい景色を見に動き続ける"冒険者"の数字です。「落ち着きがない」と言われるのはだらしないからではなく、変化や刺激を燃料に、誰も見ていない場所へ最初に踏み込む力が積まれているから。座標を変えながら、新しい体験を集めているとき、自分はいちばん自分らしくいられます。',
+    talent:'誰も足を運ばない景色まで動いていき、そこで集めたネタや情報を、各地へ運んでいく伝達力が、数秘5の最大の武器です。フットワークが軽く、初めての環境にもすっと馴染む。「そんな選択肢があったんだ」と、まわりに新しい可能性を見せられる。変化を怖がらず、むしろ楽しめる——その機動力が、数秘5の価値です。',
+    stumble:'「そろそろ普通に安定したい」「一か所に腰を据えなきゃ」と願った瞬間に、数秘5は詰まります。動くことが力なのに、自分を型にはめようとすると窮屈になる。そして「やっぱり続かなかった」と自己嫌悪に入り、落ち着けない自分を責めるループにはまる。まわりの「腰を据えろ」という声に縛られた時が、いちばん苦しいときです。',
+    torisetsu:'まず、「一つに定住する」前提を、一度手放してみること。動きながら成果を出す働き方を、最初から選んでいい。飽きや変化を「失敗」ではなく「持ち味」として設計に組み込むと、罪悪感が消えます。そして、細部を安定して回す作業は、得意な人に任せて、自分は「切り拓く・運ぶ」役に集中する。数秘5は、動けるほど元気になります。',
+    fit:'出張・多拠点・在宅など、場所を自由に変えられる働き方で活きます。発信・広報・営業・企画・旅や地域にまつわる仕事など、動くことと新しさが価値になる環境が向いています。同じ場所で同じことを続ける役回りは、別の人に気持ちよく渡していい。',
+    step:'今日、いつもと違う道を通るか、行ったことのない場所へ一つ足を運んでみる。数秘5のエンジンは、動いた瞬間に温まります。'},
+  6:{tag:'人を育てる愛情家', reframe:'"尽くしすぎて疲れる"は、人を育てる才能。',
+    type:'暖炉タイプ',
+    metaphor:'部屋にいる全員を、静かに温め続ける暖炉。そばにいる人が「当たり前」だと思ってしまうほど、自然に温めます。ただ、燃やしているのは自分の薪です。くべ続けないと、部屋より先に自分が冷えていく。そういう仕様です。',
+    design:'尽くして疲れ切ってしまうのも、見返りがないと寂しくなるのも、心が狭いからじゃありません。暖炉は、自分の薪を燃やして部屋を温めている。そういう"設計"だっただけです。',
+    core:'数秘6は、まわりの人を守り、育て、開花させる"愛情家"の数字です。「尽くしすぎて疲れる」のはお人好しだからではなく、相手の足りないところに気づき、そこを補って伸ばそうとする面倒見の力が積まれているから。誰かの成長を見守り、荒れた空気を整えているとき、自分はいちばん自分らしくいられます。',
+    talent:'ギスギスした空気を整え、自信のない相手にそっと寄り添って伸ばす育成力が、数秘6の最大の武器です。相手の良いところを見つけて信じ、根気よく手をかけて花を咲かせる。守り育てて、じっくり開花させるのが本領。「この人がいてくれたから頑張れた」——そう言われる存在になれるのが、数秘6の価値です。',
+    stumble:'「これだけしてあげたのに」と、注いだぶんの見返りを相手に求めた瞬間に、数秘6は詰まります。愛情が深いぶん、相手の領域まで踏み込んでしまい、「重い」と受け取られて離れられてしまう。良かれと思ったお世話が、相手の自立を奪ってしまうこともある。尽くすことが自分の存在証明になった時が、いちばん危ういときです。',
+    torisetsu:'まず、「してあげる」前に、相手が本当にそれを望んでいるかを一度確かめること。求められていない手助けは、そっと引っ込めていい。そして、他人を満たすのと同じ丁寧さで、自分のこともケアすること。自分が満たされているほど、見返りを求めずに与えられます。全部を背負わず、育てた相手に任せて手を離すのも、数秘6の優しさです。',
+    fit:'人を育て、場を整える役割で活きます。教育・カウンセリング・介護や対人ケア、コミュニティやサロンの中心など、人の成長と居心地に関わる仕事が向いています。誰とも関わらず一人で黙々と進める役回りは、別の人に気持ちよく渡していい。',
+    step:'今日、誰かに向けている気づかいの半分を、自分自身に向けてみる。数秘6の愛情は、自分を満たすほど深くなります。'},
+  7:{tag:'本質を掘る探求者', reframe:'"愛想がない"は、本質を見抜く才能。',
+    type:'井戸タイプ',
+    metaphor:'広げるのではなく、深く掘っていく井戸。掘れば掘るほど、澄んだ水が湧いてきます。ただ、その水は静かな場所でしか溜まらない。にぎやかな地上に長く付き合わされると、掘る時間を奪われて、水が濁っていく。そういう仕様です。',
+    design:'大人数の場で消耗するのも、愛想がないと言われるのも、性格が暗いからじゃありません。井戸の価値は、広さじゃなく深さで決まる。そういう"設計"だっただけです。',
+    core:'数秘7は、表面のにぎやかさに流されず、物事の奥にある構造や本質まで一人で掘り下げていく"探求者"の数字です。「愛想がない」と言われがちなのは、冷たいからではなく、上っ面のやりとりよりも中身の質を優先する仕様が積まれているから。だれとでも群れるより、一つのテーマにじっくり潜っているときに、自分はいちばん研ぎ澄まされます。',
+    talent:'物事の裏側や構造まで見通す、解像度の高さが数秘7の武器です。一点に深く没頭できる集中力があり、周りが表面で満足しているところを、さらに一段深く掘り続けられます。嘘や矛盾、取りつくろった話を瞬時に見抜くセンサーも人一倍。「なんとなく変だ」という違和感を言語化できたとき、その知性はいちばん力になります。',
+    stumble:'「もっと愛想よく」「普通の人みたいに合わせよう」と、周りの空気に自分を寄せた瞬間に、本来の知性が曇って消耗するのが数秘7の詰まりです。浅い雑談や、中身のない付き合いを無理に増やすほど、エネルギーが静かに削れていきます。一人で考える時間を削って予定を詰め込むと、思考が浅くなって自分らしさを見失いがち。孤独を"欠点"だと責めるほど、本来の強みが裏目に出ます。',
+    torisetsu:'まず、一人で深く考える時間を"予定"として先に確保してしまうこと。人と会う時間と、潜って考える時間を分けるだけで、消耗の速度が変わります。そして、無理に愛想を足そうとせず、「中身で信頼される自分」を前提に振る舞っていい。浅く広くではなく、少数の相手と深くつながる形にすると、対人の疲れもぐっと減ります。',
+    fit:'深さそのものが価値になる場所が、数秘7には合います。研究・技術開発・データ分析・執筆・専門職・職人仕事など、一人で没頭できる時間をきちんと確保できる働き方で活きます。逆に、常に大人数と表面的にやりとりし続ける役回りは、別の人に気持ちよく渡していい領域です。',
+    step:'今日、一人で静かに考える時間を15分だけ、先にカレンダーへ入れてみる。数秘7の頭は、潜れる時間があるほど冴えていきます。'},
+  8:{tag:'現実を動かす統率者', reframe:'"圧が強い"は、現実を動かす才能。',
+    type:'クレーンタイプ',
+    metaphor:'誰にも持ち上げられない重いものを、現実に動かすクレーン。大きなものを任されたときほど、力が素直に出ます。ただ、動かす対象がないと、その腕を持て余す。小さな荷物ばかりの現場では、大きさそのものが浮いてしまう。そういう仕様です。',
+    design:'圧が強いと言われるのも、小さくまとまろうとすると苦しくなるのも、性格がきついからじゃありません。クレーンは、重いものを動かすために作られている。そういう"設計"だっただけです。',
+    core:'数秘8は、人・お金・チャンスを実際に動かして、現実に大きな成果を残していく"統率者"の数字です。「圧が強い」と言われるのは、威圧したいからではなく、物事を大きく動かすためのエンジンが人より一段大きく積まれているから。小さくまとまって様子を見るより、責任を背負って現実を回しているときに、自分はいちばん生き生きします。',
+    talent:'人もお金もチャンスも集める、強い引力が数秘8の武器です。1を10に広げるスケール感と、バラバラの資源を組み合わせて成果に変える構想力があります。決めるべき場面で腹をくくって決断できるので、周りは安心してついてこられます。数字や結果で勝負する場面ほど、この統率力は現実を動かします。',
+    stumble:'出力がもともと大きいぶん、「怖い」「強すぎる」と受け取られやすいのが数秘8のつまずきポイントです。それを気にして、自分の力をわざと小さく見せた瞬間に、エネルギーが内側にこもって消耗します。遠慮して主導権を手放すほど、モヤモヤと不完全燃焼感が溜まっていきがち。「嫌われないように」と縮こまるほど、本来の推進力が空回りします。',
+    torisetsu:'まず、力を小さく見せることをやめて、「大きさ」を前提に立ち回ること。そのうえで、圧が伝わらないように"言い方"だけをやわらかく整えれば、影響力はそのまま活きます。全部を自分の手で握らず、人に任せて仕組みで回す形にすると、力が正しい方向へ流れていく。責任ある立場を引き受けるほど、自分は本来の姿に戻れます。',
+    fit:'大きな成果を回し続けられる立場が、数秘8には合います。経営・事業責任者・プロデュース・投資・チームの統括など、トップで人と資源を循環させる役回りで活きます。細かい作業をコツコツ一人で積む役よりも、人に任せて全体の仕組みを設計する場のほうが、力が素直に出ます。',
+    step:'今日、抱え込んでいた仕事を一つだけ、信頼できる人に任せてみる。数秘8の力は、手放して回した先で大きくなります。'},
+  9:{tag:'物事を終わらせる賢者', reframe:'"影が薄い"は、すべてを受け入れる才能。',
+    type:'海タイプ',
+    metaphor:'どんな川も、断らずに受け止める海。澄んだ水も濁った水も、ぜんぶ受け入れて、時間をかけて静かに浄化していきます。ただ、流れ込んでくるものを、自分では選べない。受け止めた分だけ、確実に重くなる。そういう仕様です。',
+    design:'人の感情に疲れ切ってしまうのも、気づけば自分のことが分からなくなっているのも、芯がないからじゃありません。海は、流れ込んでくるものを選べない。そういう"設計"だっただけです。',
+    core:'数秘9は、対立や偏りをやわらげ、物事を静かに整えて次へつないでいく"賢者"の数字です。「影が薄い」と言われがちなのは、存在感がないからではなく、自分を強く押し出すより全体を受けとめる側に回る仕様だから。前に出て主張するより、間に立って場をまとめているときに、自分はいちばん役割を果たせます。',
+    talent:'だれの立場も偏見なく理解できる、懐の深さが数秘9の武器です。対立する両者の言い分を翻訳してつなぐ、通訳のような役回りが自然にできます。過去や執着を手放して、次が始まるための余白をつくる力もあります。感情が張りつめた場に一人いるだけで、空気がやわらかくほどけていくのも強みです。',
+    stumble:'他人の感情や事情を吸い込みすぎて、いつのまにか抱え込んでしまうのが数秘9のつまずきです。人に合わせすぎて、「本当の自分は何をしたいのか」が分からなくなり、迷走しがち。頼まれると断れず、全員の荷物を背負って動けなくなることもあります。自分の輪郭を後回しにするほど、静かに消耗が溜まっていきます。',
+    torisetsu:'まず、人の感情と自分の感情のあいだに、意識して線を引くこと。「これは相手の荷物」と切り分けるだけで、抱え込みはかなり軽くなります。そして、全員に合わせるのをやめて、自分がどうしたいかを一日一回は言葉にする。何もしない余白の時間をとって、吸い込んだものを手放す習慣をつくると、本来の落ち着きが戻ります。',
+    fit:'人と人のあいだを整え、調和に戻す役回りが数秘9には合います。対人支援・福祉・カウンセリング・コーチング・調整役・まとめ役など、争いを和らげる立場で活きます。ぐいぐい競争して勝ちに行く場よりも、いるだけで場が丸くなる環境のほうが、自分らしくいられます。',
+    step:'今日、頼まれごとを一つだけ、罪悪感なしに「今回は難しいです」と手放してみる。数秘9は、少し軽くなるほど深く整えられます。'},
+  11:{tag:'一歩先を読む直感型', reframe:'"生きづらい"は、未来を先取りする才能。',
+    type:'アンテナタイプ',
+    metaphor:'立っているだけで、電波を拾い続けるアンテナ。言葉になる前の空気の変化や、相手の本音の揺れを、誰よりも早く掴みます。ただ、受信を自分で止めることができない。拾いたくないものまで、勝手に入ってくる。そういう仕様です。',
+    design:'人混みで消耗するのも、理由は説明できないのに答えだけ先に見えるのも、心が弱いからじゃありません。アンテナは感度が高いほど、拾う量も増える。そういう"設計"だっただけです。',
+    core:'数秘11はマスターナンバーで、感じる力や直感が人より一段強く出やすい仕様の数字です。「生きづらい」と感じやすいのは、心が弱いからではなく、まだ言葉になっていない空気や流れを、人より早く受信してしまうから。周りに歩幅を合わせようとするより、先に感じ取ったものを信じて動くときに、自分はいちばん自分らしくいられます。',
+    talent:'AからZへ一気に飛ぶ、鋭い直感が数秘11の武器です。理屈で順番に積み上げる前に、答えのほうが先に見えていることがよくあります。感じ取ったことを一言で言語化して、迷っている人の背中をぽんと押す力もあります。場の空気や相手の本音を素早く察知できるので、人が言葉にできない部分を代わりに形にできます。',
+    stumble:'その直感を、「根拠は？」「なぜそう言えるの?」と自分で論理に問い詰めた瞬間に、感度が鈍るのが数秘11のつまずきです。周りと同じでないことを「自分がおかしいのかも」と否定し始めると、自己否定のループに入って消耗します。刺激の多い環境に長くいすぎて、受信しすぎて疲れ切ることも。感じた第一感を疑うほど、本来のアンテナが曇っていきます。',
+    torisetsu:'まず、「なんとなくこう感じる」を、証明できなくても一度そのまま採用してみること。直感で決めて、あとから論理でそっと補強する——この順番にすると、現実にもちゃんと着地します。そして、受信しすぎたと感じた日は、刺激を減らして一人で静かに整える時間をとる。第一感を信じるほど、数秘11のアンテナは冴えていきます。',
+    fit:'説明より結果で示せる場所が、数秘11には合います。表現・企画・クリエイティブや、方向に迷う人へ進む道を言い切って示す役回りで活きます。細かい理屈を延々と詰められる環境より、感じたものを形にして、あとから論理で補強できる働き方のほうが力が出ます。',
+    step:'今日、小さな選択を一つだけ、理由を説明せず「なんとなくこっち」で決めてみる。数秘11の直感は、信じた回数だけ精度が上がります。'},
+  22:{tag:'理想を形にする建設者', reframe:'"理想が高すぎる"は、現実を建設する才能。',
+    type:'ダムタイプ',
+    metaphor:'大きな水を溜めて、現実を動かす力に変えるダム。溜めている理想の量は、12タイプでいちばんの規模です。ただ、理想と現実の落差が大きいほど、堤に掛かる水圧も大きくなる。小さな水路の仕事では、その規模ごと持て余す。そういう仕様です。',
+    design:'理想が高すぎると言われるのも、届かない現実に人一倍落ち込むのも、欲張りだからじゃありません。ダムは最初から、大きな水を扱う前提で作られている。そういう"設計"だっただけです。',
+    core:'数秘22はマスターナンバーで、理想の大きさとそれを形にする実行力が、人より一段強く出やすい仕様の数字です。「理想が高すぎる」と言われるのは、夢見がちだからではなく、頭の中の壮大な設計図を現実に建てられる力がセットで積まれているから。小さくまとまるより、環境そのものを作り変えるような大きな仕事に取り組むときに、自分はいちばん力を発揮します。',
+    talent:'壮大なビジョンを、ただの夢で終わらせず現実に建てていくのが数秘22の武器です。方法・組織・資金・人を、泥臭く一つずつ集めて組み上げていける実行力があります。理想と現実、その両方を同時に見られるので、大きな仕組みを地に足つけて設計できます。「そんなの無理」と言われる規模のことを、本気で形にできる建設力が強みです。',
+    stumble:'誤字や挨拶、小さな段取りといった細部への完璧主義で、有限な力を浪費してしまうのが数秘22のつまずきです。全部を完璧にしようとするほど動きが止まり、頑固になって周りとぶつかりがち。理想が大きいぶん、現実とのギャップに落ち込んで、着手そのものが遅れることもあります。「まだ足りない」と自分を追い込むほど、肝心の大きな一手が後回しになります。',
+    torisetsu:'まず、力を注ぐべき"大きな幹"と、任せていい"細かい枝"を最初に切り分けること。細部は得意な人に渡し、自分は全体の設計と推進に集中すると、力が正しく使われます。そして、完璧に整うのを待たず、まず試作して結果で確かめる。許可を待たずに小さく建て始めるほど、数秘22の設計図は現実になっていきます。',
+    fit:'大きな仕組みを束ねて形にする立場が、数秘22には合います。実業・社会起業・創業・大きなプロジェクトの統括など、自分で試作し結果で突破していける場で活きます。細部だけをひたすら整える役よりも、環境ごと作り変えるスケールの仕事のほうが、力が素直に出ます。',
+    step:'今日、頭の中にある大きな構想を、まず一行だけメモに書き出してみる。数秘22は、書いて動き出した瞬間から現実が動きます。'},
+  33:{tag:'無償の愛で動かす人', reframe:'"ブレブレ"は、すべてを抱える才能。',
+    type:'太陽タイプ',
+    metaphor:'照らす相手を選べない太陽。目の前に来た人を、損得なしに全員温めてしまいます。その明るさに、人が勝手に集まってくる。ただ、まわりを照らし続けるいっぽうで、自分を照らしてくれる光は、どこにもない。そういう仕様です。',
+    design:'人に尽くして燃え尽きてしまうのも、自分のことがいつも後回しになるのも、要領が悪いからじゃありません。太陽は、照らす範囲を絞れない。そういう"設計"だっただけです。',
+    core:'数秘33はマスターナンバーで、人を思う気持ちの容量が、人より一段大きく出やすい仕様の数字です。「ブレブレ」と言われがちなのは、芯がないからではなく、目の前の相手ごとに全力で心を寄せられるから。きっちり一貫した"立派な常識人"を演じるより、損得ぬきで人を助けているときに、自分はいちばん自分らしくいられます。',
+    talent:'損得を超えて人を助けられる、愛の容量の大きさが数秘33の武器です。天然さや抜けているところも含めた純粋さが、まわりの警戒を自然にほどきます。「この人のためなら」と応援者が勝手に集まってくる、巻き込み力も強み。理屈より先に心で動けるので、しんどい人の隣にいるだけで、その場が温まります。',
+    stumble:'「ちゃんとした常識人でいなきゃ」と自分を型にはめた瞬間に、本領が死んで失速するのが数秘33のつまずきです。細かい事務や、空気を読んで自分を抑える働き方が続くと、持ち味が消えていきます。人に尽くしすぎて、自己犠牲が限界を超えると、突然の爆発や共依存に形を変えることも。「自分さえ我慢すれば」を重ねるほど、静かにすり減っていきます。',
+    torisetsu:'まず、自分の心が本当に動く相手や場に、力を集中して注ぐこと。全員を救おうとせず、注ぐ先を絞るだけで、消耗はぐっと減ります。そして、細かいルールで縛られる役回りは、無理に自分でやらず得意な人に渡していい。人に尽くすのと同じ熱量で、自分自身をいたわる時間をとると、愛の容量は枯れずに回り続けます。',
+    fit:'細かいルールに縛られない、自由な場所が数秘33には合います。対人支援・福祉・コミュニティ運営・表現・教える仕事など、心に寄り添うことがそのまま価値になる環境で活きます。マニュアルどおりに淡々とこなす役よりも、目の前の人に全力で向き合える働き方のほうが、力が素直に出ます。',
+    step:'今日、人に向けている優しさを、一つだけ自分自身にも向けてみる。数秘33の愛は、自分が満ちているほど遠くまで届きます。'},
+};
+
+/* ── 関係の中での各数字のクセ（habit）＋対比用の短句（friction）。相性診断用 ── */
+const REL = {
+  1 :{habit:'自分で決めて、先に動く。合わせるより、引っ張る側にまわりがちです。相手のペースを待つより、「こうしよう」と方向を先に出すほうが自然です。',
+      friction:'先に決めて動く', gives:'はっきりした方向性と、決断のスピード', needs:'自分のやり方を、任せて尊重されること',
+      care:'こまかく指示するより、方向を決める役をまかせると動きます。頭ごなしに止められると、一気に熱が冷めます。'},
+  2 :{habit:'相手を立てて一歩引く。言いたいことを飲み込んで、場を穏やかに保とうとします。自分の希望より、相手や全体の空気を先に考えます。',
+      friction:'言えずに飲み込む', gives:'こまやかな気づかいと、場をなごませる安心感', needs:'自分の我慢や気づかいに、気づいてもらえること',
+      care:'「察してくれて当たり前」にせず、こまめに感謝を言葉にすると力が出ます。放っておかれると、静かに溜め込みます。'},
+  3 :{habit:'明るく茶化して距離を縮める。重い話や込み入った話は、つい避けてしまいます。深刻になるより、笑いに変えて場をほぐそうとします。',
+      friction:'深刻な話を避ける', gives:'その場を明るくする軽やかさと、楽しい空気', needs:'重くならず、自由に楽しめること',
+      care:'こまかい正しさで詰めるより、面白がって一緒に乗ると輝きます。真顔で長く説教されると、一気にしぼみます。'},
+  4 :{habit:'約束と段取りで関係を守る。当たり前が崩れると、途端に不安になります。その場のノリより、決めたことをきちんと守るほうが安心します。',
+      friction:'型どおりを求める', gives:'約束を守る安定感と、きちんとした段取り', needs:'ルールや約束が、コロコロ変わらないこと',
+      care:'先の見通しと約束を大事にすると、安心して動きます。行き当たりばったりや急な変更が続くと、不安で固まります。'},
+  5 :{habit:'束縛より自由。同じ距離感が続くと飽きて、新しい刺激を欲しがります。ずっと同じを求められると、少しずつ息苦しくなります。',
+      friction:'縛られたくない', gives:'新しい風と、変化を楽しむ軽さ', needs:'縛られず、自由に動ける余白があること',
+      care:'細かく管理するより、任せて泳がせると活きます。同じ場所に縛りつけると、息苦しくなって離れていきます。'},
+  6 :{habit:'よかれと思って世話を焼く。相手のために動きすぎて、見返りを期待してしまいます。放っておけず、つい先回りして手を出します。',
+      friction:'尽くして見返りを待つ', gives:'あたたかい世話と、人を育てる愛情', needs:'尽くした分を、ちゃんと受け取ってもらえること',
+      care:'世話を当然と思わず「ありがとう」を返すと満たされます。見返りゼロが続くと、愛情が重さに変わってしまいます。'},
+  7 :{habit:'一人の時間で充電する。感情より理屈で話し、ベタベタした距離を苦手とします。近すぎる距離より、少し余白のある関係が落ち着きます。',
+      friction:'距離を取りたがる', gives:'物事の本質を見抜く視点と、静かな信頼', needs:'一人になれる時間と、深く話せる相手',
+      care:'ベタベタ踏み込まず、一人の時間を尊重すると心を開きます。感情でせかされると、貝のように閉じてしまいます。'},
+  8 :{habit:'関係も自分がリードしたい。対等に言い返されると、つい圧が出てしまいます。頼られると燃えますが、コントロールされるのは苦手です。',
+      friction:'主導権を握りたい', gives:'現実を動かす力と、頼れる決断', needs:'力を認められ、任せてもらえること',
+      care:'小さく見せろと抑えつけず、責任ある役をまかせると活きます。頭ごなしに否定されると、圧が強く出てしまいます。'},
+  9 :{habit:'相手に合わせて角を立てない。本音を後回しにして、自分を見失いがちです。もめるくらいなら、自分が引いて丸くおさめようとします。',
+      friction:'本音を後回しにする', gives:'どんな立場もフラットに受け止める包容力', needs:'安心して、素の自分でいられること',
+      care:'白黒つけて詰めるより、ゆるやかに受け止めると落ち着きます。急かされたり対立を煽られると、疲れて引いていきます。'},
+  11:{habit:'言葉より先に、察してほしい。理由を聞かれると、うまく説明できず黙り込みます。理屈で詰められるより、感覚を分かってもらえると安心します。',
+      friction:'察してほしい', gives:'鋭い直感と、迷う人の背中を押す言葉', needs:'理由を問い詰められず、感覚を信じてもらえること',
+      care:'「根拠は？」と詰めるより、まず受け取ると冴えます。理屈で追い込むと、自信をなくして黙り込みます。'},
+  22:{habit:'関係にも理想の形を描く。細部のズレが気になって、完璧を求めすぎます。ふんわりした関係より、目指す形がはっきりしているほうが動けます。',
+      friction:'理想を求めすぎる', gives:'大きな理想と、それを形にする実行力', needs:'細部より、目指す全体像を分かってもらえること',
+      care:'小さなミスを責めるより、大きな方向を一緒に見ると動きます。細部の完璧さばかり求められると、頑なになります。'},
+  33:{habit:'気づけば全部抱え込む。相手のためにと動いて、自分の軸がブレて疲れます。目の前の人に全力で寄り添うぶん、自分を後回しにしがちです。',
+      friction:'抱え込みすぎる', gives:'損得ぬきの愛情と、まるごと受け止める器', needs:'自分自身も、いたわってもらえること',
+      care:'尽くすのを当然にせず、自分もケアされる番を作ると枯れません。抱え込ませすぎると、突然ぷつんと切れてしまいます。'}
+};
+
+const DAY = {
+  1:{label:'始まりの日',
+    theme:'今日は"1"の日。物事が新しく動き出す、スタートの空気が出やすい一日です。迷って足踏みするより、小さくても最初の一歩を踏み出すほうが、今日の流れには乗れます。',
+    tailwind:'自分から動く・先に声をかける・新しいことを一つ始める。今日は"様子見"より"着手"のほうが、すっと通りやすい日です。',
+    ease:'全部を完璧に整えてから動くこと。今日は精度より、まず動き出すことのほうが大事。細かい仕上げは、別の日にまわしていい。',
+    favor:'自分から動き出すこと',
+    bridge:'相性のいい追い風です。いつものやり方を、一歩だけ前倒しで出してみるとハマります。ピンとこなければ、今日中に始めなくても大丈夫。',
+    step:'今日、ずっと後回しにしていたことを、一つだけ"始めるだけ"始めてみる。終わらせなくていい、始めれば今日は十分です。'},
+  2:{label:'寄りそう日',
+    theme:'今日は"2"の日。人と歩調を合わせる、協調の空気が出やすい一日です。自分ひとりで押し進めるより、相手の様子を受け止めながら進めるほうが、今日の流れにはなじみます。',
+    tailwind:'人の話を聞く・間を取り持つ・裏方にまわる。今日は"引っぱる"より"合わせる"ほうが、すっと通りやすい日です。',
+    ease:'ひとりで全部を抱えて決めること。今日は自分だけで結論を出さず、相手の反応を見ながらでいい。強く前に出るのは、別の日にまわして大丈夫。',
+    favor:'人と歩調を合わせること',
+    bridge:'相性のいい追い風です。少しペースを落として、相手に合わせる側にまわってみるとハマります。ピンとこなければ、今日は聞き役に徹するだけでも十分です。',
+    step:'今日、気になっている人に一言だけ声をかけて、相手の話を最後まで聞いてみる。うまく返せなくていい、受け止めれば今日は十分です。'},
+  3:{label:'表現する日',
+    theme:'今日は"3"の日。気持ちを表に出す、軽やかで明るい空気が出やすい一日です。ため込んで黙っているより、思ったことを言葉にしたり形にしたりするほうが、今日の流れには乗れます。',
+    tailwind:'思ったことを口に出す・人と雑談する・楽しそうなほうを選ぶ。今日は"きちんと"より"軽やかに"のほうが、すっと通りやすい日です。',
+    ease:'完璧に伝わる言い方を考え込むこと。今日は整った表現より、まず出してみることのほうが大事。細かい言い回しは、後で直していい。',
+    favor:'楽しんで表に出すこと',
+    bridge:'相性のいい追い風です。かしこまらず、思いついたことを軽い調子で出してみるとハマります。ピンとこなければ、今日は好きなものに触れるだけでも十分です。',
+    step:'今日、感じたことを一つだけ、短くていいので誰かに話すか書き留めてみる。まとまってなくていい、出せれば今日は十分です。'},
+  4:{label:'積み上げる日',
+    theme:'今日は"4"の日。土台をつくる、地に足のついた空気が出やすい一日です。一気に片づけようとするより、目の前のことを一つずつ積み上げるほうが、今日の流れにはなじみます。',
+    tailwind:'手順を決める・地味な作業を進める・散らかったものを整える。今日は"派手な動き"より"コツコツ"のほうが、すっと通りやすい日です。',
+    ease:'先の全体像まで完璧に組み立てること。今日は大きな設計より、今日ぶんを一つ進めることのほうが大事。大きな判断は、別の日にまわして大丈夫。',
+    favor:'コツコツ積み上げること',
+    bridge:'相性のいい追い風です。小さな作業を一つずつ片づけていくと、今日はいちばんハマります。ピンとこなければ、机まわりを整えるだけでも十分です。',
+    step:'今日、後回しにしていた地味な作業を一つだけ選んで、最後まで片づけてみる。小さくていい、一つ終われば今日は十分です。'},
+  5:{label:'動き回る日',
+    theme:'今日は"5"の日。変化や刺激を取り入れる、フットワークの軽い空気が出やすい一日です。同じ場所にとどまるより、いつもと違う動きを一つ入れるほうが、今日の流れには乗れます。',
+    tailwind:'予定を動かす・行ったことのない場所に寄る・新しいやり方を試す。今日は"じっくり"より"軽く動く"ほうが、すっと通りやすい日です。',
+    ease:'一つのことにきっちり集中し続けること。今日は腰を据えるより、あちこち手を出してみるくらいでいい。落ち着いて詰めるのは、別の日にまわして大丈夫。',
+    favor:'変化を取り入れて動くこと',
+    bridge:'相性のいい追い風です。いつもの流れに、小さな寄り道や新しい試みを足してみるとハマります。ピンとこなければ、今日は無理に動き回らなくても大丈夫。',
+    step:'今日、いつもと少しだけ違うルートや方法を一つ試してみる。うまくいかなくていい、動いてみれば今日は十分です。'},
+  6:{label:'いたわる日',
+    theme:'今日は"6"の日。人や場を気づかう、あたたかい空気が出やすい一日です。自分のことだけを進めるより、まわりを整えたり誰かの面倒を見たりするほうが、今日の流れにはなじみます。',
+    tailwind:'人を気づかう・場を整える・困っている人に手を貸す。今日は"自分優先"より"まわりを見る"ほうが、すっと通りやすい日です。',
+    ease:'相手のために何もかも背負い込むこと。今日は全部を引き受けず、できる範囲で手を貸すだけでいい。無理な世話焼きは、控えめにして大丈夫。',
+    favor:'人をいたわり整えること',
+    bridge:'相性のいい追い風です。身近な人や場所を、少しだけ気にかけて整えてみるとハマります。ピンとこなければ、今日は自分をいたわる側にまわっても大丈夫。',
+    step:'今日、身近な誰かに小さな気づかいを一つだけ向けてみる。大きなことじゃなくていい、一つ届けば今日は十分です。'},
+  7:{label:'掘り下げる日',
+    theme:'今日は"7"の日。にぎやかに動くより、一人で静かに掘り下げる空気が出やすい一日です。人と距離をとって、気になっていたことをじっくり考えるほうが、今日の流れには合っています。',
+    tailwind:'一人の時間をとる・調べる・考えを深める・答えを急がず観察する。今日は"みんなでワイワイ"より"静かに集中"のほうが、すっと通りやすい日です。',
+    ease:'無理に人に合わせて明るく振る舞うこと。今日は誘いを断って一人になっても大丈夫。テンションを上げなきゃ、と頑張らなくていい日です。',
+    favor:'一人で掘り下げること',
+    bridge:'今日と相性のいい追い風です。気になっていたテーマを、一つだけ静かに深掘りしてみると、すっと腑に落ちます。人と会う予定は、少し軽めにしておくとラクです。',
+    step:'今日、ずっと気になっていたことを一つだけ、一人でじっくり調べたり考えたりしてみる。結論が出なくていい、掘り下げれば今日は十分です。'},
+  8:{label:'力を出す日',
+    theme:'今日は"8"の日。物事を現実的に動かす、力が出やすい一日です。遠慮して小さくまとまるより、決めて前に進めるほうが、今日の流れには乗れます。',
+    tailwind:'決断する・数字やお金と向き合う・人を引っ張る・大きめの一手を打つ。今日は"様子を見る"より"決めて動かす"ほうが、すっと通りやすい日です。',
+    ease:'誰にも迷惑をかけないよう、遠慮して力を抑えること。今日は前に出て大丈夫。控えめにしなきゃ、と自分にブレーキをかけなくていい日です。',
+    favor:'決めて動かすこと',
+    bridge:'今日と相性のいい追い風です。ずっと保留にしていた決めごとを、一つだけ今日ハッキリさせてみるとハマります。気が乗らなければ、力を出す先は一点に絞って大丈夫。',
+    step:'今日、決めきれずにいたことを一つだけ、思いきって決めてしまう。完璧な決断じゃなくていい、前に進めれば今日は十分です。'},
+  9:{label:'手放す日',
+    theme:'今日は"9"の日。何かを締めくくって、区切りをつける空気が出やすい一日です。全部を抱え込むより、いらないものを一つ手放すほうが、今日の流れには合っています。',
+    tailwind:'整理する・区切りをつける・人に譲る・終わったことを終わりにする。今日は"新しく増やす"より"いったん手放す"ほうが、すっと通りやすい日です。',
+    ease:'まだ頑張れると自分に言い聞かせて、抱え続けること。今日は途中でやめても大丈夫。全部を背負い込まなきゃ、と気を張らなくていい日です。',
+    favor:'手放して区切りをつけること',
+    bridge:'今日と相性のいい追い風です。ずっと引きずっていたことを、一つだけ今日そっと手放してみると、肩が軽くなります。全部いっぺんに片づけなくても大丈夫。',
+    step:'今日、なんとなく続けていたことを一つだけ、思いきってやめてみる。惜しくてもいい、区切りをつければ今日は十分です。'},
+  11:{label:'直感がさえる日',
+    theme:'今日は"11"の日。感じる力が一段大きく出やすい、直感がさえる一日です。理屈で固めるより、ふっと浮かんだひらめきを拾っておくほうが、今日の流れには合っています。',
+    tailwind:'第一印象を大事にする・浮かんだ言葉をメモする・感じたことを信じて動く。今日は"根拠を探す"より"直感で選ぶ"ほうが、すっと通りやすい日です。',
+    ease:'なんでも理由をつけて説明しようとすること。今日は言葉にできない感覚のままで大丈夫。ちゃんと理屈で固めなきゃ、と力まなくていい日です。',
+    favor:'直感を信じること',
+    bridge:'今日と相性のいい追い風です。ふっと浮かんだ感覚を、一つだけ信じて動いてみるとハマります。刺激が多くて疲れやすい日でもあるので、静かな時間も少し残しておくとラクです。',
+    step:'今日、ふと心に浮かんだことを一つだけ、そのままメモに書き留めてみる。まとまっていなくていい、拾っておけば今日は十分です。'},
+  22:{label:'大きく動かす日',
+    theme:'今日は"22"の日。構想や仕組みが一段大きく動きやすい、スケールの出やすい一日です。目先だけで考えるより、少し先の全体像まで見渡すほうが、今日の流れには乗れます。',
+    tailwind:'大きな計画を立てる・仕組みや土台を整える・長く使えるものを作り始める。今日は"その場しのぎ"より"先を見て組み立てる"ほうが、すっと通りやすい日です。',
+    ease:'今日中に全部を形にしようと詰め込むこと。大きな流れは、一日では終わりません。今日は設計図を描くところまでで、十分に前進です。',
+    favor:'大きな仕組みを動かすこと',
+    bridge:'今日と相性のいい追い風です。前から温めていた構想を、一つだけ今日ざっくり形にしてみるとハマります。壮大すぎて動けないときは、最初の一枠だけ決めれば大丈夫。',
+    step:'今日、いつか作りたいと思っていた仕組みを一つだけ、ざっくり書き出してみる。細部は要らない、全体像が見えれば今日は十分です。'},
+  33:{label:'与える日',
+    theme:'今日は"33"の日。人を包み込んで大きくケアする、与える空気が一段強く出やすい一日です。損得で線を引くより、目の前の人にそっと手を貸すほうが、今日の流れには合っています。',
+    tailwind:'人の話を聴く・見返りを求めず手を差し出す・場をあたためる。今日は"自分の取り分を守る"より"惜しみなく渡す"ほうが、すっと通りやすい日です。',
+    ease:'全員をもれなく助けなきゃ、と抱え込むこと。今日は届く範囲だけで大丈夫。自分を後回しにしてまで頑張らなくていい日です。',
+    favor:'損得ぬきで与えること',
+    bridge:'今日と相性のいい追い風です。目の前の一人に、一つだけ見返りなしで手を貸してみると、すっと流れに乗れます。与えすぎて疲れたら、自分をケアする時間も忘れずに。',
+    step:'今日、身近な誰かのために小さなことを一つだけ、見返りを考えずにやってみる。大げさじゃなくていい、渡せれば今日は十分です。'},
+};
+
+/* ── 現在数ごとの"今日の持ち味"（今日の取説の掛け合わせ用・短句） ── */
+const CUR_EDGE = {
+  1:'迷わず先頭で動く突破力',
+  2:'場をなごませる気づかい',
+  3:'空気を明るくする表現力',
+  4:'最後までやり切る安定感',
+  5:'変化を楽しむフットワーク',
+  6:'人を育てるあたたかさ',
+  7:'本質を見抜く深い視点',
+  8:'現実を動かす決断力',
+  9:'どんな相手も受け止める包容力',
+  11:'一歩先を読む直感',
+  22:'大きな構想を形にする実行力',
+  33:'損得ぬきで人を思う気持ちの大きさ'
+};
+
+/* ── 現在数(cur) × 今日の数(pd) の専用ひとこと（144通り）。毎日ちがう組み合わせが出る ── */
+const COMBO = {
+  1:{1:'今日は自分の突破力と、始まりの空気が同じ方を向く日。迷う前に、いちばん最初の一歩を自分で決めてしまうと、そのまま乗れます。',
+     2:'先頭を走る自分には、今日は少し歩幅を落とす日。引っぱる前に相手の様子を一度受け取ると、突破力が空回りしません。',
+     3:'決めて動く力を、今日は言葉に乗せる日。「こうしよう」を明るく声に出すと、まわりが自然についてきます。',
+     4:'0→1が得意な自分には、今日は地道が続く日。大きく動かすより、始めたことを一つ形にして残すと、今日は噛みます。',
+     5:'突破力とフットワークが重なる日。ためらわず新しい場所へ一歩踏み込むと、今日はいちばん自分らしく動けます。',
+     6:'前に出る力を、今日は誰かのために使う日。引っぱるより、後ろの人に一声かけて支えると、力が温かく回ります。',
+     7:'動きたい自分には、今日は止まって考える日。すぐ動く前に、その一歩の狙いを一つ言葉にすると、明日が速くなります。',
+     8:'突破力と決断の空気が重なる日。保留にしていた決めごとを、今日は自分で決めきってしまうと、流れに乗れます。',
+     9:'走り続けてきた自分には、今日は一つ降ろす日。抱えた案件を一つ手放すと、次の一歩を起こす余白ができます。',
+     11:'決める力に、今日は直感が乗る日。理由が説明できなくても、「こっち」と感じたほうを先に選ぶと、あとで筋が通ります。',
+     22:'突破力が、今日は大きな構想とつながる日。目先の一歩でなく、少し先まで見て最初の一枠を決めると、遠くまで進めます。',
+     33:'先頭に立つ力を、今日は分け与える日。自分が決めた道を、迷っている人に一つ差し出すと、突破力が誰かの一歩になります。'},
+  2:{1:'なごませる自分には、今日は先に動く空気。合わせる前に、自分から小さく一歩を出すと、今日はいい風に乗れます。',
+     2:'気づかいと寄りそう流れが重なる日。相手の話を最後まで受け取る役に徹すると、今日はいちばん自分が活きます。',
+     3:'場をなごませる力を、今日は言葉にする日。飲み込んでいた一言を、軽く声に出してみると、空気がもっとほどけます。',
+     4:'気づかいの自分には、今日は段取りの日。人に合わせる前に、自分の手順を一つ片づけると、後がラクになります。',
+     5:'なごませ役の自分には、今日は動く空気。いつもの相手から少し離れて新しい場に顔を出すと、気持ちが軽くなります。',
+     6:'気づかいといたわりが重なる日。まわりを整えるのが自然にハマる日ですが、半分は自分をいたわる側にも回してください。',
+     7:'人に合わせる自分には、今日は一人の日。気をつかう相手から離れて静かに過ごすと、消耗がすっと抜けます。',
+     8:'なごませ役の自分には、今日は前に出る空気。遠慮して引くより、自分の希望を一つだけ口にすると、今日は通ります。',
+     9:'抱えがちな自分には、今日は降ろす日。「自分が我慢すれば」で持っていた荷物を一つ手放すと、軽くなれます。',
+     11:'気づかいに、今日は直感が乗る日。相手のために動く前に、「自分はどうしたいか」の第一感を先に拾ってください。',
+     22:'なごませる力を、今日は大きな場に。個人の気づかいを、仕組みや場づくりに広げると、遠くまで効きます。',
+     33:'気づかいと与える空気が重なる日。見返りを考えず一人に寄りそうとハマりますが、自分のケアも忘れずに。'},
+  3:{1:'表現力と始まりの空気が重なる日。温めていたアイデアを、今日いちばん最初に声に出すと、そのまま動き出します。',
+     2:'明るい自分には、今日は聞く日。話して盛り上げるより、相手の話にうなずく側に回ると、今日はいい関係が育ちます。',
+     3:'表現力と表現する流れが重なる日。思いついたことを、かたちを気にせず出すほど、今日はまわりに伝わります。',
+     4:'軽やかな自分には、今日は地道な日。次々広げるより、一つを最後まで仕上げると、その表現がちゃんと残ります。',
+     5:'表現力とフットワークが重なる日。新しい場所で見つけたものを、その場で誰かに話すと、今日は連鎖して広がります。',
+     6:'明るい自分には、今日は寄りそう日。場を盛り上げるより、元気のない人の隣で一緒にいると、その明るさが効きます。',
+     7:'出すのが得意な自分には、今日は溜める日。発信を少し休んで、面白いと感じたものを静かに掘ると、次のネタになります。',
+     8:'表現力を、今日は結果につなげる日。楽しいだけで終わらせず、その一言を「決める」ところまで運ぶと、前に進みます。',
+     9:'広げてきた自分には、今日は畳む日。手を出しすぎた企画を一つ手放すと、本当に楽しいものに力が戻ります。',
+     11:'表現力に、今日は直感が乗る日。ロジックより、「これ面白い」の第一感を信じて出すと、今日はいちばん響きます。',
+     22:'明るさを、今日は大きな形に。単発の面白さを、続く仕組みや企画に広げると、遠くまで届きます。',
+     33:'表現力と与える空気が重なる日。自分の楽しさを、しんどい人に一つ分けると、その場がふっと温まります。'},
+  4:{1:'積み上げの自分には、今日は始める空気。完璧に整えるより、まず一歩"始めるだけ"始めると、今日はうまく乗れます。',
+     2:'やり切る自分には、今日は合わせる日。自分の手順を通す前に、相手のペースを一度受け取ると、噛み合います。',
+     3:'堅実な自分には、今日は表に出す日。黙って進めるより、やっていることを一言伝えると、信頼が積み上がります。',
+     4:'安定感と積み上げの空気が重なる日。地味な作業を一つずつ片づけるほど、今日はいちばん自分の強みが活きます。',
+     5:'コツコツの自分には、今日は動く空気。いつもの手順に、小さな新しいやり方を一つ足すと、固さがほぐれます。',
+     6:'やり切る自分には、今日は人を気づかう日。作業を進める手を少し止めて、まわりを整えると、場が安定します。',
+     7:'安定感と掘り下げが重なる日。手を動かす前に、その作業の仕組みを一度整理すると、あとがぐっと速くなります。',
+     8:'積み上げてきた自分には、今日は決める日。ためた土台を背に、保留の判断を一つ決めきると、前に出られます。',
+     9:'抱え込む自分には、今日は整理の日。終わった手順や資料を一つ捨てると、机も頭もすっきりします。',
+     11:'手順の自分には、今日は直感の日。マニュアル通りより、「なんか違う」の違和感を一つ拾うと、ミスを先回りできます。',
+     22:'安定感を、今日は大きな設計に。目先の作業でなく、長く使える仕組みの土台を組むと、あとがずっとラクになります。',
+     33:'やり切る力を、今日は人のために。自分の段取りを、困っている人に一つ渡すと、その丁寧さが誰かを助けます。'},
+  5:{1:'フットワークと始まりが重なる日。迷う前に、いちばん気になる新しいことへ一歩踏み込むと、今日はそのまま動けます。',
+     2:'動きたい自分には、今日は合わせる日。あちこち動く前に、一人の相手にじっくり付き合うと、関係が深まります。',
+     3:'フットワークと表現が重なる日。動いて見つけたものを、その場で言葉にすると、今日はまわりを巻き込めます。',
+     4:'変化の自分には、今日は腰を据える日。次へ行く前に、始めたことを一つだけ形にして残すと、後で効いてきます。',
+     5:'フットワークと動き回る空気が重なる日。いつもと違うルートや場所を選ぶほど、今日はいちばん元気が出ます。',
+     6:'動きたい自分には、今日は整える日。外へ出る足を少し止めて、身近な人や場所を気づかうと、足元が安定します。',
+     7:'変化の自分には、今日は止まる日。動き回るより、一つのテーマに静かに潜ると、集めてきたものが一本につながります。',
+     8:'フットワークを、今日は結果に。動くだけで終わらせず、その先で一つ決めきると、今日は現実が前に動きます。',
+     9:'手を広げてきた自分には、今日は畳む日。続かなかったことを一つ手放すと、罪悪感が消えて身軽になれます。',
+     11:'フットワークに、今日は直感が乗る日。理由より、「行ってみたい」の第一感で動くと、今日はいい場所にたどり着けます。',
+     22:'変化の力を、今日は大きな流れに。単発の動きを、続く仕組みや拠点づくりに変えると、遠くまで運べます。',
+     33:'動く力を、今日は人のために。自分が見つけた新しい景色を、誰かに一つ運ぶと、その軽さが場を明るくします。'},
+  6:{1:'育てる自分には、今日は自分から動く日。人の世話より先に、自分のやりたい一歩を始めると、今日はいい流れに乗れます。',
+     2:'あたたかさと寄りそう空気が重なる日。相手の話を最後まで受け止める役に回ると、今日はいちばん自分が活きます。',
+     3:'育てる自分には、今日は表に出す日。裏で支えるだけでなく、感じたことを明るく言葉にすると、場がほどけます。',
+     4:'あたたかさの自分には、今日は段取りの日。人を気づかう前に、自分の作業を一つ片づけると、余裕をもって世話ができます。',
+     5:'育てる自分には、今日は動く空気。いつもの人から少し離れて新しい場に出ると、気持ちがリフレッシュします。',
+     6:'あたたかさといたわる流れが重なる日。まわりを整えるのがハマりますが、半分は自分をいたわる側に回してください。',
+     7:'世話を焼く自分には、今日は一人の日。人から離れて静かに過ごすと、注ぎすぎたぶんのエネルギーが戻ります。',
+     8:'あたたかさを、今日は前に出す日。支える側から一歩出て、自分の希望を一つ通すと、今日は流れが動きます。',
+     9:'抱え込む自分には、今日は手を離す日。育てた相手のことを一つ信じて任せると、お互いに軽くなれます。',
+     11:'育てる力に、今日は直感が乗る日。相手のために動く前に、「本当に望まれているか」の第一感を確かめてください。',
+     22:'あたたかさを、今日は大きな場に。個人への世話を、人が育つ仕組みや場づくりに広げると、遠くまで効きます。',
+     33:'あたたかさと与える空気が重なる日。見返りを考えず一人に寄りそうと深くハマりますが、自分のケアも忘れずに。'},
+  7:{1:'掘り下げる自分には、今日は動く日。考えをまとめきる前に、いちばん確かめたい一歩を実際に始めると、前に進みます。',
+     2:'一人が得意な自分には、今日は合わせる日。距離を置くより、一人の相手に静かに付き合うと、関係が深まります。',
+     3:'深い視点の自分には、今日は出す日。溜めた考えを、かたちを気にせず一言出すと、まわりに伝わり始めます。',
+     4:'本質を掘る自分には、今日は形にする日。考えるだけで終わらせず、一つ手順に落として片づけると、今日は残ります。',
+     5:'掘り下げる自分には、今日は動く空気。机で考えるより、現場を一つ見に行くと、探していた答えの糸口が見つかります。',
+     6:'一人が得意な自分には、今日は人を気づかう日。潜る手を少し止めて、身近な人に一声かけると、場が温まります。',
+     7:'深い視点と掘り下げる流れが重なる日。気になっていたテーマに静かに潜るほど、今日はいちばん頭が冴えます。',
+     8:'見抜く力を、今日は決断に。分析で終わらせず、その先の判断を一つ下すと、今日は現実が動き出します。',
+     9:'考え込む自分には、今日は手放す日。答えの出ない問いを一つ横に置くと、頭に余白ができて軽くなれます。',
+     11:'深い視点に、今日は直感が重なる日。理屈で詰める前に、「なんか変だ」の違和感を一つ言葉にすると、核心に届きます。',
+     22:'本質を掘る力を、今日は大きな設計に。細部より、全体の仕組みを一段深く見直すと、遠くまで効く一手になります。',
+     33:'見抜く力を、今日は人のために。相手の隠れた良さを一つ言葉にして渡すと、その深さが誰かの支えになります。'},
+  8:{1:'決断力と始まりが重なる日。迷う前に、いちばん動かしたいことを自分で決めて始めると、今日はそのまま前に進みます。',
+     2:'動かす自分には、今日は合わせる日。引っぱる前に相手の様子を一度受け取ると、圧が空回りせず伝わります。',
+     3:'決断力を、今日は言葉に乗せる日。決めたことを、堅くせず明るく伝えると、まわりが気持ちよく動いてくれます。',
+     4:'動かす自分には、今日は地道な日。大きく動かすより、足元の作業を一つ片づけると、次の決断の土台になります。',
+     5:'決断力とフットワークが重なる日。決めたことを、今日は現場で一つ動かすと、そのまま結果につながります。',
+     6:'動かす自分には、今日は気づかう日。前に出る力を少し抑えて、まわりを支えると、人がついてきやすくなります。',
+     7:'決める自分には、今日は考える日。すぐ動かす前に、その判断の狙いを一つ整理すると、決断の精度が上がります。',
+     8:'決断力と力を出す空気が重なる日。保留にしていた決めごとを、今日は迷わず決めきると、いちばん自分らしく動けます。',
+     9:'抱える自分には、今日は任せる日。全部を握らず、仕事を一つ人に渡すと、力が正しい方向へ流れます。',
+     11:'決断力に、今日は直感が乗る日。データを待つより、「こっち」と感じた第一感で決めると、今日は速く前に進めます。',
+     22:'決断力と大きく動かす空気が重なる日。目先でなく、長く効く一手を選んで決めると、今日は遠くまで動かせます。',
+     33:'動かす力を、今日は人のために。自分の決断力を、迷っている人の背中を押すことに使うと、その力が生きます。'},
+  9:{1:'受け止める自分には、今日は自分から動く日。合わせる前に、自分のやりたい一歩を先に出すと、今日はいい流れに乗れます。',
+     2:'包容力と寄りそう空気が重なる日。相手の話を丸ごと受け止める役に回ると、今日はいちばん自分が活きます。',
+     3:'受け止める自分には、今日は出す日。飲み込んでいた本音を、軽く一言口にすると、関係の風通しがよくなります。',
+     4:'包容力の自分には、今日は段取りの日。人に合わせる前に、自分の作業を一つ片づけると、後がラクになります。',
+     5:'受け止める自分には、今日は動く空気。いつもの相手から少し離れて新しい場に出ると、気持ちがリセットされます。',
+     6:'包容力といたわる流れが重なる日。まわりを整えるのがハマりますが、半分は自分をいたわる側に回してください。',
+     7:'受け止める自分には、今日は一人の日。人と距離を置いて静かに過ごすと、吸い込んだ感情がすっと抜けます。',
+     8:'包容力を、今日は前に出す日。受け止めるだけでなく、自分がどうしたいかを一つ言葉にすると、今日は流れが動きます。',
+     9:'包容力と手放す空気が重なる日。抱え込んだ人の荷物を一つ「これは相手のもの」と切り分けると、軽くなれます。',
+     11:'受け止める力に、今日は直感が乗る日。人に合わせる前に、「自分はどうしたいか」の第一感を先に拾ってください。',
+     22:'包容力を、今日は大きな場に。個人を受け止める力を、人がまとまる仕組みや調整役に広げると、遠くまで効きます。',
+     33:'包容力と与える空気が重なる日。見返りを考えず一人を受け止めるとハマりますが、自分のケアも忘れずに。'},
+  11:{1:'直感と始まりが重なる日。ふっと浮かんだ「これ」を、今日いちばん最初に一歩動かすと、そのまま流れに乗れます。',
+     2:'感じすぎる自分には、今日は合わせる日。受信を少し抑えて、一人の相手にゆっくり付き合うと、気持ちが落ち着きます。',
+     3:'直感を、今日は言葉にする日。感じたことを、証明できなくても一言出すと、迷っている人の背中を押せます。',
+     4:'直感の自分には、今日は形にする日。ひらめきで終わらせず、一つメモや手順に落とすと、今日はちゃんと現実に着地します。',
+     5:'直感とフットワークが重なる日。「行ってみたい」の第一感で動くと、今日はいい場所や人に出会えます。',
+     6:'感じすぎる自分には、今日は整える日。人の感情を受けすぎたら、身近な人を気づかいつつ、自分も休ませてください。',
+     7:'直感と掘り下げが重なる日。浮かんだ感覚を、一人で静かに掘るほど、今日は言葉にならなかったものが形になります。',
+     8:'直感を、今日は決断に。根拠を探す前に、感じたほうを先に決めて、あとから理屈で補強すると、今日は速く進めます。',
+     9:'受信しすぎる自分には、今日は手放す日。刺激を一つ減らして静かに過ごすと、曇っていたアンテナが戻ります。',
+     11:'第一感がいつも以上に冴える日。浮かんだことを疑わず、そのまま拾っておくと、今日は当たりが増えます。',
+     22:'直感を、今日は大きな構想に。ふと見えた全体像を、一枠だけ形にし始めると、遠くまで届く一手になります。',
+     33:'直感を、今日は人のために。相手の隠れた気持ちを一つ言葉にして渡すと、その鋭さが誰かの救いになります。'},
+  22:{1:'実行力と始まりが重なる日。温めていた構想を、今日いちばん最初の一枠だけ動かすと、そのまま形になり始めます。',
+     2:'大きく動かす自分には、今日は合わせる日。一人で設計を進める前に、まわりの声を一度受け取ると、無理なく進みます。',
+     3:'実行力を、今日は言葉にする日。頭の中の設計図を、かたちを気にせず一言共有すると、協力者が集まり始めます。',
+     4:'構想を形にする自分には、今日は土台の日。大きく広げるより、仕組みの一枠を丁寧に組むと、後がずっと安定します。',
+     5:'実行力とフットワークが重なる日。構想を、今日は現場で一つ試すと、机上では見えなかった手応えがつかめます。',
+     6:'大きく動かす自分には、今日は気づかう日。全体を押し進める手を止めて、まわりを整えると、人がついてきやすくなります。',
+     7:'実行力と掘り下げが重なる日。手を広げる前に、構想の要を一段深く見直すと、今日は設計の精度が上がります。',
+     8:'実行力を、今日は決断に。細部を待たず、大きな幹を一つ決めきると、今日は仕組みが前に動き出します。',
+     9:'抱え込む自分には、今日は任せる日。細かい枝を得意な人に渡すと、自分は大きな設計に集中できます。',
+     11:'実行力に、今日は直感が乗る日。完璧を待つより、「これでいける」の第一感で試作すると、今日は現実が動きます。',
+     22:'実行力と大きく動かす空気が重なる日。長く使える仕組みの土台を組むほど、今日はいちばん自分の力が活きます。',
+     33:'実行力を、今日は人のために。自分の設計力を、誰かの夢を形にすることに使うと、その力が大きく生きます。'},
+  33:{1:'与える自分には、今日は自分から動く日。人のために動く前に、自分のやりたい一歩を始めると、今日はいい流れに乗れます。',
+     2:'思いの大きい自分には、今日は聞く日。全力で寄りそう前に、相手の話を最後まで受け取ると、ちょうどいい距離になります。',
+     3:'与える力を、今日は言葉にする日。心にあるものを明るく一言出すと、その温かさがまわりにまっすぐ伝わります。',
+     4:'与える自分には、今日は段取りの日。人に尽くす前に、自分の作業を一つ片づけると、余裕をもって渡せます。',
+     5:'与える自分には、今日は動く空気。いつもの相手から少し離れて新しい場に出ると、抱えた重さがふっと軽くなります。',
+     6:'与えるといたわる流れが重なる日。人に寄りそうのが自然にハマりますが、半分は自分をいたわる側に回してください。',
+     7:'尽くしがちな自分には、今日は一人の日。人から離れて静かに過ごすと、注ぎすぎたぶんの力が戻ってきます。',
+     8:'与える力を、今日は前に出す日。尽くすだけでなく、自分の希望を一つ通すと、今日は流れが自分にも向きます。',
+     9:'抱え込む自分には、今日は手を離す日。全員を救おうとする気持ちを一つ降ろすと、本当に大事な相手に力を注げます。',
+     11:'与える力に、今日は直感が乗る日。動く前に、「本当に力を注ぐべき相手か」の第一感を確かめてください。',
+     22:'与える力を、今日は大きな場に。一人への思いを、人を支える仕組みや場づくりに広げると、遠くまで届きます。',
+     33:'損得ぬきで一人に寄りそうと、今日はいちばん深くハマります。ただし与えすぎたら、自分をケアする時間も必ず取ってください。'}
+};
+
+/* ── 現在数ごとの「今日の一歩」3種・「気をつけること」3種（日付シードでローテ） ── */
+const STEP_VAR = {
+  1:['今日、誰かの許可を待っていた一件を、自分で決めて動かす。','今日、やりたいと思っていたことを一つ、先に着手してしまう。','今日、場で最初に口火を切る役を、一度だけ引き受けてみる。'],
+  2:['今日、気が進まない小さな頼みを一つ、穏やかに断ってみる。','今日、「自分はどうしたいか」を、一度だけ言葉にしてみる。','今日、飲み込んでいた一言を、相手に静かに伝えてみる。'],
+  3:['今日、面白いと思ったことを一つ、その場で誰かに話す。','今日、飽きた一つを「次へ進む合図」として手放してみる。','今日、頭に浮かんだことを、短くていいので一つ発信する。'],
+  4:['今日、後回しにしていた地味な作業を一つ、最後まで片づける。','今日、自分のやり方を一つ、メモにして残しておく。','今日、散らかっていた場所を、一つだけ整える。'],
+  5:['今日、いつもと違うルートや方法を、一つ試してみる。','今日、行ったことのない場所へ、一つ足を運んでみる。','今日、気になっていた新しいことを、一つだけ始める。'],
+  6:['今日、身近な誰かに、小さな気づかいを一つ向ける。','今日、まわりへの気づかいの半分を、自分に向けてみる。','今日、育てた相手のことを一つ、信じて任せてみる。'],
+  7:['今日、一人で静かに考える時間を15分、先に確保する。','今日、気になっていたテーマを一つだけ、深く調べる。','今日、感じた違和感を一つ、言葉にして書き留める。'],
+  8:['今日、決めきれずにいたことを一つ、思いきって決める。','今日、抱えていた仕事を一つ、信頼できる人に任せる。','今日、保留にしていた一手を一つ、前に進める。'],
+  9:['今日、頼まれごとを一つ、罪悪感なしに手放してみる。','今日、「自分はどうしたいか」を、一度だけ言葉にする。','今日、何もしない余白の時間を、少しだけ取ってみる。'],
+  11:['今日、浮かんだことを一つ、そのままメモに書き留める。','今日、小さな選択を一つ、理由なしで直感で決める。','今日、感じた第一感を、証明できなくても採用してみる。'],
+  22:['今日、頭の中の構想を、まず一行だけ書き出してみる。','今日、任せていい細部を一つ、得意な人に渡してみる。','今日、完璧を待たず、小さく試作を一つ始めてみる。'],
+  33:['今日、人に向けている優しさを、一つ自分にも向ける。','今日、心が本当に動く相手一人に、力を集中して注ぐ。','今日、見返りを考えず、身近な誰かに小さく手を貸す。']
+};
+const CARE_VAR = {
+  1:['動く前に人へ相談して、熱が冷めること。決めてから相談に回すと保てます。','先頭を嫌われると思って、一歩を飲み込むこと。前に出て大丈夫です。','全部を一人で抱えること。育てる工程は、得意な人に渡していい。'],
+  2:['察してあげすぎて、自分を後回しにすること。自分の希望も並べて。','断れずに抱え込むこと。線を引いても、優しさは消えません。','心地よくない相手に、無理に合わせ続けること。'],
+  3:['「飽きた」を失敗だと責めること。次への合図として扱って。','無理に一つを続けて、本来の軽やかさを殺すこと。','完璧な言い回しを考え込んで、出せなくなること。'],
+  4:['近道に惹かれて、いつもの手順を飛ばすこと。','派手な成功と比べて、自分の着実さを軽く見ること。','先の全体像まで完璧に組もうとして、動けなくなること。'],
+  5:['「腰を据えなきゃ」と、自分を型にはめること。','続かなかった自分を責める、自己嫌悪のループに入ること。','細部を延々と回す役を、一人で抱え込むこと。'],
+  6:['「してあげたのに」と、見返りを求めること。','望まれていない手助けまで、先回りしてすること。','人を満たして、自分のことだけ後回しにすること。'],
+  7:['無理に愛想よく、人に合わせて消耗すること。','一人で考える時間を削って、予定を詰め込むこと。','孤独を欠点だと責めること。中身で信頼されていい。'],
+  8:['力を小さく見せて、内にこもって消耗すること。','嫌われないよう遠慮して、主導権を手放すこと。','全部を自分の手で握ること。仕組みで回して大丈夫。'],
+  9:['人の感情を吸い込みすぎて、抱え込むこと。','全員に合わせて、自分の輪郭を見失うこと。','断れずに、全員の荷物を背負ってしまうこと。'],
+  11:['直感を「根拠は?」と、自分で問い詰めること。','人と違うことを「おかしいのかも」と否定すること。','刺激の多い場に長くいて、受信しすぎて疲れること。'],
+  22:['細部の完璧主義で、有限な力を浪費すること。','全部を完璧にしようとして、動きが止まること。','理想と現実の差に落ち込んで、着手が遅れること。'],
+  33:['「常識人でいなきゃ」と、自分を型にはめること。','全員を救おうとして、自己犠牲が限界を超えること。','細かいルールに縛られる役を、無理に抱えること。']
+};
+/* ── 今月の流れ（パーソナルマンス12種） ── */
+const MONTH = {
+  1:'今月は、新しく動き出す流れの月。迷っているより、小さく着手した人から前に進みます。',
+  2:'今月は、人と歩調を合わせる流れの月。一人で抱えず、まわりと組むほど回ります。',
+  3:'今月は、表に出す流れの月。ため込まず、思ったことを言葉や形にすると軽くなります。',
+  4:'今月は、土台を固める流れの月。派手さより、コツコツ積み上げたものが残ります。',
+  5:'今月は、変化を取り入れる流れの月。同じを守るより、新しい動きを一つ入れると乗れます。',
+  6:'今月は、人や場を整える流れの月。まわりをいたわりつつ、自分のケアも忘れずに。',
+  7:'今月は、掘り下げる流れの月。答えを急がず、一人で深める時間が力になります。',
+  8:'今月は、現実を動かす流れの月。遠慮せず、決めて前に進めると結果につながります。',
+  9:'今月は、区切りをつける流れの月。抱え込んだものを手放すと、次の余白ができます。',
+  11:'今月は、直感が冴える流れの月。理屈より、感じたことを信じて動くとハマります。',
+  22:'今月は、大きく動かす流れの月。目先でなく、長く効く仕組みに手をつけると遠くまで進みます。',
+  33:'今月は、与える流れの月。損得ぬきで人に寄りそいつつ、自分も満たす時間を取って。'
+};
+/* ── 夜空の色（パーソナルデー数ごと12トーン・低彩度の深色のみ） ── */
+const NIGHT = {
+  1 :{a:'#1a2452',b:'#0e1230'}, 2 :{a:'#182a44',b:'#0c1526'}, 3 :{a:'#241f40',b:'#12102a'},
+  4 :{a:'#172236',b:'#0b1120'}, 5 :{a:'#152c48',b:'#0a1626'}, 6 :{a:'#251d3c',b:'#130e24'},
+  7 :{a:'#0f1a34',b:'#06091a'}, 8 :{a:'#20233f',b:'#0f1124'}, 9 :{a:'#1b2438',b:'#0c1120'},
+  11:{a:'#1e2652',b:'#0d1330'}, 22:{a:'#152340',b:'#080f1e'}, 33:{a:'#2a2340',b:'#140f26'}
+};
+/* ── 数字の紋様（幾何ラインアート・設計図の延長。占星の意味づけはしない） ── */
+function glyphSVG(n){
+  const cx=120, cy=120, R=92, g='#D8B45E';
+  const line=(x1,y1,x2,y2)=>`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${g}" stroke-width="1" />`;
+  const dot=(x,y,r)=>`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="${g}" />`;
+  const ring=(k,rad,rot)=>{ // k点を円環に並べ、順につなぎ、中心へ結ぶ
+    let pts=[], s='';
+    for(let i=0;i<k;i++){ const a=(-90+rot+360/k*i)*Math.PI/180; pts.push([cx+rad*Math.cos(a), cy+rad*Math.sin(a)]); }
+    for(let i=0;i<k;i++){ const [x1,y1]=pts[i], [x2,y2]=pts[(i+1)%k]; if(k>1) s+=line(x1,y1,x2,y2); s+=line(cx,cy,x1,y1); s+=dot(x1,y1,2.4); }
+    return s;
+  };
+  let body='';
+  if(n<=9){ body = (n===1) ? line(cx,cy-R,cx,cy+R)+dot(cx,cy-R,2.6)+dot(cx,cy+R,2.6) : ring(n,R,0); }
+  else if(n===11){ body = line(cx,cy-R,cx,cy+R)+dot(cx,cy-R,3)+dot(cx,cy+R,3)+line(cx-14,cy,cx+14,cy); }
+  else if(n===22){ body = ring(4,R,45)+ring(4,R*0.5,45); }        // 二重の格子
+  else { body = ring(3,R,0)+ring(3,R,60); }                        // 33＝重なる三角
+  body += `<circle cx="${cx}" cy="${cy}" r="1.8" fill="${g}" />`;
+  return `<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${body}</svg>`;
+}
+/* ── 星の散らし（夜カード背景・数個だけ） ── */
+function starField(seed){
+  const rnd = (s)=>{ let x=Math.sin(s)*10000; return x-Math.floor(x); };
+  let html=''; const n=9;
+  for(let i=0;i<n;i++){
+    const x=(rnd(seed+i*1.7)*94+3).toFixed(1), y=(rnd(seed+i*3.1)*88+4).toFixed(1);
+    const sz=(rnd(seed+i*5.3)*1.6+1).toFixed(1), dl=(rnd(seed+i*7.9)*4).toFixed(1);
+    html+=`<span class="star" style="left:${x}%;top:${y}%;width:${sz}px;height:${sz}px;animation-delay:${dl}s"></span>`;
+  }
+  return html;
+}
+/* ── 季節（今日の月から判定）。金は主役のまま、光の色・粒・チップだけ季節で変える ── */
+function currentSeason(mo){
+  if(mo>=3 && mo<=5)  return 'spring';
+  if(mo>=6 && mo<=8)  return 'summer';
+  if(mo>=9 && mo<=11) return 'autumn';
+  return 'winter';
+}
+const SEASON = {
+  spring:{label:'春', accent:'#E7B7C0', glow:'rgba(224,150,165,.20)'},
+  summer:{label:'夏', accent:'#AAD0E8', glow:'rgba(90,150,205,.18)'},
+  autumn:{label:'秋', accent:'#E4B36A', glow:'rgba(205,130,55,.19)'},
+  winter:{label:'冬', accent:'#C6DAEC', glow:'rgba(150,185,220,.16)'}
+};
+/* ── 季節の光の粒（下から静かに立ちのぼる・数個だけ） ── */
+function seasonParticles(seed){
+  const rnd=(s)=>{ let x=Math.sin(s)*10000; return x-Math.floor(x); };
+  let html=''; const n=7;
+  for(let i=0;i<n;i++){
+    const x=(rnd(seed+i*2.3)*90+5).toFixed(1);
+    const sz=(rnd(seed+i*3.7)*3+2).toFixed(1);
+    const dur=(rnd(seed+i*5.1)*8+11).toFixed(1);
+    const dl=(rnd(seed+i*8.3)*dur).toFixed(1);
+    html+=`<span class="mote" style="left:${x}%;bottom:-4%;width:${sz}px;height:${sz}px;animation-duration:${dur}s;animation-delay:-${dl}s"></span>`;
+  }
+  return html;
+}
+/* ── 日付シード（同じ日は同じ値＝乱数を使わない） ── */
+function dateSeed(t){ return t.y*10000 + t.mo*100 + t.da; }
+/* ── パーソナルマンス数（今月の流れ用） ── */
+function personalMonth(bm, bd, ty, tmo){
+  const py = reduceMaster(digitSum(bm) + digitSum(bd) + digitSum(ty));
+  return reduceMaster(py + digitSum(tmo));
+}
+
+function renderPair(a, b){
+  const na = NUM[a], nb = NUM[b], ra = REL[a], rb = REL[b];
+  const same = (a === b);
+  const diff = same
+    ? `2人とも数秘${a}で、似た者どうし。似ているぶん、お互いに「${ra.friction}」という同じクセが同時に出やすく、そこがぶつかりやすいポイントです。合わないんじゃなく、同じ"止まり方"をする組み合わせだと知っておくと、先回りできます。`
+    : `自分は「${ra.friction}」、お相手は「${rb.friction}」。この2つが、いちばんすれ違いやすい入口です。噛み合わないのは相性が悪いからじゃなく、"止まる場所"の設計がもともと違うだけ。どっちが正しいかではなく、「設計が違う」と分かるだけで、責め合いはぐっと減ります。`;
+  const mesh = same
+    ? `似た者どうしだから、「${ra.gives}」を2人とも自然に出せます。ただ、お互いが同じ「${ra.needs}」を求めるぶん、そこは意識して満たし合わないと、待ち合いになりがち。どちらかが我慢役に固定されないよう、順番に受け取り合うのがコツです。`
+    : `自分が自然に出せる「${ra.gives}」は、お相手が関係に求めている「${rb.needs}」に効きます。逆に、お相手が差し出す「${rb.gives}」は、自分が満たされたい「${ra.needs}」を支えてくれる。この2つが噛み合ったとき、2人はいちばんラクに回ります。`;
+  const handle = same
+    ? `2人とも数秘${a}。${ra.care}　同じ扱い方が効くぶん、片方だけがケアする側にならないよう、お互いに同じ気づかいを返し合うと安定します。`
+    : `お相手（数秘${b}・${nb.tag}）は、${rb.care}　自分（数秘${a}・${na.tag}）は、${ra.care}　お互いの"扱い方"が、もともと違うだけ。それが分かれば、すれ違いはぐっと減ります。`;
+  const verdict = same
+    ? `似た者どうし、分かり合いやすい組み合わせ。`
+    : `違うからこそ、補い合える組み合わせ。`;
+  const offer = same
+    ? `2人とも「${ra.gives}」を差し出せる関係です。似たものを出し合えるぶん、それを"当たり前"にせず、ちゃんと受け取り合うのがこの2人の鍵になります。`
+    : `自分は「${ra.gives}」を、お相手は「${rb.gives}」を、自然に差し出せます。無いものねだりをするより、この2つをお互いに認め合うところから始めると、関係はぐっとラクになります。`;
+  const step = `今日、お相手の「${rb.friction}」を、"欠点"ではなく"そういう設計"として一度だけ受け取ってみる。直そうとするより、違いとして眺めるほうが、関係の温度は上がります。`;
+  return `
+    <div class="res-head"><span class="small serif">2人の数字が出ました。</span></div>
+    <div class="res-grid">
+      <div class="num-card">
+        <div class="num-role">You</div><div class="num-role-ja">自分</div>
+        <div class="num-big">${a}${MASTERS.includes(a)?'<span class="mn">Master</span>':''}</div>
+        <div class="num-tag">${na.tag}</div>
+      </div>
+      <div class="num-card">
+        <div class="num-role">Partner</div><div class="num-role-ja">お相手</div>
+        <div class="num-big">${b}${MASTERS.includes(b)?'<span class="mn">Master</span>':''}</div>
+        <div class="num-tag">${nb.tag}</div>
+      </div>
+    </div>
+
+    <div class="read-full">
+      <div class="rf-head"><span class="rf-role">2人の関係を、構造で読む</span><span class="rf-tag">数秘${a} × 数秘${b}</span><span class="rf-reframe">${verdict}</span></div>
+      <div class="sec"><h3><span class="dot"></span>自分の、関係の中でのクセ</h3><p>${ra.habit}</p></div>
+      <div class="sec"><h3><span class="dot"></span>お相手の、関係の中でのクセ</h3><p>${rb.habit}</p></div>
+      <div class="sec"><h3><span class="dot"></span>すれ違いの入口</h3><p>${diff}</p></div>
+      <div class="sec"><h3><span class="dot"></span>お互いが、関係に差し出せるもの</h3><p>${offer}</p></div>
+      <div class="sec"><h3><span class="dot"></span>2人が噛み合うとき</h3><p>${mesh}</p></div>
+      <div class="sec"><h3><span class="dot"></span>すれ違ったときの、接し方</h3><p>${handle}</p></div>
+    </div>
+
+    <div class="res-step">
+      <p class="sh serif">今日、関係にできる一歩</p>
+      <p>${step}</p>
+    </div>
+
+    <div class="res-cta">
+      <p class="cta-bridge serif">ここからが、本編です。</p>
+      <span class="rc-eyebrow serif">個別数秘鑑定</span>
+      <p class="h">2人の"3つの数字"を、<br>掛け合わせて読む。</p>
+      <p class="p">この鑑定でわかったのは、お互いの現在数という"入口"まで。過去数・未来数まで含めた6つの数字が、すれ違いの理由と噛み合う使い方をどう作っているか——そこを2人ぶん、1件ずつ読み解いているのが、個別鑑定です。</p>
+      <p class="cta-listhead">個別鑑定で読み解くもの</p>
+      <ul class="cta-list">
+        <li>2人の6つの数字の、具体的な掛け合わせ</li>
+        <li>すれ違いの"根っこ"と、翻訳のしかた</li>
+        <li>相手に伝わる言い方・距離の取り方</li>
+        <li>この関係で、お互いがいちばん活きる形</li>
+      </ul>
+      <a class="btn btn-sub btn-lg" href="${NOTE_KANTEI}" target="_blank" rel="noopener">個別数秘鑑定を見る</a>
+      <p class="cta-meta">note ／ お一人ずつ手書きの鑑定書</p>
+    </div>
+
+    <div class="share-row">
+      <button class="res-again" id="pairAgainBtn" type="button">別の2人でもう一度</button>
+    </div>
+
+    <p class="res-disc">この鑑定は、2人の生年月日から現在数を計算し、その組み合わせの傾向を読み解くものです。運勢や吉凶を占うものではなく、関係の"設計の違い"を知るための見方のひとつです。</p>
+    <p class="res-sign serif">現実をかえる数秘デザイン ｜ なぎ</p>`;
+}
+
+const MASTERS = [11,22,33];
+function renderBig(elNum, val){
+  elNum.innerHTML = val + (MASTERS.includes(val) ? '<span class="mn">Master</span>' : '');
+}
+// 現在数：フル解説（タイプ／たとえ話／核／才能／つまずき／設計リフレーム／活かし方／向く場所）
+function renderNowFull(val){
+  const d = NUM[val]; if(!d) return;
+  $('#fNowN').textContent       = val + (MASTERS.includes(val) ? '（マスター）' : '');
+  $('#fNowType').textContent    = '"' + d.type + '"';
+  $('#fNowTag').textContent     = d.tag;
+  $('#fNowReframe').textContent = d.reframe;
+  $('#fMetaH').textContent      = '"' + d.type + '"のたとえ話';
+  $('#fMetaphor').textContent   = d.metaphor;
+  $('#fCore').textContent       = d.core;
+  $('#fTalent').textContent     = d.talent;
+  $('#fStumble').textContent    = d.stumble;
+  $('#fDesign').textContent     = d.design;
+  $('#fTorisetsu').textContent  = d.torisetsu;
+  $('#fFit').textContent        = d.fit;
+}
+// 12タイプ一覧（自分のタイプをハイライト）
+function renderTypeGrid(cur){
+  $('#typeGrid').innerHTML = [1,2,3,4,5,6,7,8,9,11,22,33].map(k =>
+    '<span class="tm-chip' + (k === cur ? ' on' : '') + '"><span class="no">数秘 ' + k + '</span><span class="nm">' + NUM[k].type + '</span></span>'
+  ).join('');
+}
+// 過去数・未来数：中型（3項目）
+function renderMid(role, val){
+  const d = NUM[val]; if(!d) return;
+  $('#m'+role+'N').textContent       = val + (MASTERS.includes(val) ? '（マスター）' : '');
+  $('#m'+role+'Tag').textContent     = '"' + d.type + '" ─ ' + d.tag;
+  $('#m'+role+'Reframe').textContent = d.reframe;
+  if(role === 'Past'){
+    $('#mPastT').textContent    = d.talent;    // 才能
+    $('#mPastS').textContent    = d.stumble;   // つまずき
+    $('#mPastTori').textContent = d.torisetsu; // 活かし方
+  } else {
+    $('#mFutT').textContent = d.talent;   // 活かし方
+    $('#mFutS').textContent = d.stumble;  // つまずき
+    $('#mFutF').textContent = d.fit;      // 向く場所
+  }
+}
+
+/* ── 計算実行 ── */
+$('#calcBtn').addEventListener('click', () => {
+  const y = parseInt($('#selY').value,10);
+  const m = parseInt($('#selM').value,10);
+  const d = parseInt($('#selD').value,10);
+  const err = $('#diaErr');
+  if(!y || !m || !d){
+    err.textContent = '生まれた年・月・日を、すべて選んでください。';
+    (!y ? $('#selY') : !m ? $('#selM') : $('#selD')).focus();   // 未選択の欄へ誘導
+    return;
+  }
+  err.textContent = '';
+
+  const vNow = lifePath(y,m,d), vPast = pastNum(d), vFut = futureNum(m,d);
+  // 上部の3数字グリッド（タイプ名を表示）
+  renderBig($('#nNow'),  vNow);  $('#tNow').textContent  = NUM[vNow] ? NUM[vNow].type : '';
+  renderBig($('#nPast'), vPast); $('#tPast').textContent = NUM[vPast] ? NUM[vPast].type : '';
+  renderBig($('#nFut'),  vFut);  $('#tFut').textContent  = NUM[vFut] ? NUM[vFut].type : '';
+  // 現在数フル ＋ 12タイプ一覧 ＋ 過去/未来 中型
+  renderNowFull(vNow);
+  renderTypeGrid(vNow);
+  renderMid('Past', vPast);
+  renderMid('Fut',  vFut);
+  // 3つの掛け合わせ
+  $('#synthBody').textContent = 'いまの自分（現在数' + vNow + '・' + NUM[vNow].type + '）は、生まれ持った過去数' + vPast + '（' + NUM[vPast].type + 'のクセ）を土台にしながら、未来数' + vFut + '（' + NUM[vFut].type + 'の方向）へ動くとき、いちばん力が出ます。3つはバラバラじゃなく、1本の線でつながっています。';
+  // 処方箋（今日やることは1つ）
+  $('#fStep').textContent = NUM[vNow].step;
+
+  // 現在数 → 該当する数秘別・完全ガイド（980円）へCTAを結線（タイプ名で結ぶ）
+  const rcNote = $('#rcNote');
+  if(NUM_NOTE[vNow]) rcNote.href = NUM_NOTE[vNow];
+  rcNote.textContent = '数秘' + vNow + '（' + NUM[vNow].type + '）の完全ガイドを読む';
+  $('#rcEyebrow').innerHTML = '現在数 <b>' + vNow + '</b> "' + (NUM[vNow] ? NUM[vNow].type : '') + '" の完全ガイド';
+  $('#rcHead').innerHTML = '"' + NUM[vNow].type + '"の取扱説明書を、<br>まるごと1冊。';
+  $('#rcListName').textContent = '数秘' + vNow + '（' + NUM[vNow].type + '）';
+
+  const res = $('#result');
+  $('#diaForm').style.display = 'none';
+  // 「もう一度」後も毎回ふわっと再生させるため、カードのアニメを一度リセット
+  const cards = $$('#result .num-card');
+  cards.forEach(c => c.style.animation = 'none');
+  void res.offsetWidth;
+  cards.forEach(c => c.style.animation = '');
+  res.classList.add('show');
+  nagiTrack('self-' + vNow);   // 計測：自分診断の完了（数字別）
+  $('#self').scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+/* ── 相性：計算実行 ── */
+$('#pairBtn').addEventListener('click', () => {
+  const py = parseInt($('#pSelY').value,10), pm = parseInt($('#pSelM').value,10), pd = parseInt($('#pSelD').value,10);
+  const qy = parseInt($('#qSelY').value,10), qm = parseInt($('#qSelM').value,10), qd = parseInt($('#qSelD').value,10);
+  const err = $('#pairErr');
+  if(!py||!pm||!pd||!qy||!qm||!qd){
+    err.textContent = '自分とお相手、両方の生年月日をすべて選んでください。';
+    return;
+  }
+  err.textContent = '';
+  const a = lifePath(py,pm,pd), b = lifePath(qy,qm,qd);
+  const box = $('#pairResult');
+  box.innerHTML = renderPair(a, b);
+  box.classList.add('show');
+  $('#pairForm').style.display = 'none';
+  $('#pairAgainBtn').addEventListener('click', () => {
+    box.classList.remove('show');
+    box.innerHTML = '';
+    $('#pairForm').style.display = '';
+    $('#pair').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  $('#pair').scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+/* ── もう一度 ── */
+$('#againBtn').addEventListener('click', () => {
+  $('#result').classList.remove('show');
+  $('#diaForm').style.display = '';
+  $('#self').scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+/* ══════════ 今日の取説（パーソナルデー数） ══════════ */
+const WD = ['日','月','火','水','木','金','土'];
+function todayObj(){ const d = new Date(); return {y:d.getFullYear(), mo:d.getMonth()+1, da:d.getDate(), wd:WD[d.getDay()]}; }
+function fmtToday(t){ return t.y + '年' + t.mo + '月' + t.da + '日（' + t.wd + '）'; }
+// パーソナルデー数：生まれた月日 ＋ 今日の年月日を数秘のルールで足す（マスター11/22/33は保持）
+function personalDay(bm, bd, ty, tmo, td){
+  const py = reduceMaster(digitSum(bm) + digitSum(bd) + digitSum(ty)); // パーソナルイヤー
+  const pm = reduceMaster(py + digitSum(tmo));                          // パーソナルマンス
+  return reduceMaster(pm + digitSum(td));                               // パーソナルデー
+}
+// 松竹梅（結果内の3段CTA・価格非表示）。cur＝現在数（梅を該当ガイドに結線）
+function matsuTakeUme(cur){
+  const umeHref = NUM_NOTE[cur] || NOTE_GUIDE;
+  return `
+    <div class="mtu">
+      <p class="mtu-bridge serif">ここで読めたのは、今日の自分の“入口”まで。<br>数字の本質を知ると、才能の使い方と、つまずきから戻る道が一本につながります。</p>
+      <div class="mtu-grid">
+        <div class="mtu-card">
+          <span class="tier">Guide</span>
+          <h4>現在数${cur}の、完全ガイド</h4>
+          <p>まず、自分の数字ひとつを深く。才能の伸ばし方・つまずきの抜け方・向く仕事を、現在数ぶんだけ1冊に。</p>
+          <a class="btn btn-line" href="${umeHref}" target="_blank" rel="noopener">数秘${cur}のガイドを読む</a>
+        </div>
+        <div class="mtu-card reco">
+          <span class="flag">いちばん読まれています</span>
+          <span class="tier">Full Guide</span>
+          <h4>適職設計図（完全ガイド）</h4>
+          <p>仕事・働き方まで、全数字ぶんを一冊で。「自分はどこで力が出るのか」を設計図として読み解く決定版。</p>
+          <a class="btn btn-gold2" href="${NOTE_TEKISHOKU}" target="_blank" rel="noopener">適職設計図を見る</a>
+        </div>
+        <div class="mtu-card">
+          <span class="tier">Personal</span>
+          <h4>個別数秘鑑定</h4>
+          <p>自分専用に、僕が読み解く。3つの数字の掛け合わせを、35ページ以上の鑑定書に。毎月20名限定。</p>
+          <a class="btn btn-line" href="${NOTE_KANTEI}" target="_blank" rel="noopener">個別鑑定を見る</a>
+        </div>
+      </div>
+    </div>`;
+}
+// 今日の取説を描画（cur=現在数, pd=パーソナルデー数, t=今日オブジェクト）
+function renderToday(cur, pd, t){
+  const d = DAY[pd]; if(!d) return '';
+  const seed = dateSeed(t);
+  const vi = ((seed % 3) + 3) % 3;                          // 一歩・注意のローテ（同じ日は同じ）
+  const step = (STEP_VAR[cur] || [d.step])[vi] || d.step;
+  const care = (CARE_VAR[cur] || ['がんばりすぎて、自分を後回しにすること。'])[vi];
+  const combo = (COMBO[cur] && COMBO[cur][pd]) ? COMBO[cur][pd] : '';
+  const pm = personalMonth(t.bm, t.bd, t.y, t.mo);
+  const monthLine = MONTH[pm] || '';
+  // 明日の予告
+  const tmo = new Date(t.y, t.mo-1, t.da); tmo.setDate(tmo.getDate()+1);
+  const pdN = personalDay(t.bm, t.bd, tmo.getFullYear(), tmo.getMonth()+1, tmo.getDate());
+  const tone = NIGHT[pdN] || NIGHT[1];
+  const curTag = NUM[cur] ? NUM[cur].tag : '';
+  const sea = SEASON[currentSeason(t.mo)];
+  return `
+    <p class="n-date">${fmtToday(t)}<span class="n-season">${sea.label}</span></p>
+    <div class="n-hero">
+      <div class="n-day">${pd}</div>
+      ${MASTERS.includes(pd)?'<span class="n-mnbadge">Master Number</span>':''}
+      <span class="n-label">"${pd}"の日 ─ ${d.label}</span>
+      <span class="n-calc">生まれた月日と今日の日付を、数秘のルールで足した「今日のパーソナルデー数」です。占いではなく、今日という日の"数字"から読み解いています。</span>
+    </div>
+    <div class="n-block"><h3><span class="d"></span>今日のテーマ</h3><p>${d.theme}</p></div>
+    <div class="n-block"><h3><span class="d"></span>今日、追い風になること</h3><p>${d.tailwind}</p></div>
+    <div class="n-block"><h3><span class="d"></span>今日、ムリしなくていいこと</h3><p>${d.ease}</p></div>
+    <div class="n-me">
+      <p class="lbl serif">現在数${cur}（${curTag}）の自分へ</p>
+      <p>${combo}</p>
+    </div>
+    <div class="n-do">
+      <div class="card step"><p class="h">今日、踏み出せる一歩</p><p>${step}</p></div>
+      <div class="card care"><p class="h">今日、気をつけること</p><p>${care}</p></div>
+    </div>
+    <p class="n-month">${monthLine}</p>
+    ${matsuTakeUme(cur)}
+    <p class="n-tomo">明日は"<b>${pdN}</b>"の日。<span class="dot" style="color:${tone.a}"></span>流れが変わります。<br>また明日、のぞいてみてください。</p>
+    <button class="n-again" id="todayAgainBtn" type="button">別の生年月日で見る</button>
+    <p class="n-disc">この取説は、生年月日と今日の日付から「パーソナルデー数」を計算し、今日出やすいモードを読み解くものです。運勢や吉凶を占うものではなく、今日の自分の使い方を知るための見方のひとつです。</p>
+    <p class="n-sign serif">現実をかえる数秘デザイン ｜ なぎ</p>`;
+}
+
+/* ── 生年月日の記憶（この端末のlocalStorageにのみ保存） ── */
+const NAGI_KEY = 'nagi_profile';
+function loadProfile(){
+  try{ const r = localStorage.getItem(NAGI_KEY); if(!r) return null;
+    const p = JSON.parse(r); if(p && p.y && p.m && p.d) return p; }catch(e){}
+  return null;
+}
+function saveProfile(y,m,d){ try{ localStorage.setItem(NAGI_KEY, JSON.stringify({y,m,d})); }catch(e){} }
+
+// 夜カードの見た目（背景トーン・紋様・星・季節の光）をパーソナルデー数＋季節に合わせる
+function paintNight(pd, animate){
+  const card = $('#todayCard'); if(!card) return;
+  const tone = NIGHT[pd] || NIGHT[1];
+  card.style.setProperty('--n-a', tone.a);
+  card.style.setProperty('--n-b', tone.b);
+  const t = todayObj();
+  const sea = currentSeason(t.mo), sc = SEASON[sea];
+  card.classList.remove('season-spring','season-summer','season-autumn','season-winter');
+  card.classList.add('season-' + sea);
+  card.style.setProperty('--season-glow', sc.glow);
+  card.style.setProperty('--season-accent', sc.accent);
+  // 紋様は日付シードで少し回転（毎日わずかに違う）
+  const ang = ((dateSeed(t) % 23) - 11);
+  const g = $('#nightGlyph');
+  g.style.transform = 'translate(-50%,-50%) rotate(' + ang + 'deg)';
+  g.innerHTML = glyphSVG(pd);
+  $('#nightStars').innerHTML = starField(pd) + seasonParticles(pd * 7 + dateSeed(t));
+  const inner = $('#todayResult');
+  if(animate){ inner.classList.remove('n-ink'); void inner.offsetWidth; inner.classList.add('n-ink'); }
+}
+
+// 季節の雰囲気だけ（フォーム表示中の空カードにも華やかさを乗せる）
+function applySeasonAmbiance(){
+  const card = $('#todayCard'); if(!card) return;
+  const t = todayObj(), sea = currentSeason(t.mo), sc = SEASON[sea];
+  card.classList.remove('season-spring','season-summer','season-autumn','season-winter');
+  card.classList.add('season-' + sea);
+  card.style.setProperty('--season-glow', sc.glow);
+  card.style.setProperty('--season-accent', sc.accent);
+  $('#nightStars').innerHTML = seasonParticles(dateSeed(t) + 3);
+}
+// 今日の取説を計算して表示（save=trueで記憶、animate=trueでにじみ演出、scroll=trueでスクロール）
+function runToday(y, m, d, opt){
+  opt = opt || {};
+  const err = $('#todayErr');
+  if(!y || !m || !d){ if(err) err.textContent = '生まれた年・月・日を、すべて選んでください。'; return; }
+  if(err) err.textContent = '';
+  const cur = lifePath(y,m,d);
+  const t = todayObj(); t.bm = m; t.bd = d;
+  const pd = personalDay(m, d, t.y, t.mo, t.da);
+  paintNight(pd, false);
+  $('#todayResult').innerHTML = renderToday(cur, pd, t);
+  paintNight(pd, opt.animate);
+  $('#todayForm').hidden = true;
+  $('#todayResult').hidden = false;
+  $('#todayMemory').hidden = false;
+  $('#todayMemory').innerHTML = `${y}年${m}月${d}日生まれ として表示中 ｜ <a id="todayChange">別の生年月日にする</a>`;
+  $('#todayChange').addEventListener('click', showTodayForm);
+  $('#todayAgainBtn').addEventListener('click', showTodayForm);
+  if(opt.save) saveProfile(y,m,d);
+  nagiTrack('today');
+  if(opt.scroll) $('#today').scrollIntoView({behavior:'smooth', block:'start'});
+}
+function showTodayForm(){
+  $('#todayResult').hidden = true;
+  $('#todayResult').innerHTML = '';
+  $('#todayMemory').hidden = true;
+  $('#todayForm').hidden = false;
+  $('#nightGlyph').innerHTML = '';
+  const c = $('#todayCard'); c.style.removeProperty('--n-a'); c.style.removeProperty('--n-b');
+  applySeasonAmbiance();   // 空カードにも季節の雰囲気は残す
+  $('#today').scrollIntoView({behavior:'smooth', block:'start'});
+}
+// フォームの「今日の取説を見る」
+$('#todayBtn').addEventListener('click', () => {
+  const y = parseInt($('#tSelY').value,10), m = parseInt($('#tSelM').value,10), d = parseInt($('#tSelD').value,10);
+  runToday(y, m, d, {save:true, animate:true, scroll:false});
+});
+// ヒーローとフォームに今日の日付を表示
+function refreshDates(){
+  const s = fmtToday(todayObj());
+  if($('#heroDate'))  $('#heroDate').textContent  = s;
+  if($('#todayDate')) $('#todayDate').textContent = s + ' の取説';
+}
+// 初期化：記憶があれば0タップで今日の取説を表示
+(function initToday(){
+  refreshDates();
+  const p = loadProfile();
+  if(p){
+    if($('#tSelY')) $('#tSelY').value = p.y;
+    if($('#tSelM')) $('#tSelM').value = p.m;
+    // 日セレクトを月に合わせて埋め直してから値を入れる
+    if($('#tSelM')) $('#tSelM').dispatchEvent(new Event('change'));
+    if($('#tSelD')) $('#tSelD').value = p.d;
+    runToday(p.y, p.m, p.d, {save:false, animate:true, scroll:false});
+  } else {
+    applySeasonAmbiance();   // 初回（フォーム表示）でも季節の光を乗せる
+  }
+})();
+
+/* ── ヘッダーのスクロール状態 ── */
+const hdr = $('#hdr');
+function onScroll(){
+  const y = window.scrollY || window.pageYOffset;
+  hdr.classList.toggle('scrolled', y > 24);
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+window.addEventListener('resize', onScroll);
+onScroll();
+
+/* ── スクロールで要素をふわっと表示 ── */
+if('IntersectionObserver' in window){
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+  $$('.reveal').forEach(el => io.observe(el));
+} else {
+  $$('.reveal').forEach(el => el.classList.add('in'));
+}
+
+/* ══════════════════════════════════════════════
+   ▼ 計測（仮想ページビュー方式・Vercel無料プラン対応）
+   ダッシュボードのPages欄で /v/○○ として見える：
+   /v/self-11 …自分診断の完了（数字別） /v/pair …相性実行
+   /v/today …今日の取説実行 /v/note-guide-11 …数秘別ガイドのクリック
+   /v/note-kantei …個別鑑定のクリック /v/note-top …noteトップのクリック
+   ══════════════════════════════════════════════ */
+const NAGI_CLEAN = location.pathname + location.search + location.hash;   // 読み込み時の正規URL
+function nagiTrack(name){
+  try{
+    history.pushState(null, '', '/v/' + name);
+    setTimeout(() => { try{ history.replaceState(null, '', NAGI_CLEAN); }catch(e){} }, 400);
+  }catch(e){}
+}
+/* noteへのクリックを計測（リンクは新規タブで開くため遷移は妨げない） */
+document.addEventListener('click', (ev) => {
+  const a = ev.target && ev.target.closest ? ev.target.closest('a[href*="note.com"]') : null;
+  if(!a) return;
+  let label = 'note-top';
+  const h = a.href || '';
+  if(h === NOTE_KANTEI) label = 'note-kantei';
+  else if(h === NOTE_TEKISHOKU && NOTE_TEKISHOKU !== NOTE_TOP) label = 'note-tekishoku';
+  else { for(const k in NUM_NOTE){ if(NUM_NOTE[k] === h){ label = 'note-guide-' + k; break; } } }
+  nagiTrack(label);
+}, true);
+/* 相性の実行を計測（今日の取説は runToday 内で計測済み） */
+if($('#pairBtn'))  $('#pairBtn').addEventListener('click',  () => nagiTrack('pair'));
+</script>
+</body>
+</html>
