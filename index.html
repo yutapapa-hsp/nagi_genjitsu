@@ -1,350 +1,208 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>数秘タイプ診断｜なぎ</title>
-  <meta name="description" content="生年月日を入れるだけ。全部で12タイプから、自分の核になる数字と、強み・つまずき・向かう方向を読み解く。占いではなく、自分を現実で使うための設計図です。">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="数秘タイプ診断｜なぎ">
-  <meta property="og:description" content="生年月日を入れるだけ。数字から読み解く、自分の取扱説明書。タイプは全部で12種類。">
-  <meta property="og:url" content="https://nagi-genjitsu.vercel.app/">
-  <meta property="og:image" content="https://nagi-genjitsu.vercel.app/ogp.png?v=6">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://nagi-genjitsu.vercel.app/ogp.png?v=6">
-  <link rel="icon" type="image/png" href="favicon.png?v=20261003">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261003">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600&family=Noto+Serif+JP:wght@500;600;700;800&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --navy:#06184d;
-      --blue:#104fc1;
-      --gold:#c99a43;
-      --sub:#425174;
-      --white:#fffefb;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{min-height:100%}
-    body{
-      min-height:100dvh;
-      color:var(--navy);
-      font-family:'Noto Sans JP',sans-serif;
-      background-color:#fbfcff;
-      background-image:url('assets/nagi-numerology-bg.webp');
-      background-size:cover;
-      background-position:center;
-      overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;
-    }
-    body::after{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      background:radial-gradient(ellipse at center,rgba(255,255,255,.16) 0 31%,rgba(255,255,255,0) 64%);
-    }
-    .brand{
-      position:absolute;
-      z-index:3;
-      top:24px;
-      left:34px;
-      display:flex;
-      align-items:center;
-      gap:22px;
-      filter:drop-shadow(0 12px 28px rgba(6,24,77,.13));
-    }
-    .brand-avatar{
-      width:146px;
-      height:146px;
-      border-radius:50%;
-      object-fit:cover;
-      object-position:center 42%;
-      border:4px solid #fff;
-      outline:2px solid rgba(10,34,91,.88);
-      background:#fff;
-      box-shadow:0 16px 38px rgba(6,24,77,.28),0 0 0 8px rgba(214,169,78,.27),0 0 32px rgba(255,255,255,.96);
-      filter:contrast(1.08);
-    }
-    .brand-copy{line-height:1.2}
-    .brand-name{
-      display:block;
-      font-family:'Montserrat',sans-serif;
-      font-size:25px;
-      font-weight:600;
-      letter-spacing:.30em;
-      color:var(--navy);
-      text-shadow:0 2px 0 rgba(255,255,255,.95),0 8px 18px rgba(6,24,77,.13);
-    }
-    .brand-tag{
-      display:block;
-      margin-top:9px;
-      font-family:'Noto Serif JP',serif;
-      font-size:15px;
-      font-weight:600;
-      letter-spacing:.10em;
-      color:var(--navy);
-      text-shadow:0 2px 0 rgba(255,255,255,.95),0 7px 16px rgba(6,24,77,.12);
-    }
-    main{
-      position:relative;
-      z-index:2;
-      min-height:100dvh;
-      display:grid;
-      place-items:center;
-      padding:150px 24px 70px;
-    }
-    .hero{
-      position:relative;
-      width:min(860px,100%);
-      text-align:center;
-      transform:translateY(18px);
-      isolation:isolate;
-    }
-    .hero::before{
-      content:"";
-      position:absolute;
-      z-index:-1;
-      inset:-82px -100px -74px;
-      border-radius:50%;
-      background:radial-gradient(ellipse at center,rgba(255,255,255,.98) 0%,rgba(255,255,255,.86) 46%,rgba(255,255,255,0) 74%);
-      filter:blur(2px);
-      pointer-events:none;
-    }
-    .kicker{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:18px;
-      font-family:'Montserrat',sans-serif;
-      font-size:14px;
-      font-weight:600;
-      letter-spacing:.38em;
-      text-transform:uppercase;
-      color:var(--navy);
-    }
-    .kicker::before,.kicker::after{
-      content:"";
-      width:72px;
-      height:1px;
-      background:linear-gradient(90deg,transparent,var(--gold));
-    }
-    .kicker::after{background:linear-gradient(90deg,var(--gold),transparent)}
-    .ornament{
-      width:56px;
-      height:14px;
-      margin:10px auto 22px;
-      position:relative;
-    }
-    .ornament::before{
-      content:"";
-      position:absolute;
-      top:6px;
-      left:0;
-      right:0;
-      height:1px;
-      background:var(--gold);
-    }
-    .ornament::after{
-      content:"◆";
-      position:absolute;
-      inset:0;
-      display:grid;
-      place-items:center;
-      color:var(--gold);
-      font-size:8px;
-      background:rgba(255,255,255,.75);
-    }
-    .date{
-      margin-bottom:19px;
-      font-family:'Noto Serif JP',serif;
-      font-size:clamp(16px,2vw,22px);
-      font-weight:700;
-      letter-spacing:.09em;
-      color:var(--blue);
-      text-shadow:0 2px 0 rgba(255,255,255,.95),0 7px 18px rgba(16,79,193,.16);
-    }
-    h1{
-      font-family:'Noto Serif JP',serif;
-      font-size:clamp(43px,6.2vw,82px);
-      font-weight:700;
-      line-height:1.42;
-      letter-spacing:.045em;
-      color:var(--navy);
-      text-wrap:balance;
-      text-shadow:0 3px 0 rgba(255,255,255,.98),0 6px 1px rgba(255,255,255,.62),0 16px 34px rgba(6,24,77,.18);
-    }
-    h1 .blue{color:var(--blue)}
-    .lead{
-      margin:22px auto 0;
-      max-width:730px;
-      font-family:'Noto Serif JP',serif;
-      font-size:clamp(15px,1.6vw,20px);
-      font-weight:600;
-      line-height:2.05;
-      letter-spacing:.035em;
-      color:var(--navy);
-      text-shadow:0 2px 0 rgba(255,255,255,.96),0 8px 22px rgba(6,24,77,.16);
-    }
-    .cta{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:24px;
-      width:min(560px,92%);
-      min-height:74px;
-      margin:28px auto 0;
-      border:2px solid var(--gold);
-      border-radius:999px;
-      background:
-        radial-gradient(circle at 50% 0,rgba(22,88,196,.55),transparent 55%),
-        linear-gradient(180deg,#0a3384,#051542);
-      box-shadow:0 12px 30px rgba(6,24,77,.23),inset 0 0 0 2px rgba(255,255,255,.07);
-      color:#fff;
-      text-decoration:none;
-      font-family:'Noto Serif JP',serif;
-      font-size:clamp(17px,2vw,24px);
-      font-weight:700;
-      letter-spacing:.05em;
-      position:relative;
-      overflow:hidden;
-      transition:transform .25s ease,box-shadow .25s ease,filter .25s ease;
-    }
-    .cta::before,.cta::after{
-      content:"✦";
-      color:#ffd26c;
-      font-size:20px;
-      text-shadow:0 0 12px rgba(255,210,108,.9);
-    }
-    .cta:hover{transform:translateY(-3px);filter:brightness(1.08);box-shadow:0 17px 36px rgba(6,24,77,.3)}
-    .cta span{position:relative;z-index:1}
-    .cta .shine{
-      position:absolute;
-      inset:-60% auto -60% -25%;
-      width:22%;
-      transform:rotate(18deg);
-      background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
-      animation:ctaShine 5.2s ease-in-out infinite;
-    }
-    @keyframes ctaShine{0%,62%{left:-28%;opacity:0}70%{opacity:1}88%,100%{left:112%;opacity:0}}
-    .cta:focus-visible{outline:3px solid var(--blue);outline-offset:5px}
-    .note{
-      margin-top:15px;
-      font-size:13px;
-      letter-spacing:.025em;
-      color:var(--sub);
-    }
-    .float-num{
-      position:fixed;
-      z-index:1;
-      pointer-events:none;
-      font-family:'Noto Serif JP',serif;
-      color:var(--navy);
-      opacity:.12;
-      font-weight:600;
-      text-shadow:0 2px 0 rgba(255,255,255,.9),0 0 18px rgba(16,79,193,.16);
-      animation:numberFloat 18s ease-in-out infinite alternate;
-    }
-    .n1{left:3%;top:58%;font-size:40px;animation-duration:21s}
-    .n2{right:5%;top:64%;font-size:52px;animation-delay:-5s;animation-duration:24s}
-    .n3{left:27%;top:8%;font-size:30px;animation-delay:-8s}
-    .n4{right:21%;top:10%;font-size:34px;animation-delay:-3s;animation-duration:20s}
-    .n5{left:10%;top:27%;font-size:28px;animation-delay:-11s;animation-duration:23s}
-    .n6{right:11%;top:29%;font-size:42px;animation-delay:-7s;animation-duration:19s}
-    .n7{left:19%;bottom:9%;font-size:32px;animation-delay:-2s;animation-duration:25s}
-    .n8{right:27%;bottom:8%;font-size:29px;animation-delay:-13s;animation-duration:22s}
-    .n9{left:44%;top:3%;font-size:23px;animation-delay:-9s;animation-duration:26s}
-    .n10{right:41%;bottom:3%;font-size:26px;animation-delay:-4s;animation-duration:20s}
-    .n11{left:5%;bottom:17%;font-size:24px;animation-delay:-6s;animation-duration:17s}
-    .n12{right:4%;bottom:21%;font-size:31px;animation-delay:-10s;animation-duration:23s}
-    @keyframes numberFloat{
-      0%{transform:translate3d(-4px,16px,0) rotate(-3deg);opacity:.07}
-      45%{opacity:.16}
-      100%{transform:translate3d(14px,-34px,0) rotate(4deg);opacity:.1}
-    }
-    @media(max-width:720px){
-      body{background-size:auto 100%;background-position:center top}
-      .brand{top:14px;left:16px;gap:12px}
-      .brand-avatar{width:92px;height:92px;border-width:3px;outline-width:1.5px}
-      .brand-name{font-size:17px}.brand-tag{font-size:10.5px;margin-top:6px}
-      main{padding:118px 18px 46px}
-      .hero{transform:none}.hero::before{inset:-56px -24px -48px}
-      .kicker{font-size:10px;letter-spacing:.28em;gap:10px}.kicker::before,.kicker::after{width:36px}
-      .date{margin-bottom:12px}
-      h1{font-size:clamp(38px,12vw,54px);line-height:1.38;letter-spacing:.02em}
-      .lead{font-size:14px;line-height:1.95}.lead br{display:none}
-      .cta{min-height:64px;margin-top:23px;gap:12px;font-size:17px}
-      .cta::before,.cta::after{font-size:14px}
-      .note{font-size:11.5px;line-height:1.7}
-    }
-    @media(prefers-reduced-motion:reduce){.float-num,.cta .shine{animation:none}.cta{transition:none}}
-  </style>
-  <link rel="stylesheet" href="assets/numerology-theme.css">
-  <script>window.location.replace('diagnosis.html');</script>
-  <noscript><meta http-equiv="refresh" content="0;url=diagnosis.html"></noscript>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>生まれ日の取扱説明書｜なぎ</title>
+<meta name="description" content="生まれ日の数字を送るだけで、自分の取扱説明書（PDF・5ページ）がLINEで届きます。生まれ日の数字「過去数」から、無意識のクセ・消耗の抜け方・お金の使い方・明日からの一手まで。感情論とスピリチュアルは、なしで。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="生まれ日の取扱説明書｜なぎ">
+<meta property="og:description" content="生まれ日を送るだけ。自分の取扱説明書が、LINEで無料で届きます。">
+<meta name="theme-color" content="#1d2024">
+<link rel="icon" type="image/png" href="favicon.png?v=20261003">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/20261003_line.css">
+<link rel="preload" as="image" href="assets/20261003_nagi-3d-charcoal.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261003">
 </head>
-<body class="landing-page">
-  <div class="numerology-backdrop" aria-hidden="true">
-    <span class="blueprint-grid"></span>
-    <span class="blueprint-arc arc-a"></span>
-    <span class="blueprint-arc arc-b"></span>
-    <span class="blueprint-beam beam-a"></span>
-    <span class="blueprint-beam beam-b"></span>
+<body>
+<div class="reading-progress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">本文へ移動</a>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#hero" aria-label="なぎ トップ"><b>nagi.</b><span>現実をかえる数秘デザイン</span></a>
+    <nav class="nav" aria-label="ページ内ナビゲーション"><a href="#concept">なぎの数秘</a><a href="#gift">無料の取扱説明書</a><a href="#profile">なぎについて</a></nav>
+    <a class="pill-btn js-line" data-pos="header" href="https://lin.ee/XsoSk1j" target="_blank" rel="noopener">LINEで特典を受け取る</a>
   </div>
-  <div class="brand" aria-label="NAGI 現実をかえる数秘デザイン">
-    <img class="brand-avatar" src="assets/nagi-character-focus.jpg" alt="なぎ">
-    <span class="brand-copy">
-      <span class="brand-name">NAGI</span>
-      <span class="brand-tag">現実をかえる数秘デザイン</span>
-    </span>
+</header>
+
+<main id="main">
+
+<section class="hero" id="hero" aria-labelledby="hero-title">
+  <div class="hero-art" aria-hidden="true">
+    
+    <div class="portrait-motion"><img src="assets/20261003_nagi-3d-charcoal.png" alt="" width="1122" height="1402" fetchpriority="high"></div>
+    <div class="art-caption"><span>なぎ</span><span>現実をかえる数秘デザイン</span></div>
+    <div class="art-rule"></div>
   </div>
-
-  <span class="float-num n1" aria-hidden="true">11</span>
-  <span class="float-num n2" aria-hidden="true">33</span>
-  <span class="float-num n3" aria-hidden="true">7</span>
-  <span class="float-num n4" aria-hidden="true">22</span>
-  <span class="float-num n5" aria-hidden="true">3</span>
-  <span class="float-num n6" aria-hidden="true">8</span>
-  <span class="float-num n7" aria-hidden="true">5</span>
-  <span class="float-num n8" aria-hidden="true">9</span>
-  <span class="float-num n9" aria-hidden="true">1</span>
-  <span class="float-num n10" aria-hidden="true">6</span>
-  <span class="float-num n11" aria-hidden="true">4</span>
-  <span class="float-num n12" aria-hidden="true">2</span>
-
-  <main>
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="kicker">Numerology Design</p>
-        <div class="ornament" aria-hidden="true"></div>
-        <p class="hero-eyebrow">数字で読む、現実の攻略マップ</p>
-        <h1 id="hero-title"><span class="blue">生年月日</span>でわかる、<br>自分の取扱説明書。</h1>
-        <p class="lead">生年月日から12タイプのどれに当てはまるかを計算し、強み・つまずき・向かう方向を読み解きます。占いではなく、自分を現実で使うための“設計図”。</p>
-        <div class="design-axis" aria-label="診断で読み解く3つの数字">
-          <span><b>NOW</b>現在数・自分の核</span>
-          <span><b>PAST</b>過去数・持って生まれたクセ</span>
-          <span><b>FUTURE</b>未来数・向かう方向</span>
-        </div>
-        <a class="cta" href="diagnosis.html"><span>自分の設計図を無料で出す</span><i class="shine" aria-hidden="true"></i></a>
-        <p class="note">登録不要・生年月日だけ。結果はその場で読めます。</p>
+  <div class="wrap hero-layout">
+    <div class="hero-copy">
+      <p class="for">自分の扱い方が、まだわからない人へ</p>
+      <h1 id="hero-title">現実は、<br>気合いより<br>“設計”で変わる。</h1>
+      <p class="lead">自分のクセを知る。動く順番を変える。<br>数字を、明日の一手に。</p>
+      <div class="hero-action">
+        <a class="cta js-line" data-pos="hero" href="https://lin.ee/XsoSk1j" target="_blank" rel="noopener">LINEで取扱説明書を受け取る<span class="arw" aria-hidden="true">↗</span></a>
+        <p class="cta-note">登録無料 / 生まれ日を送るだけ / PDF 5ページ</p>
       </div>
+    </div>
+  </div>
+  <div class="hero-bottom"><a href="#concept" class="scroll-link">自分の型を知る<span aria-hidden="true">↓</span></a><button id="motion-toggle" type="button" aria-pressed="false">動きを止める <span aria-hidden="true">Ⅱ</span></button></div>
+</section>
+<div class="ticker" aria-hidden="true"><div class="ticker-track"><span>自分を知る。　 数字を使う。　 明日を変える。　 <i>Know your own rhythm.</i>　 </span><span>自分を知る。　 数字を使う。　 明日を変える。　 <i>Know your own rhythm.</i>　 </span></div></div>
 
-      <div class="number-architecture" aria-label="12の数秘タイプと3つの設計数を表す図">
-        <div class="orbit-label">生年月日<br><strong>設計図</strong><small>3 NUMBERS</small></div>
-        <div class="orbit-ring orbit-ring-a" aria-hidden="true"></div>
-        <div class="orbit-ring orbit-ring-b" aria-hidden="true"></div>
-        <div class="orbit-numbers" aria-hidden="true">
-          <span style="--i:0">1</span><span style="--i:1">2</span><span style="--i:2">3</span>
-          <span style="--i:3">4</span><span style="--i:4">5</span><span style="--i:5">6</span>
-          <span style="--i:6">7</span><span style="--i:7">8</span><span style="--i:8">9</span>
-          <span style="--i:9">11</span><span style="--i:10">22</span><span style="--i:11">33</span>
-        </div>
-        <span class="orbit-caption">12 NUMEROLOGY TYPES</span>
+<section class="issue">
+  <span class="ghost" aria-hidden="true">Issue</span>
+  <div class="narrow">
+    <p class="label rv">Issue</p>
+    <h2 class="rv">こんなふうに、同じところで<br>止まっていませんか。</h2>
+    <ul>
+      <li class="rv">頑張っているのに、なぜか毎回同じところでつまずく。</li>
+      <li class="rv">人に合わせているうちに、自分の予定がいつも後回しになる。</li>
+      <li class="rv">向いている働き方やお金の使い方が、自分でもわからない。</li>
+      <li class="rv">占いを読んでも「当たってる」で終わって、何も変わらない。</li>
+      <li class="rv">自分を変えようとして、余計に疲れている。</li>
+    </ul>
+    <p class="turn rv">自分を責める前に、<br>自分の<em>“型”</em>から、動き方を見直してみませんか。</p>
+  </div>
+</section>
+
+<section class="concept" id="concept">
+  <span class="ghost" aria-hidden="true">Concept</span>
+  <div class="wrap">
+    <p class="label rv">Concept</p>
+    <h2 class="rv">自分を変える前に、<br><em>自分の型</em>を知る。</h2>
+    <div class="cols">
+      <div class="col rv"><p class="no">01 / 知る</p><h3>生まれ日で、型を知る</h3><p>生まれ日の数字から、どんな場面で力が出て、どこで消耗しやすいかを言葉にします。</p></div>
+      <div class="col rv"><p class="no">02 / 整える</p><h3>型に合わせて、順番を組む</h3><p>直すのではなく、やる順番と置き場所を変える。それだけで、同じ努力の効き方が変わります。</p></div>
+      <div class="col rv"><p class="no">03 / 動く</p><h3>最初の一手に落とす</h3><p>読んで終わりにしないために、明日からやる一手を1つだけ決めます。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="gift" id="gift">
+  <div class="wrap">
+    <div class="panel rv">
+      <p class="label">Gift</p>
+      <h2>LINE登録で届く<br><em>「生まれ日の取扱説明書」</em></h2>
+      <p class="intro">LINEに生まれ日の数字を送ると、その日の取扱説明書（PDF・5ページ）がすぐに届きます。生まれた日だけで出る数字「過去数」から、無意識のクセと攻略法を読み解きます。1日から31日まで、全部ちがう中身です。</p>
+      <div class="map">
+        <svg viewBox="0 0 520 430" role="img" aria-label="取扱説明書でわかる4つのこと：無意識のクセ、消耗の抜け方、お金の使い方、明日からの一手">
+          <defs>
+            <pattern id="g" width="26" height="26" patternUnits="userSpaceOnUse"><path d="M26 0H0V26" fill="none" stroke="rgba(255,255,255,.05)"/></pattern>
+            <radialGradient id="c" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#2a7d72"/><stop offset="1" stop-color="#174f48"/></radialGradient>
+          </defs>
+          <rect width="520" height="430" fill="#15181b"/><rect width="520" height="430" fill="url(#g)"/>
+          <text x="260" y="42" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="13" letter-spacing="4" fill="#93cbbf">BIRTHDAY MANUAL</text>
+          <text x="260" y="70" text-anchor="middle" font-family="Shippori Mincho,serif" font-size="20" fill="#fff">生まれ日の数字から読む4つのこと</text>
+          <circle cx="260" cy="248" r="112" fill="none" stroke="rgba(147,203,191,.35)" stroke-dasharray="3 5"/>
+          <circle cx="260" cy="248" r="56" fill="url(#c)" stroke="rgba(147,203,191,.6)"/>
+          <text x="260" y="244" text-anchor="middle" font-family="Shippori Mincho,serif" font-size="15" fill="#fff">生まれ日の</text>
+          <text x="260" y="264" text-anchor="middle" font-family="Shippori Mincho,serif" font-size="15" fill="#fff">過去数</text>
+          <g font-family="Noto Sans JP,sans-serif" font-size="12.5" fill="#fff" text-anchor="middle">
+            <circle cx="260" cy="136" r="34" fill="#1d2024" stroke="rgba(255,255,255,.3)"/><text x="260" y="132">無意識の</text><text x="260" y="148">クセ</text>
+            <circle cx="372" cy="248" r="34" fill="#1d2024" stroke="rgba(255,255,255,.3)"/><text x="372" y="244">消耗の</text><text x="372" y="260">抜け方</text>
+            <circle cx="260" cy="360" r="34" fill="#1d2024" stroke="rgba(255,255,255,.3)"/><text x="260" y="356">お金の</text><text x="260" y="372">使い方</text>
+            <circle cx="148" cy="248" r="34" fill="#1d2024" stroke="rgba(255,255,255,.3)"/><text x="148" y="244">明日からの</text><text x="148" y="260">一手</text>
+          </g>
+        </svg>
       </div>
-    </section>
-  </main>
+      <div class="items">
+        <div>無意識に出るクセ（チェック式）</div><div>消耗する3つの場面と抜け方</div><div>お金の使い方</div><div>明日1日の使い方と7日間の一手</div>
+      </div>
+      <a class="cta js-line" data-pos="gift" href="https://lin.ee/XsoSk1j" target="_blank" rel="noopener">特典をLINEで受け取る<span class="arw">→</span></a>
+      <p class="fine">※ 特典は無料です。LINEでは、なぎのnoteや鑑定のお知らせもお送りします。</p>
+    </div>
+  </div>
+</section>
+
+<section class="works dark">
+  <span class="ghost" aria-hidden="true">Works</span>
+  <div class="wrap">
+    <p class="label rv">Works</p>
+    <h2 class="rv">数秘を「読み物」で終わらせず、<br><em>使える形</em>にしてきました。</h2>
+    <div class="stats">
+      <div class="stat rv"><small>Guide</small><b>数秘12タイプ別<br>完全ガイド</b><strong>12<span>冊</span></strong></div>
+      <div class="stat rv"><small>Blueprint</small><b>働き方とお金の<br>適職設計図</b><strong>9.7<span>万字</span></strong></div>
+      <div class="stat rv"><small>Reading</small><b>生年月日から作る<br>個別数秘鑑定書</b><strong>1<span>人ずつ</span></strong></div>
+      <div class="stat rv"><small>Free</small><b>生年月日でわかる<br>数秘タイプ診断</b><strong>12<span>タイプ</span></strong></div>
+    </div>
+    <p class="fine">※ 掲載しているのは制作物の事実です。取扱説明書や鑑定の内容は、成果を保証するものではありません。</p>
+  </div>
+</section>
+
+<section class="profile" id="profile">
+  <span class="ghost" aria-hidden="true">Profile</span>
+  <div class="wrap grid">
+    <div class="frame rv"><span class="profile-word" aria-hidden="true">Nagi.</span><img src="assets/20261003_nagi-3d-charcoal.png" alt="元のアイコンをもとにしたなぎの3Dイラスト。短い髪と穏やかな表情" width="1122" height="1402" loading="lazy"></div>
+    <div>
+      <p class="label rv">Profile</p>
+      <h2 class="rv">なぎについて</h2>
+      <p class="rv">大阪で会社員をしながら、数秘を「占い」ではなく「現実を設計する道具」として発信しています。</p>
+      <p class="rv">以前、事業に失敗して150万円の借金を抱え、心も体も動かなくなった時期がありました。気合いや前向きさでは、どうにもならなかった。そこで出会ったのが数秘です。自分の数字の型に合わせて、やることの順番を組み直したら、止まっていた現実が少しずつ動き出しました。</p>
+      <p class="rv">だから僕の発信は、感情論とスピリチュアルは、なしで。数字を、明日の行動に変えるための設計図として使います。</p>
+      <p class="sign rv">なぎ｜現実をかえる数秘デザイン</p>
+      <div class="links rv"><a href="https://www.threads.com/@nagi_genjitsu" target="_blank" rel="noopener">Threads</a><a href="https://note.com/nagi_genjitsu" target="_blank" rel="noopener">note</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="narrow">
+    <p class="label rv">Why Numerology</p>
+    <h2 class="rv">数秘は、当てるためではなく、<br><em>設計するため</em>に使う。</h2>
+    <p class="rv">「当たっている」で終わる占いは、読んだ翌日には忘れてしまいます。僕が数字を使うのは、自分の型を言葉にして、次の一手を決めるためなんです。取扱説明書も、読むためではなく、明日1つ動くために作りました。</p>
+  </div>
+</section>
+
+<section class="steps">
+  <div class="wrap">
+    <p class="label rv">How to get</p>
+    <h2 class="rv">受け取りは、シンプルです。</h2>
+    <div class="flow">
+      <div class="rv"><p class="no">01</p><h3>LINEを友だち追加</h3><p>このページのボタンから、なぎのLINEを追加します。</p></div>
+      <div class="rv"><p class="no">02</p><h3>生まれ日を送る</h3><p>生まれ日の数字だけを送ります。12日生まれなら <code>12</code></p></div>
+      <div class="rv"><p class="no">03</p><h3>取扱説明書が届く</h3><p>その日の取扱説明書（PDF・5ページ）が、自動ですぐに届きます。</p></div>
+      <div class="rv"><p class="no">04</p><h3>明日1つ動く</h3><p>「明日1日の使い方」から、1つだけ試してみる。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="narrow">
+    <p class="label rv">FAQ</p>
+    <h2 class="rv">よくある質問</h2>
+    <details><summary>本当に無料ですか。</summary><p>はい、取扱説明書は無料です。LINEでは、なぎの新しいnoteや鑑定のお知らせもお送りします。</p></details>
+    <details><summary>数秘のことを何も知らなくても大丈夫ですか。</summary><p>大丈夫です。必要なのは生まれ日の数字だけで、読み解きは取扱説明書の中で済ませてあります。</p></details>
+    <details><summary>生年月日を送る必要はありますか。</summary><p>いりません。送るのは「生まれ日（1〜31の数字）」だけです。生まれた年と月は不要です。</p></details>
+    <details><summary>配信は多いですか。</summary><p>お知らせは月に数回までにしています。不要になったら、LINEのブロックでいつでも止められます。</p></details>
+    <details><summary>占いですか。</summary><p>未来を当てるものではありません。自分の動き方の型を言葉にして、やることの順番を整理するための設計図です。</p></details>
+  </div>
+</section>
+
+<section class="final dark">
+  <div class="narrow">
+    <p class="label rv">Start</p>
+    <h2 class="rv">自分の扱い方は、<br><em>知った日から</em>変えられる。</h2>
+    <p class="muted rv">性格を直すより先に、自分の型を知っておく。それだけで、明日の動き方が変わります。</p>
+    <div class="rv">
+      <a class="cta js-line" data-pos="final" href="https://lin.ee/XsoSk1j" target="_blank" rel="noopener">LINEで取扱説明書を受け取る<span class="arw">→</span></a>
+      <p class="cta-note">登録無料・生まれ日を送るだけ</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>NAGI ── 現実をかえる数秘デザイン</p>
+  <p style="margin-top:6px"><a href="https://www.threads.com/@nagi_genjitsu" target="_blank" rel="noopener">Threads</a><a href="https://note.com/nagi_genjitsu" target="_blank" rel="noopener">note</a><a href="https://nagi-genjitsu.vercel.app/" target="_blank" rel="noopener">数秘タイプ診断</a></p>
+</footer>
+
+<div class="sticky hide" id="sticky"><a class="cta js-line" data-pos="sticky" href="https://lin.ee/XsoSk1j" target="_blank" rel="noopener">LINEで取扱説明書を受け取る<span class="arw">→</span></a></div>
+
+<script src="assets/20261003_line.js" defer></script>
 </body>
 </html>

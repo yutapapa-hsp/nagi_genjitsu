@@ -41,14 +41,7 @@
     if (typeof window.va === 'function') window.va('event', { name: 'line_cta', data: { position: link.dataset.pos || 'unknown' } });
   }));
 })();
-// Load existing Vercel analytics only on the production host.
-if (location.hostname === 'nagi-genjitsu.vercel.app') {
-  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-  const analytics = document.createElement('script');
-  analytics.defer = true;
-  analytics.src = '/_vercel/insights/script.js';
-  document.head.appendChild(analytics);
-}
+
 (() => {
   const root = document.documentElement;
   const hero = document.getElementById('hero');
