@@ -1,0 +1,36 @@
+/* 追加の入口も本番LPのCTAと共通の配色を使う。 */
+.reading-image-button { width:min(100%,365px); margin-block:8px; }
+.reading-image-button .arw img { width:18px; height:18px; }
+.reading-image-button:focus-visible { outline:3px solid var(--mint); outline-offset:3px; }
+.hero-action { display:flex; flex-direction:column; align-items:flex-start; }
+.hero-layout { z-index:2; }
+.hero .lead { max-width:36em; }
+.sticky .reading-image-button { margin:0; }
+.entrances { padding:clamp(44px,7vw,90px) 0; background:var(--paper); color:var(--ink); }
+.entry-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin-top:26px; }
+.entry-grid article { display:flex; flex-direction:column; align-items:flex-start; padding:clamp(20px,3vw,36px); background:var(--white); border:1px solid var(--line); border-top:2px solid var(--teal); }
+.entry-grid h3 { font-size:clamp(20px,2vw,28px); margin:0; }
+.entry-grid p { line-height:1.9; margin:15px 0 24px; }
+.entry-grid a { margin-top:auto; }
+.compare { padding:clamp(38px,5vw,74px) 0; background:var(--white); color:var(--ink); }
+.compare table { width:100%; table-layout:fixed; border-collapse:collapse; margin-top:26px; font-size:clamp(13px,1.2vw,17px); line-height:1.8; }
+.compare th,.compare td { padding:16px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+.compare thead { background:var(--ink); color:white; }
+.compare thead td:first-child { width:20%; }
+.compare tbody th { color:var(--teal); }
+.gift .items p { font-size:14px; line-height:1.8; margin:7px 0 0; }
+.steps .flow { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.flow .no { font-variant-numeric:tabular-nums; }
+.gift .map text { font-family:var(--serif); }
+.gift .map g text { font-family:var(--sans); }
+.gift .map text:first-of-type[letter-spacing] { font-family:var(--en); }
+@media(max-width:800px) {
+ .compare .wrap { padding-inline:22px; }
+ .compare th,.compare td { padding:12px 6px; }
+ .compare thead td:first-child { width:23%; }
+ .steps .flow { grid-template-columns:1fr; }
+}
+@media(max-width:700px) {
+ .entry-grid { grid-template-columns:1fr; }
+ .entrances .wrap { padding-inline:22px; }
+}
